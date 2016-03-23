@@ -16,7 +16,7 @@ var UserSchema = new Schema({
     lowercase: true
   },
   occupation: String,
-  position:String,
+  position:Array,//分别用横纵坐标表示具体位置
   points: {
     type: Number,
     default: 5

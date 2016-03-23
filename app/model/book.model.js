@@ -9,6 +9,7 @@ let bookSchema = new mongoose.Schema({
   image:String,
   alt:String,
   pubdate:String,
+  position:Array,
   tags:Array
 })
 

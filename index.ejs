@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=OGDad6p5dKGwBtQsVlQOcCHQ"></script>
+    <title>淘书娃首页</title>
+</head>
+<body>
+    <h2 id="mypos" style="color: red"></h2>
+    <h2>图书列表</h2>
+    <%  bookList.forEach(function(book,index){ %>
+        <section name="sec_<%= index %>">
+            书名:<%= book.title%>
+            作者:<%= book.author%>
+            图片: <img src="<%= book.image%>" alt="">
+            <a href="/map?id=<%=book._id%>">添加地址信息</a>
+            坐标:[<%=book.position[0] %>,<%=book.position[1] %>]
+        </section>
+    <hr>
+    <%})%>
+    <a href="/add_book" style="margin-top: 30px; font-size: 20px">添加书籍</a>
+    <a href="/map" style="margin-top: 30px; font-size: 20px">测试地图</a>
+</body>
+</html>
+<script src="/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function(){
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function (r) {
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                var pos = new BMap.Point(r.point.lng, r.point.lat);
+                var myGeo = new BMap.Geocoder();
+                console.log('pos-----------:',pos);
+                myGeo.getLocation(new BMap.Point(pos.lng, pos.lat), function (result) {
+                    if (result) {
+                        var address = result.address;
+                        $('#mypos').text(address);
+                    }
+                });
+            }
+            else {
+                alert('failed' + this.getStatus());
+            }
+        })
+    })
+</script>
