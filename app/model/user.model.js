@@ -1,90 +1,58 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var Promise = require('bluebird');
 
-var UserSchema = new Schema({
-  avatar: String,
-  nickname: String,
-  phone: String,
-  pwd: String,
-  address: String,
-  email: {
+var userSchema = new mongoose.Schema({
+  avatar: String, //头像
+  nickname: String, //用户昵称
+  phone: String,//用户电话
+  pwd: String, //用户密码
+  email: { //用户邮箱
     type: String,
     lowercase: true
   },
-  occupation: String,
-  position:Array,//分别用横纵坐标表示具体位置
-  points: {
+  age:Number,//用户年龄
+  sex:Number,//用户性别
+  attention:[{//关注类别
+    type:String
+  }],
+  occupation: String,//用户职业
+  position:Array,//考虑到用户的多地址 分别用横纵坐标表示具体位置[[120,133],[124,133]]
+  address: Array,//考虑到用户的多地址 ['北京市朝阳区东三环北路','海淀区中国人民大学']
+  points: { //积分
     type: Number,
     default: 5
   },
-  created: {
-    type: Date,
-    default: Date.now
-  },
-  updated: {
-    type: Date,
-    default: Date.now
-  },
 
-
-  provider: {
-    type: String,
-    default: 'local'
-  },
-  facebook: {
-    id: String,
-    token: String,
-    email: String,
-    name: String
-  },
-  twitter: {
-    id: String,
-    token: String,
-    displayName: String,
-    username: String
-  },
-  google: {
-    id: String,
-    token: String,
-    email: String,
-    name: String
-  },
-  github: {
-    id: String,
-    token: String,
-    email: String,
-    name: String
-  },
-  weibo: {
-    id: String,
-    token: String,
-    email: String,
-    name: String
-  },
-  qq: {
-    id: String,
-    token: String,
-    email: String,
-    name: String
-  },
-  likeList: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Article'
+  like_list: [{ //我的心愿单
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book'
   }],
-  hashedPassword: String,
-  salt: String,
-  role: {
-    type: String,
-    default: 'user'
-  },
 
-  status: {
-    type: Number,
-    default: 0
+  donate_list:[{ //我的捐出书单
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book'
+  }],
+
+  borrow_list:[{ //我的借书书单
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book'
+  }],
+
+  message_list:[{ //我的消息列表
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Messsage'
+  }],
+
+  created: { //创建时间
+    type: Date,
+    default: Date.now
+  },
+  updated: { //更新时间
+    type: Date,
+    default: Date.now
   }
 });
 /**
@@ -149,7 +117,7 @@ UserSchema.methods = {
   }
 }*/
 
-var User = mongoose.model('User', UserSchema);
-Promise.promisifyAll(User);
-Promise.promisifyAll(User.prototype);
-module.exports = User;
+var userModel = mongoose.model('User', userSchema);
+Promise.promisifyAll(userModel);
+Promise.promisifyAll(userModel.prototype);
+module.exports = userModel;
