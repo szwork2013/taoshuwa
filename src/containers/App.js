@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import { createStore, renderDevTools } from '../store_enhancers/devTools';
+import { createStore, renderDevTools } from '../store/devTools';
 
 import FriendListApp from './FriendListApp';
 import * as reducers from '../reducers';

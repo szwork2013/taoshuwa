@@ -1,1 +1,6 @@
-export { default as friendlist } from './friendlist';
+import { combineReducers } from 'redux';
+import friendlist from './friendlist';
+
+export default combineReducers({
+  friendlist
+})

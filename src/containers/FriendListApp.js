@@ -8,23 +8,24 @@ import { FriendList, AddFriendInput } from '../components';
 
 
 class FriendListApp extends Component {
+
   render () {
-    const { friendlist: { friendsById }, actions } = this.props;
-    //const actions = bindActionCreators(FriendsActions, dispatch);
+    const { friendlist, actions } = this.props;
     return (
       <div className={styles.friendListApp}>
         <h1>The FriendList</h1>
         <AddFriendInput addFriend={actions.addFriend} />
-        <FriendList friends={friendsById} actions={actions} />
+        <FriendList friends={friendlist.friendsById} actions={actions} />
       </div>
     );
   }
 }
 
-FriendListApp.propTypes = {
+FriendListApp.PropTypes = {
   friendsById: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired
 }
+
 
 function mapStateToProps(state){
   return {

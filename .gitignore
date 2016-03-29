@@ -4,3 +4,4 @@ app/lib/config.js
 test.html
 test.js
 dist
+npm-debug.log
