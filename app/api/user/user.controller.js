@@ -2,15 +2,21 @@
 
 var User = require('../../model/user.model');
 var common = require('../../lib/common');
+var bookModel = require('../../model/book.model.js');
 
+//获取用户的捐出的书的列表
 exports.getUserList = function (req, res) {
-  User.findAsync({}).then(function (user) {
-    return res.status(200).json({msg: 'ok', user: user});
-  }).catch(function (err) {
-    return res.status(500).send(err);
+  let userid = req.query._id;
+  bookModel.findAsync({owner:userid}).then((books)=>{
+    console.log('books:',books);
+    res.json({status:0, books:books});
+  }).catch(err => {
+      console.log('err:', err);
+    res.json({ status:1, err_msg:'查询用户书籍出错'})
   })
 }
 
+//添加用户
 exports.addUser = function (req, res) {
   var userInfo = {
     avatar:'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
@@ -18,11 +24,16 @@ exports.addUser = function (req, res) {
     phone:'15281073820',
     pwd:common.md5('123456'),
     address:'朝阳嘉神',
-    points:10,
+    age:26,
+    sex:'m',
+    points:5,
   }
-  User.createAsync(userInfo).then(function (result) {
-    return res.status(200).json({msg: 'ok'});
+  console.log('sessionuser:',req.session.user);
+  User.createAsync(userInfo).then(function(user) {
+    req.session.user = user;
+    return res.json({status:0,user:user});
   }).catch(function (err) {
-    return res.status(500).send(err);
+    console.log('err:',err);
+    return res.send({status:1,err_msg:'添加用户出错'});
   })
 }

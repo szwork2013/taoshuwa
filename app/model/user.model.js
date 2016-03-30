@@ -14,7 +14,7 @@ var userSchema = new mongoose.Schema({
     lowercase: true
   },
   age:Number,//用户年龄
-  sex:Number,//用户性别
+  sex:String,//用户性别 m f
   attention:[{//关注类别
     type:String
   }],
@@ -26,7 +26,12 @@ var userSchema = new mongoose.Schema({
     default: 5
   },
 
-  like_list: [{ //我的心愿单
+  desire_list: [{ //我的心愿单
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book'
+  }],
+
+  like_list: [{ //我的点赞列表
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Book'
   }],
