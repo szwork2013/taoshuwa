@@ -13,6 +13,7 @@ var userSchema = new mongoose.Schema({
     type: String,
     lowercase: true
   },
+  icode:String,//邀请码
   age:Number,//用户年龄
   sex:String,//用户性别 m f
   attention:[{//关注类别
