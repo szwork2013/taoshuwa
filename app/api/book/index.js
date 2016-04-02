@@ -12,4 +12,5 @@ router.get('/add_desire',controller.addDesiredBook);//将某一本书加入心�
 router.get('/fetch_desire_list',controller.fetchDesiredBooks);//获取用户的心愿单
 router.get('/map',controller.setMap);
 router.get('/book_update/:bookID/:posx/:posy',controller.updateBookPos);
+router.get('/delbook',controller.delbook);
 module.exports = router;

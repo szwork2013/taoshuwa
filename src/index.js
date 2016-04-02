@@ -4,12 +4,14 @@ import { Router, Route, browserHistory,hashHistory, Link, IndexLink, Redirect } 
 
 import configureStore from './store/configureStore';
 import Root from './containers/Root';
+import routes from './routes'
 
 
 import 'bootstrap/dist/css/bootstrap.css';
+import './assets/styles/index.css';
 
 const store = configureStore();
 render(
-  <Root store={store} history={browserHistory} />,
+  <Root store={store}  history={browserHistory} routes={routes()}  />,
   document.getElementById('app')
 );

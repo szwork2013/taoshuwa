@@ -1,1 +1,17 @@
-import { Router, Route, browserHistory,hashHistory, Link, IndexLink, Redirect } from  'react-router';
+import React from 'react'
+import { Route, IndexRoute, Redirect } from 'react-router'
+
+import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book } from '../components';
+import { Home,App,FriendListApp } from '../containers';
+
+
+export default ()=> (
+  <Route path="/" component={Home}>
+    <IndexRoute component={About}/>
+    <Route path="/about" component={About} />
+    <Route path="/contact" component={Contact} />
+    <Route path="/todo" component={FriendListApp} />
+    <Route path="/book" component={Book} />
+    <Redirect from="/*" to="/" />
+  </Route>
+)

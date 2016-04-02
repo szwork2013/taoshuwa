@@ -6,12 +6,15 @@ var request = require('request');
 var bookModel = require('../../model/book.model.js');
 var User = require('../../model/user.model');
 
-exports.index = function(req, res) {
-  bookModel.findAsync().then(function(bookList) {
-    res.render('index', {
-      bookList: bookList
-    });
-  }).catch(function(err) {
+exports.index = function (req, res) {
+  console.log('back coming');
+  bookModel.findAsync().then(function (bookList) {
+    /*  res.render('index', {
+     bookList: bookList
+     });*/
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    return res.status(200).json({books: bookList});
+  }).catch(function (err) {
     throw err;
     return res.send('出错了');
   })
@@ -19,7 +22,7 @@ exports.index = function(req, res) {
 
 
 //获取用户的捐出的书的列表
-exports.getUserList = function(req, res) {
+exports.getUserList = function (req, res) {
   let userid = req.query._id;
   bookModel.findAsync({
     owner: userid
@@ -39,7 +42,7 @@ exports.getUserList = function(req, res) {
 }
 
 //将某一本书加入心愿单
-exports.addDesiredBook = function(req, res, next) {
+exports.addDesiredBook = function (req, res, next) {
   let user = req.session.user;
   if (!user) {
     return res.json({
@@ -74,7 +77,7 @@ exports.addDesiredBook = function(req, res, next) {
 }
 
 //获取当前用户的心愿单列表
-exports.fetchDesiredBooks = function(req, res, next) {
+exports.fetchDesiredBooks = function (req, res, next) {
   let user = req.session.user;
   if (!user) {
     return res.json({
@@ -85,51 +88,51 @@ exports.fetchDesiredBooks = function(req, res, next) {
   let userid = req.session.user._id;
   User.findOne({
     _id: userid
-  }).populate('desire_list').exec().then( user =>{
-    console.log('心愿单中的数量：',user.desire_list.length )
-    res.json({status:0,user:user})
-  } ).catch(err =>{
-    res.json({status:1, err_msg:err});
+  }).populate('desire_list').exec().then(user => {
+    console.log('心愿单中的数量：', user.desire_list.length)
+    res.json({status: 0, user: user})
+  }).catch(err => {
+    res.json({status: 1, err_msg: err});
   })
 }
 
 
 //获取用户借书订单
-exports.fetchBorrowBooks = function(req, res, next) {
+exports.fetchBorrowBooks = function (req, res, next) {
   let userid = req.query._id;
 
 }
 
 //获取附近的书籍
-exports.fetchNearBooks = function(req, res, next) {
+exports.fetchNearBooks = function (req, res, next) {
   let userid = req.query._id;
 }
 
 //获取所有的书籍
-exports.fetchAllBooks = function(req, res) {
-  return bookModel.findAsync().then(function(bookList) {
+exports.fetchAllBooks = function (req, res) {
+  return bookModel.findAsync().then(function (bookList) {
     return bookList;
-  }).catch(function(err) {
+  }).catch(function (err) {
     throw err;
     return res.send('出错了');
   })
 }
 
-exports.fetchOne = function(req, res, next) {
+exports.fetchOne = function (req, res, next) {
   let _id = req.query._id;
   bookModel.findOneAsync({
     _id: _id
-  }).then(function(result) {
+  }).then(function (result) {
     return res.json({
       status: 0,
       book: result
     })
-  }).catch(function(err) {
+  }).catch(function (err) {
     throw err;
   })
 };
 
-exports.fetchISBN = function(req, res, next) {
+exports.fetchISBN = function (req, res, next) {
   var isbn = req.query.isbn;
   if (isbn && isbn != 'undefined' && isbn != '') {
     let isbnUrl = 'https://api.douban.com/v2/book/isbn/' + isbn;
@@ -155,7 +158,7 @@ exports.fetchISBN = function(req, res, next) {
   }
 }
 
-exports.addBook = function(req, res) {
+exports.addBook = function (req, res) {
   //let book = req.body.book;
 
   let user = req.session.user;
@@ -195,7 +198,7 @@ exports.addBook = function(req, res) {
   })
 }
 
-exports.fetchUsersBook = function(req, res, next) {
+exports.fetchUsersBook = function (req, res, next) {
   let userid = req.query._id;
   bookModel.findAsync({
     owner: userid
@@ -214,7 +217,7 @@ exports.fetchUsersBook = function(req, res, next) {
   })
 }
 
-exports.getbook = function(req, res) {
+exports.getbook = function (req, res) {
   let isbn = req.query.isbn || '9787115281609';
   let isbnUrl = 'https://api.douban.com/v2/book/isbn/' + isbn;
   request.get(isbnUrl, (err, httpResponse, body) => {
@@ -228,7 +231,7 @@ exports.getbook = function(req, res) {
 
     //处理tags
     let tags = [];
-    bookInfo.tags.forEach(function(tag) {
+    bookInfo.tags.forEach(function (tag) {
       tags.push(tag.name);
     });
     bookInfo.tags = tags;
@@ -241,14 +244,14 @@ exports.getbook = function(req, res) {
   })
 }
 
-exports.setMap = function(req, res) {
+exports.setMap = function (req, res) {
   var id = req.query.id;
   res.render('map', {
     bookID: id
   });
 }
 
-exports.updateBookPos = function(req, res) {
+exports.updateBookPos = function (req, res) {
   var url = req.url;
   var posX = req.params.posx;
   var posY = req.params.posy;
@@ -259,11 +262,26 @@ exports.updateBookPos = function(req, res) {
     _id: bookID
   }, {
     position: [posX, posY]
-  }).then(function(results) {
+  }).then(function (results) {
     console.log('results:', results);
     res.send('success');
-  }).catch(function(err) {
+  }).catch(function (err) {
     console.log('err:', err);
     res.send('error:', err);
+  })
+}
+
+exports.delbook = function (req, res, next) {
+  let bookid = req.query.bookid;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  if (!bookid) {
+    return res.json({status: 1, err_msg: '没有找到书的ID'})
+  }
+
+  bookModel.removeAsync({_id: bookid}).then(result=> {
+    return res.json({status:0});
+  }).catch(err => {
+    console.log('err:',err);
+    return res.json({status:2, err_msg:'删除失败'});
   })
 }
