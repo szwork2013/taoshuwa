@@ -20,10 +20,10 @@ export default class FriendListItem extends Component {
         </div>
         <div className={styles.friendActions}>
           <button className={`btn btn-default ${styles.btnAction}`} onClick={() => this.props.starFriend(this.props.id)}>
-            <i className={classnames('fa', { 'fa-star': this.props.starred }, { 'fa-star-o': !this.props.starred })} />
+            <i className={classnames('fa', { 'fa-star': this.props.starred }, { 'fa-star-o': !this.props.starred })} />赞
           </button>
           <button className={`btn btn-default ${styles.btnAction}`} onClick={() => this.props.deleteFriend(this.props.id)}>
-            <i className="fa fa-trash" />
+            <i className="fa fa-trash" />删
           </button>
         </div>
       </li>

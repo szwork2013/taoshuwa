@@ -2,11 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import styles from './FriendListApp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import WeUI from 'react-weui';
+import 'weui';
 
 import * as FriendsActions from '../actions/FriendsActions';
 import { FriendList, AddFriendInput } from '../components';
 
-
+const { Button } = WeUI;
 class FriendListApp extends Component {
 
   render () {
@@ -16,6 +18,8 @@ class FriendListApp extends Component {
         <h1>The FriendList</h1>
         <AddFriendInput addFriend={actions.addFriend} />
         <FriendList friends={friendlist.friendsById} actions={actions} />
+        <br/>
+        <Button className="btn btn-default">hello wechat</Button>
       </div>
     );
   }

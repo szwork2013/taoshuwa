@@ -11,30 +11,36 @@ var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: process.env.NODE_ENV === 'production' ? true : false
 });
 
-
 module.exports = {
-  entry: {
-    index: [
-      'webpack/hot/dev-server',
-      'webpack-dev-server/client?http://localhost:8080',
-      path.resolve(__dirname, 'src/index.js')
+  devtool: 'eval',
+  entry:{
+    index:[
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
+      path.resolve(__dirname,'./src/index')
     ],
     vendor: ['react', 'react-dom']
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: "[name].js",
+    filename: '[name].js',
     publicPath: '/'
   },
-  resolve: {
-    extension: ['', '.jsx', '.js', '.json'],
-    // 提高webpack搜索的速度
-    alias: { }
-  },
-  devtool: 'source-map',
-  'display-error-details': true,
-  // 使用externals可以将react分离，然后用<script>单独将react引入
-  externals: [],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new HtmlWebpackPlugin({
+      title: 'your app title',
+      template: './src/index.html',
+    }),
+    new OpenBrowserPlugin({ url: 'http://localhost:3000'}),
+    new ExtractTextPlugin("main.css", {
+      allChunks: true,
+      disable: false
+    }),
+    devFlagPlugin,
+  ],
   module: {
     // 使用module.noParse针对单独的react.min.js这类没有依赖的模块，速度会更快
     noParse: [
@@ -49,7 +55,7 @@ module.exports = {
       },
       {
         test: /\.css/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader?module!cssnext-loader")
       },
       {
         test: /\.less/,
@@ -65,19 +71,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-    new HtmlWebpackPlugin({
-      title: 'your app title',
-      template: './src/index.html',
-    }),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
-    new ExtractTextPlugin("main.css", {
-      allChunks: true,
-      disable: false
-    }),
-    devFlagPlugin
-  ]
+  resolve: {
+    extension: ['', '.jsx', '.js', '.json']
+  }
 };
