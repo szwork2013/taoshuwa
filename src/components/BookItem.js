@@ -7,7 +7,7 @@ export default class BookItem extends Component {
   }
 
   render() {
-    const { book} = this.props;
+    const { book,handelDelOne} = this.props;
     return (
       <div className="book-item">
         <div className="item-left">
@@ -20,7 +20,7 @@ export default class BookItem extends Component {
           <p>标签:{book.tags}</p>
         </div>
         <div className="item-last">
-          <button className="btn btn-danger btn-sm">删除</button>
+          <button className="btn btn-danger btn-sm" onClick={handelDelOne}>删除</button>
         </div>
       </div>
     )

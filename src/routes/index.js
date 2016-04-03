@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, IndexRoute, Redirect } from 'react-router'
 
-import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book } from '../components';
+import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book,Login,Register } from '../components';
 import { Home,App,FriendListApp } from '../containers';
 
 
@@ -12,6 +12,8 @@ export default ()=> (
     <Route path="/contact" component={Contact} />
     <Route path="/todo" component={FriendListApp} />
     <Route path="/book" component={Book} />
+    <Route path="/login" component={Login} />
+    <Route path="/register" component={Register} />
     <Redirect from="/*" to="/" />
   </Route>
 )

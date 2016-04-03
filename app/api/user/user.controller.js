@@ -82,48 +82,32 @@ exports.sendSms = function (req, res, next) {
 
 //注册 分为两步 第一步验证手机号和密码，第二步填写必要的用户信息 年龄 性别 地址 昵称 关注类别
 exports.register_1 = function (req, res, next) {
-  let phone = req.body.phone; //注册电话
-  let pwd = req.body.pwd; //密码
-  let cpwd = req.body.cpwd; //确定密码
-  let icode = req.body.icode; //邀请码
 
+  let phone = req.body.phone || '15281073820'; //注册电话
+  let pwd = req.body.pwd || '123456'; //密码
+  let cpwd = req.body.cpwd || '123456'; //密码
+  let icode = req.body.icode; //邀请码
+  console.log('register coming----------------------------- ');
+  //res.setHeader('Access-Control-Allow-Origin', '*');
   if (pwd !== cpwd) {
-    return req.json({
-      status: 1,
-      err_msg: '密码不一致'
-    });
+    return req.send({status: 1, err_msg: '密码不一致'});
   }
   //pwd ＝ common.md5(pwd);
   //判断该邀请码属于谁 待添加
-  User.findAsync({
-    icode: icode
-  }).then((user) => {
-    console.log('usericode:', user);
+  User.findAsync({icode: icode}).then((user) => {
     //处理提供邀请码的人的积分状态
   }).
   catch((err) => {
     console.log('usererr:', err);
-    return res.json({
-      status: 2,
-      err_msg: '使用邀请码查询用户信息出错'
-    });
+    return res.send({status: 2, err_msg: '使用邀请码查询用户信息出错'});
   })
 
-  User.createAsync({
-    phone: phone,
-    pwd: pwd
-  }).then((user) => {
-    return res.json({
-      status: 0,
-      user: user
-    }); //返回客户端进行下一步注册
-  }).
-  catch((err) => {
-    console.log('usererr:', err);
-    return res.json({
-      status: 3,
-      err_msg: '添加用户出错'
-    });
+  console.log('createAsycn-------------------------',phone,pwd);
+  User.createAsync({phone: '15281073820', pwd: '123456'}).then((user) => {
+    console.log('createUser:---------------------------------',user);
+    return res.send({status: 0}); //返回客户端进行下一步注册
+  }).catch((err) => {
+    return res.send({status: 3, err_msg: '添加用户出错'});
   })
 };
 
@@ -156,29 +140,35 @@ exports.register_2 = function (req, res, next) {
 
 //登陆 可以使用用户名或者手机号码
 exports.login = function (req, res, next) {
+  console.log('query-----------------------1:', req.query);
   let username = req.query.username;
   let password = req.query.password;
+  //res.setHeader('Access-Control-Allow-Origin', '*');
   if (!username || !password) {
-    return res.json({
-      status: 2,
-      err_msg: '用户名或密码不能为空'
-    });
+    return res.send({status: 2, err_msg: '用户名或密码不能为空'});
   }
-  password = common.md5(password);
-  User.findOne({$or: [{nickname: username}, {phone: username}]})
+  //password = common.md5(password);
+  User.findOne({phone: '15281073820'})
     .then(user => {
-      if (!user.pwd) {
-        return res.json({status: 1, err_msg: '没有该用户'})
+      if (!user) {
+        return res.send({status: 1, err_msg: '没有该用户'})
       } else {
         if (password === user.pwd) {
+          console.log('login success');
           req.session.user = user;
-          return res.json({status: 0});
+          return res.send({status: 0});
         } else {
-          return res.json({status: 3, err_msg: '用户名与密码不一致'});
+          return res.send({status: 3, err_msg: '用户名与密码不一致'});
         }
       }
     }).catch(err => {
-    console.log('logixnerr:', err);
     next(err);
   })
+}
+
+//登出 将当前用户session信息完全是删除
+exports.loginOut = function (req, res, next) {
+  req.session.user = null;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  return res.json({status: 0});
 }

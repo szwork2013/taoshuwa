@@ -3,9 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as Actions from '../actions/FriendsActions'
 
-import BookItem from './BookItem';
-
-
 class Book extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +12,6 @@ class Book extends Component {
   componentDidMount() {
     //获取数据
     const { actions } = this.props;
-    actions.fetchBooks();
   }
 
   handelDelOne(id){
@@ -26,7 +22,7 @@ class Book extends Component {
   render() {
     const { books,dispatch,actions } = this.props;
     var booksList = books.map(book => {
-      return <BookItem key={book._id} book={book} onClick={this.handelDelOne(book._id)} />
+      return <BookItem key={book._id} book={book} handelDelOne={this.handelDelOne(book._id)} />
     });
 
     return (
