@@ -16,7 +16,8 @@ module.exports = {
   entry: {
     index: [
       'webpack/hot/dev-server',
-      'webpack-dev-server/client?http://localhost:8080',
+      'webpack-hot-middleware/client?reload=true',
+     /* 'webpack-dev-server/client?http://localhost:8080',*/
       path.resolve(__dirname, 'src/index.js')
     ],
     vendor: ['react', 'react-dom']
@@ -73,7 +74,7 @@ module.exports = {
       title: 'your app title',
       template: './src/index.html',
     }),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
+   /* new OpenBrowserPlugin({ url: 'http://localhost:8080' }),*/
     new ExtractTextPlugin("main.css", {
       allChunks: true,
       disable: false

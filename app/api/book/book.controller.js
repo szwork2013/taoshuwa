@@ -7,12 +7,7 @@ var bookModel = require('../../model/book.model.js');
 var User = require('../../model/user.model');
 
 exports.index = function (req, res) {
-  console.log('back coming');
   bookModel.findAsync().then(function (bookList) {
-    /*  res.render('index', {
-     bookList: bookList
-     });*/
-    res.setHeader('Access-Control-Allow-Origin', '*');
     return res.status(200).json({books: bookList});
   }).catch(function (err) {
     throw err;

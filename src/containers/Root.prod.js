@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { Router } from  'react-router';
 import { Provider } from 'react-redux';
-import App from './App';
 
 export default class Root extends Component {
   render() {
-    const { store } = this.props;
+    const {store,history,routes} = this.props;
     return (
       <Provider store={store}>
-        <App />
+        <div>
+          <Router history={history}>
+            {routes}
+          </Router>
+        </div>
       </Provider>
     );
   }

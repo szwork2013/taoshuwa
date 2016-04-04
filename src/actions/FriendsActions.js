@@ -40,7 +40,7 @@ function deleteBook(id){
 
 export function fetchBooks() {
   return function (dispatch, getState) {
-    return fetch('http://localhost:5800/')
+    return fetch('/')
       .then(response => response.json())
       .then(data => {
         dispatch(fetchList(data.books));
@@ -57,7 +57,7 @@ export function addBook(book) {
 
 export function delBook(id) {
   return function (dispatch, getState) {
-    return fetch('http://localhost:5800/delbook?bookid='+id)
+    return fetch('/delbook?bookid='+id)
       .then(response => response.json())
       .then(data => {
         dispatch(deleteBook(id));
@@ -68,7 +68,7 @@ export function delBook(id) {
 //user
 export function loginIn(username,password){
   return function (dispatch, getState) {
-    return fetch('http://localhost:5800/users/login_in?username='+username+'&password='+password)
+    return fetch('/users/login_in?username='+username+'&password='+password)
       .then(response => response.json())
       .then(data => {
         if(data.status === 0){
@@ -84,7 +84,7 @@ export function loginIn(username,password){
 
 export function loginOut(){
   return function (dispatch, getState) {
-    return fetch('http://localhost:5800/delbook?bookid='+id)
+    return fetch('/delbook?bookid='+id)
       .then(response => response.json())
       .then(data => {
         dispatch(deleteBook(id));
@@ -96,9 +96,8 @@ export function register(phone,password,cpassword){
   phone = '15281073820';
   password = '123456';
   cpassword = '123456';
-  console.log('post will go ');
   return function (dispatch, getState) {
-    return fetch('http://localhost:5800/users/register', {method:'post', body:{phone:phone, pwd:password,cpwd:cpassword}})
+    return fetch('/users/register', {method:'post', body:{phone:phone, pwd:password,cpwd:cpassword}})
       .then(response => response.json())
       .then(data => {
         console.log('data:',data);
