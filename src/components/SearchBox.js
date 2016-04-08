@@ -14,7 +14,7 @@ class Book extends Component {
   componentDidMount() {
     //获取数据
     const { actions } = this.props;
-    actions.fetchBooks();
+    //actions.fetchBooks();
   }
 
 
@@ -51,4 +51,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Book)
-

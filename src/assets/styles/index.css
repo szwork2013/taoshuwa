@@ -12,6 +12,29 @@ body{
     height: 140px;
     background-color: #ffffff;
     margin-bottom: 5px;
+    position: relative;
+}
+
+.book-item .book-status{
+  width: 70px;
+  height:32px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.book-item .book-status span{
+  line-height: 32px;
+  display: block;
+  text-align: center;
+}
+
+.book-item .book-status-in{
+  background-color: #58BD91;
+}
+
+.book-item .book-status-out{
+  background-color: #FF9E77;
 }
 
 .item-left{
@@ -27,4 +50,61 @@ body{
 
 .item-right{
     float: left;
+    padding-top: 10px;
+}
+
+.item-right dt{
+  font-size: 16px;
+  color: #3C3C3C;
+}
+
+.item-right dd{
+  font-size: 14px;
+  color: #9B9B9B
+}
+
+.item-right .position{
+  height: 24px;
+  margin-top: 8px;
+}
+
+.item-right .position img {
+  margin-left: 5px;
+  width: 9px;
+  height: 12px;
+}
+
+.item-right .position span {
+  margin-left: 5px;
+  line-height: 24px;
+  font-size: 12px;
+  color: #3C3C3C;
+}
+
+.item-last {
+    float: left;
+    margin-left: 30px;
+    visibility: hidden;
+}
+
+.mark {
+  color: red;
+  font-size: 16px;
+}
+
+/**nav**/
+.nav {
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #ccc;
+}
+
+.nav .elem {
+  font-size: 16px;
+  color: red;
+  line-height: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
 }

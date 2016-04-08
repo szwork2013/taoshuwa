@@ -5,29 +5,42 @@ import * as types from '../constants/ActionTypes';
 var _ = require('lodash');
 
 const initialState = {
-  books: []
+  books: [],
+  onebook:{}
 };
 
 export default function books(state = initialState, action) {
-  console.log('action:',action);
   switch (action.type) {
 
     case types.ADD_BOOK:
-      const book = action.book;
+      const book = action.json.book;
+      if(!book){
+        return state ;
+      }
+      state.books.push(book);
       return {
-        books: state.books.push(book)
+        books: state.books,
+        onebook:state.onebook
+      }
+
+    case types.CHECK_BOOK:
+      const onebook = action.book;
+      return {
+        books:state.books,
+        onebook:onebook
       }
 
     case types.BOOK_LIST:
       return {
-        books: action.books
+        books: action.books,
+        onebook:state.onebook
       }
 
     case types.DELETE_BOOK:
+      console.log('state--------:',state);
       return {
-        friends: state.books.filter( book => {
-          return book._id !== action.id;
-        }),
+        onebook:state.onebook,
+        books:state.books.filter( book => book._id !== action.id )
       }
     default:
       return state;

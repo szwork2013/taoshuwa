@@ -1,26 +1,15 @@
 import * as types from '../constants/ActionTypes';
 const initialState = {
-  user: null
+  user: {}
 };
 
 export default function user(state = initialState, action) {
   switch (action.type) {
-    case types.ADD_BOOK:
-      const book = action.book;
+    case 'GET_USERINFO_SUCCESS':
+      const user = action.user;
+      console.log('user---------:',user);
       return {
-        books: state.books.push(book)
-      }
-
-    case types.BOOK_LIST:
-      return {
-        books: action.books
-      }
-
-    case types.DELETE_BOOK:
-      return {
-        friends: state.books.filter( book => {
-          return book._id !== action.id;
-        }),
+        user: user
       }
     default:
       return state;

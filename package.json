@@ -4,8 +4,9 @@
   "description": "A project for sharing books firstly, then for the most.",
   "main": "test.js",
   "scripts": {
-    "dev": "webpack-dev-server  --history-api-fallback --devtool eval --progress --hot --colors --content-base build",
+    "dev": "webpack-dev-server --config webpack.notserver.config.js  --history-api-fallback --devtool eval --progress --hot --colors --content-base build",
     "build": "npm run clean &&  NODE_ENV='production' webpack --progress --color --config webpack.production.config.js",
+    "build-server": "NODE_ENV='production' node server.js",
     "lint": "./node_modules/.bin/eslint src",
     "clean": "rm -rf build"
   },
@@ -26,12 +27,14 @@
   },
   "homepage": "https://github.com/hapiman/taoshuwa#readme",
   "dependencies": {
+    "axios": "^0.9.1",
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
     "classnames": "^2.2.3",
     "connect-redis": "^3.0.2",
     "cookie-parser": "^1.4.1",
+    "es6-promise": "^3.1.2",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "isomorphic-fetch": "^2.2.1",
@@ -41,9 +44,11 @@
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",
     "react": "^0.14.7",
+    "react-cookie": "^0.4.5",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.1",
     "react-router": "^2.0.1",
+    "react-router-redux": "^4.0.1",
     "react-weui": "^0.2.0",
     "redis": "^2.5.1",
     "redux": "^3.3.1",
@@ -53,6 +58,7 @@
     "weui": "^0.4.0"
   },
   "devDependencies": {
+    "amazeui-touch": "0.1.0-beta2",
     "babel-core": "^6.7.2",
     "babel-eslint": "^5.0.0",
     "babel-loader": "^6.2.4",

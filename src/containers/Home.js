@@ -3,34 +3,59 @@ import styles from './FriendListApp.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import WeUI from 'react-weui';
+import { Link } from 'react-router';
 import 'weui';
+import {
+  Container,
+  Group,
+  NavBar,
+  amStyles,
+} from 'amazeui-touch';
 
 import * as FriendsActions from '../actions/FriendsActions';
 import { FriendList, AddFriendInput } from '../components';
 
 const { Button } = WeUI;
-class FriendListApp extends Component {
+
+class Home extends Component {
+
+  componentDidMount() {
+    const { actions } = this.props;
+    actions.getUserInfo();
+  }
 
   render () {
-    const { friendlist, actions,children } = this.props;
+    const { friendlist, actions,children,auth } = this.props;
+    let phone = 0;
+    if(auth.user){
+      phone = auth.user.phone;
+    }
     return (
+
       <div className={styles.friendListApp}>
-        <h1>The Home</h1>
+        {phone}
         {children}
+        <div className='nav'>
+          <Link to='/book' className='elem'>借书</Link>
+          <Link to='/book' className='elem'>捐书</Link>
+        </div>
       </div>
     );
   }
 }
 
-FriendListApp.PropTypes = {
+Home.PropTypes = {
   friendsById: PropTypes.object.isRequired,
+  auth:PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
 
 function mapStateToProps(state){
+
   return {
-    friendlist: state.friendlist
+    friendlist: state.friendlist,
+    auth:state.auth
   }
 }
 
@@ -41,4 +66,4 @@ function mapDispathToProps(dispatch){
   }
 }
 
-export default connect(mapStateToProps,mapDispathToProps)(FriendListApp)
+export default connect(mapStateToProps,mapDispathToProps)(Home)
