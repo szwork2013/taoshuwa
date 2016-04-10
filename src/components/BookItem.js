@@ -8,6 +8,7 @@ export default class BookItem extends Component {
     super(props);
   }
 
+
   render() {
     const { book,index,handleDelOne} = this.props;
     return (

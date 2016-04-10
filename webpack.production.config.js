@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var node_modules = path.resolve(__dirname, 'node_modules');
 var devFlagPlugin = new webpack.DefinePlugin({
-  __DEV__: process.env.NODE_ENV === 'production' ? true : false
+  __DEV__: true
 });
 
 
@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: "[name].js",
+    filename: "[name].[hash:8].js",
     publicPath: '/'
   },
   resolve: {
@@ -60,18 +60,23 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.[hash:8].js'),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-        screw_ie8: true
+      compress: {
+         warnings: false
       }
     }),
     new HtmlWebpackPlugin({
       title: 'your app title',
       template: './src/index.html',
     }),
-    new ExtractTextPlugin("main.css", {
+    new webpack.ProvidePlugin({
+      "$": "jquery",
+      "jQuery": "jquery",
+      "window.jQuery": "jquery",
+      "window.$": "jquery"
+    }),
+    new ExtractTextPlugin("main.[hash:8].css", {
       allChunks: true,
       disable: false
     }),

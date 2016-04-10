@@ -3,8 +3,9 @@ import { Route, IndexRoute, Redirect } from 'react-router'
 
 import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book,Login,Register,AddBook } from '../components';
 import { Home,FriendListApp } from '../containers';
+import {redirectToBack} from '../utils/authService.js'
 
-
+//onEnter={redirectToLogin}
 export default ()=> (
   <Route path="/" component={Home}>
     <IndexRoute component={About}/>
@@ -13,7 +14,7 @@ export default ()=> (
     <Route path="/todo" component={FriendListApp} />
     <Route path="/book" component={Book} />
     <Route path='/book/add' component={AddBook} />
-    <Route path="/login" component={Login} />
+    <Route path="/login" component={Login} onEnter={redirectToBack}  />
     <Route path="/register" component={Register} />
     <Redirect from="/*" to="/" />
   </Route>

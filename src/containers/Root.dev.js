@@ -6,15 +6,29 @@ import DevTools from './DevTools';
 export default class Root extends Component {
   render() {
     const {store,history,routes} = this.props;
-    return (
-      <Provider store={store}>
-        <div>
-          <Router history={history}>
-            {routes}
-          </Router>
-          <DevTools />
-        </div>
-      </Provider>
-    );
+    const width = document.body.clientWidth;
+    if(width > 400){
+      return (
+        <Provider store={store}>
+          <div>
+            <Router history={history}>
+              {routes}
+            </Router>
+            <DevTools />
+          </div>
+        </Provider>
+      );
+    }else {
+      return (
+        <Provider store={store}>
+          <div>
+            <Router history={history}>
+              {routes}
+            </Router>
+          </div>
+        </Provider>
+      );
+    }
+
   }
 }

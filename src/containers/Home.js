@@ -22,6 +22,7 @@ class Home extends Component {
   componentDidMount() {
     const { actions } = this.props;
     actions.getUserInfo();
+    console.log('$-----:',$);
   }
 
   render () {

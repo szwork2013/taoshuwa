@@ -56,7 +56,9 @@ export function fetchBooks() {
 
 export function addBook(book) {
   return function(dispatch, getState) {
-    return fetch(API_ROOT + 'books/add_book',{
+    let token = getCookie('token');
+    //token = undefined;
+    return fetch(API_ROOT + 'books/add_book?access_token='+token,{
       method:'post',
       credentials: 'include',
       headers: {
@@ -64,8 +66,12 @@ export function addBook(book) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(book)
-    }).then(response => response.json().then(json => ({ json, response })))
+    }).then( xx =>{
+      console.log('xx--------------:',xx);
+    } ).then(response => response.json().then(json => ({ json, response })))
       .then(({json,response}) => {
+        console.log('json--------------:',json);
+        console.log('response------------:',response);
         if(!response.ok){
           console.log(`查询数据出错:${json.err_msg}`);
         }else{
@@ -173,7 +179,19 @@ export const getUserInfo = (token = getCookie('token')) => {
           'Authorization': `Bearer ${token}`
         }
       })
-      .then(response => response.json())
+      .then( response => {
+        if(response.status === 401){
+          //强行跳转到登录界面，实际上该功能能够在中间件上处理
+          let localname = window.location.pathname;
+          console.log('localname:',localname);
+      
+          if(localname != '/book' && localname != '/login' ){
+            window.location.pathname = '/login'
+          }
+        }else{
+          return response.json();
+        }
+      } )
       .then(user => {
         dispatch({
           type: 'GET_USERINFO_SUCCESS',

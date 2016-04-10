@@ -10,6 +10,7 @@ var node_modules = path.resolve(__dirname, 'node_modules');
 var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: process.env.NODE_ENV === 'production' ? true : false
 });
+__DEV__ = process.env.NODE_ENV === 'production' ? true : false
 
 
 module.exports = {
@@ -30,9 +31,8 @@ module.exports = {
   resolve: {
     extension: ['', '.jsx', '.js', '.json'],
     // 提高webpack搜索的速度
-    alias: { }
+    alias: {}
   },
-  devtool: 'source-map',
   'display-error-details': true,
   // 使用externals可以将react分离，然后用<script>单独将react引入
   externals: [],
@@ -42,44 +42,49 @@ module.exports = {
       path.resolve(node_modules, 'react/dist/react.min.js'),
       path.resolve(node_modules, 'react-dom/dist/react-dom.min.js')
     ],
-    loaders: [
-      {
-        test: /\.js[x]?$/,
-        loaders: ['react-hot', 'babel'],
-        exclude: path.resolve(__dirname, 'node_modules')
-      },
-      {
-        test: /\.css/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-      },
-      {
-        test: /\.less/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-      },
-      {
-        test: /\.(png|jpg)$/,
-        loader: 'url?limit=8192'
-      },
-      {
-        test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000"
-      }
-    ]
+    loaders: [{
+      test: /\.js[x]?$/,
+      loaders: ['react-hot', 'babel'],
+      exclude: path.resolve(__dirname, 'node_modules')
+    }, {
+      test: /\.css/,
+      loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+    }, {
+      test: /\.less/,
+      loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+    }, {
+      test: /\.(png|jpg)$/,
+      loader: 'url?limit=8192'
+    }, {
+      test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
+      loader: "url?limit=10000"
+    }]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    //最终的html文件只引入两个js文件
+    //自己编写的代码都放在app.js中，本地代码使用的是index.js,如果不设置默认是main.js
+    //将第三方模块的代码统一打包进入vendorjs中
+    new webpack.optimize.CommonsChunkPlugin('vendor', __DEV__ ? 'vendor.[hash].js' : 'vendor.js'),
     new HtmlWebpackPlugin({
       title: 'your app title',
       template: './src/index.html',
-      minify:{    //压缩HTML文件
-        removeComments:false,    //移除HTML中的注释
-        collapseWhitespace:true    //删除空白符与换行符
+      minify: { //压缩HTML文件
+        removeComments: false, //移除HTML中的注释
+        collapseWhitespace: true //删除空白符与换行符
       }
     }),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
-    new ExtractTextPlugin("main.css", {
+    new webpack.ProvidePlugin({
+      "$": "jquery",
+      "jQuery": "jquery",
+      "window.jQuery": "jquery",
+      "window.$": "jquery"
+    }),
+    new OpenBrowserPlugin({
+      url: 'http://localhost:8080'
+    }),
+    new ExtractTextPlugin(__DEV__ ? "main.[hash].css" : "main.css", {
       allChunks: true,
       disable: false
     }),
