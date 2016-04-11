@@ -28,7 +28,7 @@ export function isLogin() {
 export function redirectToBack(nextState, replaceState) {
 	//已经登录则不进入
   if (isLogin()) {
-    replaceState(null, '/book')
+    //replaceState(null, '/book')
   }
 }
 export function redirectToLogin(nextState,replaceState) {

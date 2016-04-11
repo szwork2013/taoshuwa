@@ -1,6 +1,14 @@
-import {UserResource,AuthResource,ArticleResource,TagResource,MobileResource,CommentResource} from './resources'
+import {UserResource,AuthResource,ArticleResource,TagResource,MobileResource,CommentResource,BookResource} from './resources'
 
 export default {
+
+  //add by pengjian for taoshuwa
+
+  //book
+  addNewBook:function(data){
+    return BookResource('post', 'add_book', data)
+  },
+
   localLogin: function (data) {
     return AuthResource('post', 'local', data)
   },

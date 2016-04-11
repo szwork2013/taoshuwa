@@ -1,25 +1,17 @@
 require('es6-promise').polyfill()
 import axios from 'axios'
-import {
-  API_ROOT
-} from '../config'
-import {
-  saveCookie,
-  getCookie,
-  signOut
-} from '../utils/authService'
+import { API_ROOT } from '../config'
+import { saveCookie, getCookie,signOut} from '../utils/authService'
 
 axios.defaults.baseURL = API_ROOT
 axios.defaults.withCredentials = true
 
 // Add a request interceptor
 axios.interceptors.request.use(function(config) {
-  console.log('request-------------config--------1', config);
   config.headers = config.headers || {}
   if (getCookie('token')) {
     config.headers.Authorization = 'Bearer ' + getCookie('token').replace(/(^\")|(\"$)/g, "")
   }
-  console.log('request-------------config--------2', config);
   return config
 }, function(error) {
   // Do something with request error
@@ -28,9 +20,10 @@ axios.interceptors.request.use(function(config) {
 
 // Add a response interceptor
 axios.interceptors.response.use(function(response) {
+
   console.log('response---------------------');
   if (response.status === 401) {
-    signOut()
+    //signOut()
     window.location.pathname = '/login'
   }
   return response
@@ -38,6 +31,15 @@ axios.interceptors.response.use(function(response) {
   // Do something with response error
   return Promise.reject(error)
 })
+
+
+/*
+ * add for taoshuwa
+ */
+export const BookResource = (method, id, data, api = 'books') => {
+  return axios[method](api + (id ? ('/' + id) : ''), data)
+}
+
 
 export const UserResource = (method, id, data, api = 'users') => {
   return axios[method](api + (id ? ('/' + id) : ''), data)
