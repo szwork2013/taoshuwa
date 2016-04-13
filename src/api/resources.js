@@ -20,8 +20,6 @@ axios.interceptors.request.use(function(config) {
 
 // Add a response interceptor
 axios.interceptors.response.use(function(response) {
-
-  console.log('response---------------------');
   if (response.status === 401) {
     //signOut()
     window.location.pathname = '/login'
@@ -37,6 +35,7 @@ axios.interceptors.response.use(function(response) {
  * add for taoshuwa
  */
 export const BookResource = (method, id, data, api = 'books') => {
+  // BookResource('get','fetchone',data)
   return axios[method](api + (id ? ('/' + id) : ''), data)
 }
 

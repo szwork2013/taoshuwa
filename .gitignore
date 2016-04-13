@@ -6,3 +6,4 @@ test.js
 dist
 npm-debug.log
 build
+es2015

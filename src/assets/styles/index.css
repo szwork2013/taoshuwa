@@ -1,110 +1,99 @@
-*{
-    margin: 0;
-    padding: 0;
-}
+* { margin: 0; padding: 0;}
+html,body { font-size: 16px;}
+a {text-decoration: none;}
 
-body{
-    background-color: #F0F0F0;
-}
+.bg-white {background-color: #fff}
+.bg-default {background-color: #F0F0F0}
 
-.book-item{
-    width: 100%;
-    height: 140px;
-    background-color: #ffffff;
-    margin-bottom: 5px;
-    position: relative;
-}
+.reg {background-color: #fff; padding-top:20px;}
+.reg ul { list-style: none;}
+.reg ul li {height: 60px;padding-top: 30px; display: block;}
+.reg ul li .content .reg-icon-type {float: left; width: 70px; text-align: center;}
+.reg ul li .content .reg-icon-type img {height: 18px;}
+.reg ul li .content .reg-icon-split {float: left; width: 20px;  height: 22px;}
+.reg ul li .content .reg-icon-split img { height: 22px;}
+.reg ul li .content .reg-input {float: left; width: 74%;font-size: 14px;}
+.reg ul li .content .reg-input a {display: block;float: right; margin-right: 0px; color: #58BD91; border: 1px solid #58BD91; border-radius: 4px; height: 28px; line-height: 28px; padding-left: 8px; padding-right: 8px;}
+.reg ul li .content input {float: left; height: 30px;width: 60%;margin-left: 20px; border: none; }
+.reg ul li .one-line {  clear:both; height: 1px;width: 95%; background-color: #EFEFEF; margin-left: 5%;}
+.reg .icode-tip{height:20px; padding-right: 15px;text-align: right;}
+.reg .icode-tip a{ display:inline-block; color: #307268; font-size: 14px;}
+.reg .reg-finish{ margin-top: 60px; text-align: center}
+.reg .reg-finish a{ display: block; width: 320px; height: 50px; margin-left: auto; margin-right: auto; border-radius:4px; background-color: #58BD91;line-height: 50px; font-size: 17px; text-decoration: none; color: #fff;}
+.reg .reg-finish a:active { background-color: #307268; }
 
-.book-item .book-status{
-  width: 70px;
-  height:32px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+.book-item {width: 100%;height: 160px;background-color: #ffffff; margin-bottom: 8px;position: relative;}
+.book-item .book-status {width: 70px;height: 32px;position: absolute;top: 0;left: 0;}
+.book-item .book-status span {line-height: 32px; display: block; text-align: center; color:#fff }
+.book-item .book-status-in { background-color: #58BD91;}
+.book-item .book-status-out { background-color: #FF9E77;}
+.book-item .tag { background-color:#9FD8DF; margin-right: 4px; height: 16px; border: 1px; border-radius: 23px;padding-left: 8px; padding-right: 8px; line-height: 16px; color: #fff}
 
-.book-item .book-status span{
-  line-height: 32px;
-  display: block;
-  text-align: center;
-}
+.item-left { float: left; margin-left: 18px;}
+.item-left img { height: 130px;margin-left: 4px;margin-right: 20px;margin-top: 5px;}
+.item-right {float: left;padding-top: 10px;}
+.item-right dt { font-size: 16px; color: #3C3C3C;}
+.item-right dd { font-size: 14px;color: #9B9B9B }
+.item-right .position { height: 24px; margin-top: 8px;}
+.item-right .position img { margin-left: 5px; width: 9px; height: 12px;}
+.item-right .position span { margin-left: 5px;line-height: 24px;font-size: 12px;color: #3C3C3C;}
+.item-right .loaninfo {font-size: 14px;}
+.item-right .loaninfo a {height: 20px; line-height: 20px;}
+.item-right .loaninfo img { height:14px; }
+.item-right .loaninfo span {margin-left: 5px; color: #307268;}
+.item-last { float: left; margin-left: 30px; visibility: hidden; }
+.mark { color: red; font-size: 16px;}
 
-.book-item .book-status-in{
-  background-color: #58BD91;
-}
+/*bookdetail*/
+.book-detail { padding-top: 30px;}
+.book-detail .saying { height: 118px; padding-top: 16px; padding-left: 18px; padding-right: 16px; margin-top: -8px; background-color:#E5F3ED;}
+.book-detail .saying img {width:19px; vertical-align: inherit}
+.book-detail .saying .saying-title {font-size: 16px; margin-left: 5px;}
+.book-detail .saying .saying-content {font-size: 14px; margin-top: 6px;}
+.book-detail .drift , .book-detail .content, .book-detail .comment {padding-top: 20px;padding-bottom: 8px;background-color: #fff;}
+.book-detail .drift .drift-item {margin-top: 6px;padding-left: 30px;}
+.book-detail .drift .drift-item span{margin-left: 5px;font-size: 14px;}
+.book-detail .content .content-padding{ margin-top: 6px; padding-left: 20px;}
+.book-detail .content .content-padding span {margin-left: 5px;font-size: 14px;}
+.book-detail .comment .comment-item {margin-top: 3px;}
+.book-detail .comment .comment-item .comment-content{font-size: 14px; margin-top: 6px; padding-left: 20px;}
+.book-detail .comment .comment-item .comment-user{font-size: 14px; color: #9B9B9B; }
+.book-detail .other-books { padding-top: 20px; height: 250px;}
+.book-detail .other-books .other-books-title{font-size: 16px;text-align: center;margin-bottom: 20px;}
+.book-detail .other-books .other-books-align {float: left;text-align: center; padding-left: 6px;}
+.book-detail .cando {padding-top: 20px;}
+/*独立组件样式*/
+.component-title{font-size: 16px; margin-left: 16px;}
+.component-title .decorate{display: inline-block;;width: 4px; height: 14px;background-color:#58BD91;}
+.component-title .title {margin-left: 5px;}
 
-.book-item .book-status-out{
-  background-color: #FF9E77;
-}
-
-.item-left{
-    float: left;
-}
-
-.item-left img{
-    height: 130px;
-    margin-left: 4px;
-    margin-right: 20px;
-    margin-top: 5px;
-}
-
-.item-right{
-    float: left;
-    padding-top: 10px;
-}
-
-.item-right dt{
-  font-size: 16px;
-  color: #3C3C3C;
-}
-
-.item-right dd{
-  font-size: 14px;
-  color: #9B9B9B
-}
-
-.item-right .position{
-  height: 24px;
-  margin-top: 8px;
-}
-
-.item-right .position img {
-  margin-left: 5px;
-  width: 9px;
-  height: 12px;
-}
-
-.item-right .position span {
-  margin-left: 5px;
-  line-height: 24px;
-  font-size: 12px;
-  color: #3C3C3C;
-}
-
-.item-last {
-    float: left;
-    margin-left: 30px;
-    visibility: hidden;
-}
-
-.mark {
-  color: red;
-  font-size: 16px;
-}
+.component-bookitem-sim {position: relative; float:left;margin-right: 7px;width: 116px; height: 180px; background-color: #fff; text-align: center;padding-top:8px;}
+.component-bookitem-sim .book-status {width: 50px;height: 28px;position: absolute;left:10px; top: 0; }
+.component-bookitem-sim .book-status span {line-height: 32px; display: block; text-align: center; color:#fff }
+.component-bookitem-sim .book-status-in { background-color: #58BD91;}
+.component-bookitem-sim .book-status-out { background-color: #FF9E77;}
+.component-bookitem-sim .title{text-align: center}
 
 /**nav**/
-.nav {
-  position: fixed;
-  bottom: 0;
-  height: 60px;
-  width: 100%;
-  background-color: #ccc;
-}
+.nav {position: fixed;bottom: 0;height: 60px;width: 100%;background-color: #ccc; }
+.nav .elem { font-size: 16px; color: red; line-height: 60px; margin-left: 10px;margin-right: 10px;}
 
-.nav .elem {
-  font-size: 16px;
-  color: red;
-  line-height: 60px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
+/**center***/
+.center { height: 160px; width: 100%; background: url('../images/bg-header-line.png') repeat-x;}
+.center .center-header-top {height: 70%;}
+.center .center-header-bottom {height: 30%; text-align: center;}
+.center .center-header-top img { margin-left: auto; margin-right: auto;text-align: center; width: 60px;height: auto; display: block;padding-top: 30px;}
+.center-body{ background-color: #fff; padding-top: 20px; margin-top: 15px;}
+.center-body .center-item{ height: 50px; font-size: 14px;}
+.center-body .center-item .category{ height: 49px; line-height: 49px; }
+.center-body .center-item .category span { margin-left: 8%;}
+.center-body .center-item .category div { float: right; margin-right: 20px;}
+.center-body .center-item .one-line { height: 1px;width: 95%; background-color: #EFEFEF; margin-left: 5%;}
+
+/*position*/
+.posi{ width: 100%; height:100px; background-color: #fff; margin-bottom: 8px;}
+.posi .spot{ height: 50%;  text-align: center; font-size: 18px; padding-top: 20px;}
+.posi .spot img{ width: 14px; height: 18px;}
+.posi .spot span{ margin-left: 5px; margin-top: 5px;}
+.posi .search-box {text-align: center;padding-top: 5px;}
+.posi .search-box input {width: 90%;height: 32px; border: 1px #BFBFBF solid;border-radius:4px;  text-align:center;}

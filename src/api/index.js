@@ -8,6 +8,9 @@ export default {
   addNewBook:function(data){
     return BookResource('post', 'add_book', data)
   },
+  fetchOneBook:function(data){
+    return BookResource('get','fetchone',data)
+  },
 
   localLogin: function (data) {
     return AuthResource('post', 'local', data)

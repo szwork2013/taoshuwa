@@ -6,7 +6,8 @@ var _ = require('lodash');
 
 const initialState = {
   books: [],
-  onebook:{}
+  onebook:{},
+  curbook:{}
 };
 
 export default function books(state = initialState, action) {
@@ -20,26 +21,37 @@ export default function books(state = initialState, action) {
       state.books.push(book);
       return {
         books: state.books,
-        onebook:state.onebook
+        onebook:state.onebook,
+        curbook:state.curbook
       }
 
     case types.CHECK_BOOK:
       const onebook = action.book;
       return {
         books:state.books,
-        onebook:onebook
+        onebook:onebook,
+        curbook:state.curbook
+      }
+
+    case types.FETCH_ONE_BOOK:
+      const curbook = action.curbook;
+      return {
+        books:state.books,
+        curbook:curbook,
+        onebook:state.onebook,
       }
 
     case types.BOOK_LIST:
       return {
         books: action.books,
-        onebook:state.onebook
+        onebook:state.onebook,
+        curbook:state.curbook
       }
 
     case types.DELETE_BOOK:
-      console.log('state--------:',state);
       return {
         onebook:state.onebook,
+        curbook:state.curbook,
         books:state.books.filter( book => book._id !== action.id )
       }
     default:

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, IndexRoute, Redirect } from 'react-router'
 
-import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book,Login,Register,AddBook } from '../components';
-import { Home,FriendListApp } from '../containers';
+import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book,Login,Register,AddBook} from '../components';
+import { Home,FriendListApp,Center,BookDetail } from '../containers';
 import {redirectToBack} from '../utils/authService.js'
 
 //onEnter={redirectToLogin}
@@ -16,6 +16,8 @@ export default ()=> (
     <Route path='/book/add' component={AddBook} />
     <Route path="/login" component={Login} onEnter={redirectToBack}  />
     <Route path="/register" component={Register} />
+    <Route path="/center" component={Center} />
+    <Route path="/book/:id" component={BookDetail} />
     <Redirect from="/*" to="/" />
   </Route>
 )

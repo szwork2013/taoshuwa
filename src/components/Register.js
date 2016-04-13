@@ -2,6 +2,13 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as Actions from '../actions/FriendsActions'
+//引入图片
+import icon_mobile  from '../assets/images/icon-mobile.png'
+import icon_check_code  from '../assets/images/icon-check-code.png'
+import icon_password  from '../assets/images/icon-password.png'
+import icon_icode  from '../assets/images/icon-icode.png'
+import icon_split  from '../assets/images/icon-split.png'
+import btn_big  from '../assets/images/btn-big.png'
 
 class Login extends Component {
   constructor(props) {
@@ -22,6 +29,78 @@ class Login extends Component {
 
   render() {
     const {dispatch,actions } = this.props;
+
+    return(
+      <div className='reg'>
+        <ul>
+          <li>
+            <div className='content'>
+              <div className='reg-icon-type'>
+                <img src={icon_mobile} />
+              </div>
+              <div className='reg-icon-split'>
+                <img src={icon_split} />
+              </div>
+              <div className='reg-input'>
+                <input type='text' ref='phone' placeholder='请输入手机号' />
+              </div>
+            </div>
+            <div className='one-line'></div>
+          </li>
+          <li>
+            <div className='content'>
+              <div className='reg-icon-type'>
+                <img src={icon_check_code} />
+              </div>
+              <div className='reg-icon-split'>
+                <img src={icon_split} />
+              </div>
+              <div className='reg-input'>
+                <input type='text' ref='phone' placeholder='请输入验证码' />
+                <a><span>获取验证码</span></a>
+              </div>
+            </div>
+            <div className='one-line'></div>
+          </li>
+          <li>
+            <div className='content'>
+              <div className='reg-icon-type'>
+                <img src={icon_password} />
+              </div>
+              <div className='reg-icon-split'>
+                <img src={icon_split} />
+              </div>
+              <div className='reg-input'>
+                <input type='text' ref='phone' placeholder='请输入密码' />
+              </div>
+            </div>
+            <div className='one-line'></div>
+          </li>
+          <li>
+            <div className='content'>
+              <div className='reg-icon-type'>
+                <img src={icon_icode} />
+              </div>
+              <div className='reg-icon-split'>
+                <img src={icon_split} />
+              </div>
+              <div className='reg-input'>
+                <input type='text' ref='phone' placeholder='请输入邀请码' />
+              </div>
+            </div>
+            <div className='one-line'></div>
+          </li>
+        </ul>
+
+        <div className='icode-tip'>
+          <a>什么是邀请码？</a>
+        </div>
+        <div className='reg-finish'>
+          <a>完 成</a>
+        </div>
+      </div>
+    )
+    return;
     return (
       <div className="signin-box">
         <div className="signin-container">
@@ -86,4 +165,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Login)
-

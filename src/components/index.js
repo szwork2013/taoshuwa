@@ -7,3 +7,6 @@ export { default as Book } from './Book';
 export { default as AddBook } from './AddBook';
 export { default as Login } from './Login';
 export { default as Register } from './Register';
+export { default as Title } from './Title';
+export { default as BookItem } from './BookItem';
+export { default as BookItemSim } from './BookItemSim';

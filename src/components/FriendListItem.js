@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-import styles from './FriendListItem.css';
+//import styles from './FriendListItem.css';
 
 export default class FriendListItem extends Component {
   static propTypes = {
