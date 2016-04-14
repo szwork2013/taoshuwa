@@ -7,6 +7,7 @@ import fetch from 'isomorphic-fetch';
 import {API_ROOT} from '../config'
 import BookItem from './BookItem';
 import Position from './Position.js';
+import Nav from './Nav';
 class Book extends Component {
   constructor(props) {
     super(props);
@@ -44,9 +45,16 @@ class Book extends Component {
       return <BookItem key={book._id} book={book} index={index} handleDelOne={this.handleDelOne}/>
     });
     return (
-      <div>
-        <Position />
-        {booksList}
+      <div className='book-list'>
+        <div className='fixed-header'>
+          <Position />
+        </div>
+        <div className='list'>
+          {booksList}
+        </div>
+        <div className='fixed-footer'>
+          <Nav />
+        </div>
       </div>
     )
   }

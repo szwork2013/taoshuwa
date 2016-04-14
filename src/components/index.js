@@ -10,3 +10,4 @@ export { default as Register } from './Register';
 export { default as Title } from './Title';
 export { default as BookItem } from './BookItem';
 export { default as BookItemSim } from './BookItemSim';
+export { default as Nav } from './Nav';

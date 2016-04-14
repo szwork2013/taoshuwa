@@ -25,10 +25,10 @@ class Home extends Component {
     return (
       <div className={urlpath === '/register'?'bg-white':'bg-default'}>
         {children}
-        <div className='nav'>
+        {/*{<div className='nav'>
           <Link to='/book' className='elem'>借书</Link>
           <Link to='/book/add' className='elem'>捐书</Link>
-        </div>
+        </div>}*/}
       </div>
     );
   }

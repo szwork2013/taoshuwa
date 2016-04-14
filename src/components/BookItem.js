@@ -31,7 +31,7 @@ export default class BookItem extends Component {
       }
     })();
     const pathname = window.location.pathname;
-    const whichShow = pathname==='/bookd' ?
+    const whichShow = pathname==='/book' ?
       ( <div className='position'>
         <img src={pos_img} />
         <span>嘉盛中心</span>

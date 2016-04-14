@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0;}
 html,body { font-size: 16px;}
-a {text-decoration: none;}
+a {text-decoration: none; }
 
 .bg-white {background-color: #fff}
 .bg-default {background-color: #F0F0F0}
@@ -43,9 +43,12 @@ a {text-decoration: none;}
 .item-right .loaninfo span {margin-left: 5px; color: #307268;}
 .item-last { float: left; margin-left: 30px; visibility: hidden; }
 .mark { color: red; font-size: 16px;}
-
+.book-list {position: relative;}
+.book-list .fixed-footer {position: fixed; bottom: 0;width: 100%;}
+.book-list .fixed-header {position: fixed; top: 0; width: 100%; z-index: 1000;}
+.book-list .list {margin-top: 110px; margin-bottom: 65px;}
 /*bookdetail*/
-.book-detail { padding-top: 30px;}
+.book-detail { margin-top: 10px;}
 .book-detail .saying { height: 118px; padding-top: 16px; padding-left: 18px; padding-right: 16px; margin-top: -8px; background-color:#E5F3ED;}
 .book-detail .saying img {width:19px; vertical-align: inherit}
 .book-detail .saying .saying-title {font-size: 16px; margin-left: 5px;}
@@ -58,10 +61,14 @@ a {text-decoration: none;}
 .book-detail .comment .comment-item {margin-top: 3px;}
 .book-detail .comment .comment-item .comment-content{font-size: 14px; margin-top: 6px; padding-left: 20px;}
 .book-detail .comment .comment-item .comment-user{font-size: 14px; color: #9B9B9B; }
-.book-detail .other-books { padding-top: 20px; height: 250px;}
+.book-detail .other-books { padding-top: 20px;margin-bottom: 60px;height: 250px;}
 .book-detail .other-books .other-books-title{font-size: 16px;text-align: center;margin-bottom: 20px;}
 .book-detail .other-books .other-books-align {float: left;text-align: center; padding-left: 6px;}
-.book-detail .cando {padding-top: 20px;}
+.book-detail .cando { position: fixed; bottom: 0;width: 100%;height: 56px; line-height: 56px; text-align: center;font-size: 16px;}
+.book-detail .cando .left {float: left; width: 33%; color:#58BD91; background-color: #fff;}
+.book-detail .cando .right {float: left; width: 67%; background-color: #58BD91; color: #fff;}
+
+
 /*独立组件样式*/
 .component-title{font-size: 16px; margin-left: 16px;}
 .component-title .decorate{display: inline-block;;width: 4px; height: 14px;background-color:#58BD91;}
@@ -73,6 +80,14 @@ a {text-decoration: none;}
 .component-bookitem-sim .book-status-in { background-color: #58BD91;}
 .component-bookitem-sim .book-status-out { background-color: #FF9E77;}
 .component-bookitem-sim .title{text-align: center}
+
+.component-nav { width: 100%; height: 56px;line-height: 56px;background-color: #fff;font-size: 16px; text-align: center;}
+.component-nav a {color:#9B9B9B}
+.component-nav .left{float: left; width: 33%}
+.component-nav .middle{float: left; width: 33%}
+.component-nav .right{float: left; width: 34%}
+.component-nav .active{color: #58BD91;}
+
 
 /**nav**/
 .nav {position: fixed;bottom: 0;height: 60px;width: 100%;background-color: #ccc; }
