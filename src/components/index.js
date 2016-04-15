@@ -11,3 +11,5 @@ export { default as Title } from './Title';
 export { default as BookItem } from './BookItem';
 export { default as BookItemSim } from './BookItemSim';
 export { default as Nav } from './Nav';
+export { default as CheckBook } from './CheckBook';
+export { default as BookLoanList } from './BookLoanList.js';

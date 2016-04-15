@@ -1,0 +1,39 @@
+@import url('meta');
+@import url('share');
+
+@border: 1px solid transparent;
+.layout_h {
+    float: left;
+    display: inline-block;
+}
+
+@{NS}.tab {
+    ._tab {
+        overflow: hidden;
+        ._item {
+            cursor: pointer;
+            float: left;
+            padding: 5px 10px;
+            height: 35px;
+            line-height: 25px;
+            border: 1px solid transparent;
+            &._active {
+                border-color: @gray_c;
+                color: @gray_a;
+                background: @gray_d;
+            }
+        }
+    }
+    ._content {
+        >._item {
+            padding: 20px;
+            border: 1px solid @gray_c;
+            width: 100%;
+            min-height: 200px;
+            display: none;
+            &._active {
+                display: block;
+            }
+        }
+    }
+}

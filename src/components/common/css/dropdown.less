@@ -1,0 +1,130 @@
+@import url('meta.less');
+
+
+@{NS}.dropdown {
+    @line_height: 25px;
+    @height: 30px;
+    
+    position: relative;
+    ul {
+        padding: 0;
+        li {
+            cursor: pointer;
+            list-style-type: none;
+            ._item {
+                padding: 3px 16px;
+                border-bottom: 1px solid transparent;
+                &._active {
+                    background: @gray_c;
+                    border-color: @gray_d;
+                }
+            }
+        }
+    }
+
+    .__label {
+        color: @black_c;
+        padding: 0 8px;
+        line-height: @line_height;
+        height: @height;
+        border: 1px solid @gray_b;
+    }
+
+    ._label {
+        .__label;
+        cursor: pointer;
+    }
+    ._list {
+        margin-top: -1px;
+        opacity: 0;
+        max-height: 0;
+        visibility: hidden;
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+        background: @white;
+        border: 1px solid @gray_b;
+        -webkit-transition: all @motion .3s;
+        -o-transition: all @motion .3s;
+        transition: all @motion .3s;
+    }
+    &._active {
+        ._list {
+            max-height: 500px;
+            -webkit-transition: all @motion .3s;
+            -o-transition: all @motion .3s;
+            transition: all @motion .3s;
+            opacity: 1;
+            visibility: visible;
+            &:empty {
+                border: none;
+            }
+        }
+        ._search ._text {
+            color: @gray_b;
+        }
+    }
+
+    ._search {
+        .__label;
+        position: relative;
+        ._text {
+            cursor: text;
+            position: relative;
+            background: none;
+            display: inline-block;
+            line-height: @line_height;
+            z-index: 2;
+        }
+        ._input {
+            background: none;
+            padding: 0 5px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            border: none;
+            z-index: 3;
+        }
+    }
+
+    ._multi {
+        border: 1px solid @gray_b;
+        line-height: @line_height;
+        height: @height;
+        width: 100%;
+        padding: 1px 5px;
+        ._input {
+            border: none;
+            display: inline;
+            white-space: pre;
+            max-width: 100%;
+        }
+        ._placeHolder {
+            color: @gray_b;
+            margin-left: -6px;
+        }
+        ._tag {
+            cursor: pointer;
+            margin-right: 3px;
+            background: @gray_c;
+            color: @black;
+            font-size: 14px;
+            padding: 0 3px;
+
+            ._text {
+                padding-right: 3px; 
+            }
+
+            ._delete {
+                color: @black;
+                &:before {
+                    content: 'x';
+                }
+            }
+        }
+    }
+}

@@ -8,7 +8,7 @@ export default class Nav extends Component {
           <Link activeClassName='active' to='/book'>借书</Link>
         </div>
         <div className='middle'>
-          <Link activeClassName='active' to='/add_book'>捐书</Link>
+          <Link activeClassName='active' to='/book/check'>捐书</Link>
         </div>
         <div className='right'>
           <Link activeClassName='active' to='/center'>我的</Link>

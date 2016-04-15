@@ -1,0 +1,57 @@
+@import url('meta.less');
+
+@{NS}.carousel {
+    overflow: hidden;
+    position: relative;
+    ._content {
+        overflow: auto;
+        ._item {
+            overflow: hidden;
+            display: block;
+            float: left;
+            height: 100%;
+            text-align: center;
+            opacity: 0.9;
+            &._active {
+                opacity: 1;
+            }
+        }
+        &._slide {
+            transition:transform .5s ease
+        }
+    }
+
+    ._dot {
+        text-align: center;
+        ._item {
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-bottom: 50px;
+            font-size: 200%;
+            color: @gray_b;
+            &._active {
+                color: @black;
+            }
+        }
+    }
+    ._arrow {
+        .__arrow {
+            cursor: pointer;
+            color: @blue;
+            position: absolute;
+            overflow: hidden;
+            top: 50%;
+            margin-top: -15px;
+            height: 30px;
+        }
+        ._prev {
+            .__arrow;
+            left: 10px;
+        }
+        ._next {
+            .__arrow;
+            right: 10px;
+        }
+    }
+}

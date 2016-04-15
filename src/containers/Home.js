@@ -9,10 +9,12 @@ import {Container, Group, NavBar, amStyles} from 'amazeui-touch';
 import * as FriendsActions from '../actions/FriendsActions';
 import {FriendList, AddFriendInput} from '../components';
 const {Button} = WeUI;
+
 class Home extends Component {
   componentDidMount() {
     const {actions} = this.props;
     actions.getUserInfo();
+
   }
   render() {
     const {friendlist, actions, children, auth} = this.props;

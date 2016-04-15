@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router';
 import user_head from '../assets/images/user-head.png';
 import default_head from '../assets/images/default-head.png';
-class CenterHeader extends Component {
+class Drift extends Component {
   constructor(props) {
     super(props);
   }
@@ -39,7 +39,7 @@ class CenterHeader extends Component {
     }
   }
 }
-CenterHeader.propTypes = {
+Drift.propTypes = {
   user: PropTypes.object.isRequired
 }
 function mapStateToProps(state) {
@@ -48,4 +48,4 @@ function mapStateToProps(state) {
 function mapDispathToProps(dispatch) {
   return {}
 }
-export default CenterHeader;
+export default Drift;

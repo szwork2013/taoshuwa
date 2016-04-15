@@ -34,7 +34,7 @@ export function fetchOneBook(id) {
         }
       })
       .catch(err => {
-        alert(err.data.err_msg);
+        console.log('err-----------:',err);
       })
   }
 }
@@ -59,6 +59,24 @@ method: 'post',
      },
      body: JSON.stringify(comment)
  */
+
+export function fetchLoanBookList(){
+  return function(dispatch, getState) {
+    api.fetchLoanBookList()
+      .then(response => ({json: response.data, status: response.statusText}))
+      .then(({json, status}) => {
+        if (status !== 'OK') {
+          console.log('fetch book info error');
+          return false;
+        }
+        dispatch(
+          {type:types.LOAN_BOOK_LIST,
+            loanlist:json.loanlist});
+      }).catch(e => {
+          console.log('fetchLoanBookList error');
+      })
+  }
+}
 
 export function addBook(book) {
   return function(dispatch, getState) {
@@ -86,6 +104,7 @@ export function checkOneBook(isbn) {
       .then(({json, response}) => {
         if (!response.ok) {
           console.log(`查询数据出错:${json.err_msg}`);
+          alert(json.err_msg);
         } else {
           console.log(`json:${json}`);
           let book = json.book;
@@ -141,7 +160,7 @@ export function loginIn(username, password) {
         dispatch(getUserInfo(json.token))
         //dispatch(loginSuccess(json.token))
         //dispatch(showMsg('登录成功,欢迎光临!','success'))
-        dispatch(push('/'))
+        dispatch(push('/book'))
       })
       .catch(err => {
         //登录异常

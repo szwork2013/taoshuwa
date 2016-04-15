@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'redux';
 import {Link} from 'react-router';
 import CenterItem from '../components/CenterItem.js';
+import {isOwnEmpty} from '../utils';
 class CenterBody extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,9 @@ class CenterBody extends Component {
     alert('click the handler');
   }
   render() {
-    const categorys = [
+    const {user} = this.props;
+
+    const categorys = isOwnEmpty(user) ? [
       {
         title: '我借到的书',
         handler: this.clickHandler
@@ -29,8 +32,27 @@ class CenterBody extends Component {
         title: '借书规则',
         handler: this.clickHandler
       }
+    ]:[{
+        title: '赚积分',
+        handler: this.clickHandler
+      },{
+        title: '我借到的书',
+        handler: this.clickHandler
+      }, {
+        title: '我捐赠的书',
+        handler: this.clickHandler
+      }, {
+        title: '我的心愿单',
+        handler: this.clickHandler
+      }, {
+        title: '我的通知',
+        handler: this.clickHandler
+      }, {
+        title: '借书规则',
+        handler: this.clickHandler
+      }
     ]
-    const {user} = this.props;
+
     const length = categorys.length;
     const centerBody = categorys.map((item, index) => {
       if (index === length - 1) {

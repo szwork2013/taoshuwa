@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link, browserHistory } from 'react-router'
 import { Button} from 'amazeui-touch';
 
 import pos_img from  '../assets/images/map-pos.png';
@@ -11,10 +12,10 @@ export default class BookItem extends Component {
 
 
   render() {
-    const { book,index,handleDelOne} = this.props;
+    const { book,index,handleDelOne,fetchOneBook} = this.props;
     const tags = book.tags;
     const status = book.status;
-    const tagsPart = tags.map( (tag,key) =>(<span className='tag' key={key} >{tag}</span>));
+    const tagsPart = tags.map( (tag,key) =>(<span className='tag' key={key} >{tag.name}</span>));
     const loanStatus = (function(){
       if(status === 1){
         return (
@@ -42,17 +43,21 @@ export default class BookItem extends Component {
         </div>);
 
     return (
-      <div className="book-item" >
+      <div className="book-item" onClick={function(){
+          //fetchOneBook(book._id);
+          browserHistory.push(`/book/${book._id}`)
+        }} >
+
         {loanStatus}
         <div className="item-left">
           <img src={book.image} alt="" />
         </div>
         <div className="item-right">
           <dt>
-            {book.title}--{index}
+            {book.title}
           </dt>
           <dd>作者：{book.author}</dd>
-          <dd>类别：{book.category}</dd>
+          <dd>类别：{book.category && book.category.name}</dd>
           <dd>标签：{tagsPart}</dd>
           {whichShow}
         </div>
@@ -61,6 +66,7 @@ export default class BookItem extends Component {
             className="btn btn-danger btn-sm"
             onClick={ e =>handleDelOne(e,book._id)} >删除</button>
         </div>
+
       </div>
     )
   }

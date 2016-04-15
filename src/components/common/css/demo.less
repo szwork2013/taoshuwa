@@ -1,0 +1,138 @@
+@import url('meta');
+@import url('share');
+
+@import url('reset.less');
+@import url('checkbox.less');
+@import url('carousel.less');
+@import url('carousel_demo.less');
+@import url('popup.less');
+@import url('dropdown.less');
+@import url("menu.less");
+@import url('menu_demo.less');
+@import url('modal.less');
+@import url('pin.less');
+@import url('pin_demo.less');
+@import url('tab.less');
+@import url('slide-menu.less');
+@import url('pagination.less');
+@import url('time-picker.less');
+@import url('date-picker.less');
+@import url('progress.less');
+@import url('message.less');
+
+a {
+    color: @blue;
+}
+
+body {
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.table {
+    display: table;
+    width: 100%;
+    .row {
+        display: table-row;
+    }
+
+    .cell {
+        vertical-align: middle;
+        display: table-cell;
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+.container {
+    width: 1080px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.header {
+    padding: 50px 0;
+    color: @white;
+    background: @black_b;
+    span {
+        font-size: 14px;
+        &+span{
+            margin-left: 20px;
+        }
+    }
+    a {
+        color: @yellow;
+    }
+}
+
+.footer {
+    a {
+        color: @red;
+    }
+}
+
+.wrapper {
+    background: @white;
+}
+
+ul {
+    ._display {
+        padding: 5px 0;
+        display: inline-block;
+    }
+}
+
+._disabled {
+    color: @gray_a !important;
+    cursor: not-allowed !important;
+}
+
+.gap-word {
+    span+span {
+        &:before {
+            content: ',';
+            margin-right: 3px;
+        }
+        margin-left: 3px;
+    }
+}
+
+#demo_list {
+    overflow: hidden;
+    .demo-nav {
+        padding: 10px;
+        width: 220px;
+        float: left;
+        a.active {
+            color: @black;
+        }
+    }
+    .children {
+        min-height: 1000px;
+        margin-left: 240px;
+        padding: 10px;
+        >div {
+            >ul, >ol {
+                >li {
+                    margin-bottom: 20px;
+                }
+                &.two {
+                    >li {
+                        float: left;
+                        width: 50%;
+                        display: inline-block;
+                    }
+                }
+                &.three {
+                    >li {
+                        float: left;
+                        width: 33.3%;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

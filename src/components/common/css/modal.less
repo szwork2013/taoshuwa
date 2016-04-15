@@ -1,0 +1,95 @@
+@import url('meta.less');
+
+@{NS}.modal {
+    .__transition {
+        -webkit-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+    }
+    ._body {
+        -webkit-transform: translateX(-50%) translateY(-70%);
+        -ms-transform: translateX(-50%) translateY(-70%);
+        -o-transform: translateX(-50%) translateY(-70%);
+        transform: translateX(-50%) translateY(-70%);
+        z-index: 1000;
+        min-width: 400px;
+        max-width: 600px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        visibility: hidden;
+        >._wrap {
+            .__transition;
+            background: @white;
+            border: 1px solid @gray_b;
+            opacity: 0;
+            -webkit-transform: scale(0.7);
+            -ms-transform: scale(0.7);
+            -o-transform: scale(0.7);
+            transform: scale(0.7);
+        }
+
+        ._title {
+            padding: 10px;
+            font-size: 120%;
+        }
+
+        ._content {
+            overflow: hidden;
+            padding: 10px;
+            ._action {
+                font-size: 90%;
+                overflow: hidden;
+                float: right;
+                a+a {
+                    margin-left: 5px;
+                }
+            }
+        }
+        ._close {
+            cursor: pointer;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+    }
+    ._overlay {
+        .__transition;
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: transparent;
+    }
+    &._show {
+        ._body {
+            visibility: visible;
+            >._wrap {
+                .__transition;
+                -webkit-transform: scale(1);
+                -ms-transform: scale(1);
+                -o-transform: scale(1);
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        ._overlay {
+            .__transition;
+            visibility: visible;
+            background: rgba(0,0,0,.5);
+        }
+    }
+    &._force {
+        ._body {
+            ._wrap {
+                border: none;
+            }
+        }
+        ._overlay {
+            background: rgba(255,255,255,.9);
+        }
+    }
+}

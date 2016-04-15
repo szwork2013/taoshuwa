@@ -3,13 +3,16 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router';
 import user_head from '../assets/images/user-head.png';
 import default_head from '../assets/images/default-head.png';
+import {isOwnEmpty} from '../utils/index.js';
 class CenterHeader extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {user} = this.props;
-    if (!user) {
+    const isLogin = isOwnEmpty(user);
+    if (isLogin) {
       return (
         <div>
           <div className='center'>
@@ -31,7 +34,7 @@ class CenterHeader extends Component {
               <img src={user_head}/>
             </div>
             <div className='center-header-bottom'>
-              <span>淘书娃</span>
+              <span>{user.phone}</span>
             </div>
           </div>
         </div>

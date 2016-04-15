@@ -5,13 +5,17 @@ import * as types from '../constants/ActionTypes';
 var _ = require('lodash');
 
 const initialState = {
-  books: [],
-  onebook:{},
-  curbook:{}
+  books: [],//首页书籍列表
+  loanlist:[],//捐书列表
+  onebook:{},//根据ISBN返回的书籍详情
+  curbook:{}//查看书的详情
 };
 
 export default function books(state = initialState, action) {
   switch (action.type) {
+    case types.LOAN_BOOK_LIST:
+      const {loanlist} = action;
+      return _.merge({},state, {loanlist:loanlist});
 
     case types.ADD_BOOK:
       const book = action.json.book;
@@ -27,33 +31,19 @@ export default function books(state = initialState, action) {
 
     case types.CHECK_BOOK:
       const onebook = action.book;
-      return {
-        books:state.books,
-        onebook:onebook,
-        curbook:state.curbook
-      }
+      return _.merge({},state,{onebook:onebook});
 
     case types.FETCH_ONE_BOOK:
       const curbook = action.curbook;
-      return {
-        books:state.books,
-        curbook:curbook,
-        onebook:state.onebook,
-      }
+      return _.merge({},state,{curbook:curbook});
 
     case types.BOOK_LIST:
-      return {
-        books: action.books,
-        onebook:state.onebook,
-        curbook:state.curbook
-      }
+      const books = action.books;
+      return _.merge({}, state,{books:books});
 
     case types.DELETE_BOOK:
-      return {
-        onebook:state.onebook,
-        curbook:state.curbook,
-        books:state.books.filter( book => book._id !== action.id )
-      }
+      return _.merge({},state, { boks:state.books.filter( book => book._id !== action.id )})
+
     default:
       return state;
   }

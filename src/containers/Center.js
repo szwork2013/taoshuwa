@@ -9,7 +9,7 @@ class Center extends Component {
   }
 
   render() {
-    const {user} = this.props
+    const {user} = this.props;
     return (
       <div>
         <CenterHeader user={user} />

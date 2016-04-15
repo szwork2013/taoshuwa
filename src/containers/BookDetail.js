@@ -2,10 +2,13 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link} from 'react-router';
-//import BookItem from '../components/BookItem.js';
 import {Title, BookItemSim, BookItem} from '../components';
 import * as Actions from '../actions/FriendsActions'
-import icon_saying from '../assets/images/icon-saying.png'
+import icon_saying from '../assets/images/icon-saying.png';
+import {Carousel} from '../components/common';
+import '../components/common/css/demo.less';
+import {isOwnEmpty} from '../utils'
+
 class BookDetail extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +20,13 @@ class BookDetail extends Component {
   }
   render() {
     const {curbook} = this.props;
-    curbook.tags = [1, 2, 3, 4];
+
+    if(isOwnEmpty(curbook)){
+      curbook.tags = []
+    }else{
+      curbook.tags = curbook.tags.slice(0,2);
+    }
+    console.log('curbook---------:',curbook);
     const title = ['漂流', '内容简介', '评价'];
     return (
       <div className='book-detail'>
@@ -25,7 +34,7 @@ class BookDetail extends Component {
         <div className='saying'>
           <img src={icon_saying}/>
           <span className='saying-title'>捐书者说</span>
-          <div className='saying-content'>感谢小小淘书娃，让我能够免费获取丰富的书籍可看，同时我也能够将我的书分享书出去，再也不担心我的扔掉我的书了。</div>
+          <div className='saying-content'>{curbook.saying}</div>
         </div>
         <div className='drift'>
           <Title title={title[0]}/>
@@ -63,9 +72,19 @@ class BookDetail extends Component {
           </div>
           <div>
             <div className='other-books-align'>
-              <BookItemSim/>
-              <BookItemSim/>
-              <BookItemSim/>
+              <Carousel autoPlay={true} delay={5000}>
+                {[
+                  [ <BookItemSim title='xx' status='1' />,
+                    <BookItemSim title='yy' status='2'/>,
+                    <BookItemSim title='yy' status='2'/>],
+                  [ <BookItemSim title='zz' status='1' />,
+                    <BookItemSim title='ww' status='2' />,
+                    <BookItemSim title='yy' status='2'/>],
+                  [ <BookItemSim title='zz' status='3' />,
+                    <BookItemSim title='ww' status='1' />,
+                    <BookItemSim title='yy' status='2'/>]
+                ]}
+              </Carousel>
             </div>
           </div>
         </div>

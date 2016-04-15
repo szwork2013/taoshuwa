@@ -35,14 +35,13 @@ class Book extends Component {
           image: item.image || "https://img1.doubanio.com/mpic/s28026858.jpg",
           title: item.title,
           status: item.status,
-          tags:['计算机','程序','前端'],
-          category: 'xx'
+          tags:item.tags && item.tags.slice(0, 2),
+          category: item.category
         });
       }
     })
-    console.log('coBook---------------------:',coBook);
     var booksList = coBook.map((book, index) => {
-      return <BookItem key={book._id} book={book} index={index} handleDelOne={this.handleDelOne}/>
+      return <BookItem key={book._id} book={book} index={index} handleDelOne={this.handleDelOne} fetchOneBook={actions.fetchOneBook} />
     });
     return (
       <div className='book-list'>

@@ -4,9 +4,9 @@ import book_img from '../assets/images/book-1.jpg'
 export default class BookItemSim extends Component {
   render() {
     //const { book,index,handleDelOne} = this.props;
-    const status = 1;
+    const {title,status} = this.props;
     const loanStatus = (function() {
-      if (status === 1) {
+      if (status === '1') {
         return (
           <div className='book-status book-status-in'>
             <span>可借</span>
@@ -27,7 +27,7 @@ export default class BookItemSim extends Component {
           <img src={book_img} />
         </div>
         <div className='title'>
-          <span>三十六技</span>
+          <span>{title}</span>
         </div>
       </div>
     )

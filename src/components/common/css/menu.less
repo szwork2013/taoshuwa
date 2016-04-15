@@ -1,0 +1,149 @@
+@import url('meta.less');
+
+@{NS}.menu {
+    @basic_motion: max-height .3s @motion, opacity .3s @motion, height .3s @motion, overflow .3s @motion, visibility @motion .3s;
+    .__transition {
+        -webkit-transition: @basic_motion;
+        -o-transition: @basic_motion;
+        transition: @basic_motion;
+    }
+    position: relative;
+    border: 1px solid @gray_b;
+    background: @white;
+
+    ._item {
+        padding: 5px 15px;
+        cursor: pointer;
+    }
+
+    ._title {
+        color: @black_c;
+    }
+
+    ._child {
+        &._active {
+            color: @gray;
+            background: @gray_c;
+        }
+    }
+
+    .menu {
+        .__transition;
+        border: none;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .sub-menu {
+        padding: 0;
+        &._active {
+            >._title {
+                color: @black;
+                font-weight: 600;
+            }
+            >.menu {
+                .__transition;
+                opacity: 1;
+                max-height: 500px;
+                overflow: hidden;
+            }
+        }
+    }
+
+    &._default {
+        ._menu-2 {
+            @width: 20px;
+            ._child {
+                padding-left: @width;
+            }
+            >.sub-menu>._title {
+                padding-left: @width;
+            }
+        }
+        ._menu-3 {
+            @width: 40px;
+            ._child {
+                padding-left: @width;
+            }
+            >.sub-menu>._title {
+                padding-left: @width;
+            }
+        }
+    }
+
+
+    &._popped {
+        .sub-menu {
+            position: relative;
+            .menu {
+                height: 0;
+                visibility: hidden;
+                overflow: hidden;
+                background: @white;
+                top: -1px;
+                width: 0;
+                left: 100%;
+                position: absolute;
+                border: 1px solid transparent;
+            }
+            &._active {
+                >.menu {
+                    z-index: 100;
+                    width: 100%;
+                    height: auto;
+                    visibility: visible;
+                    overflow: initial;
+                    border-color: @gray_b;
+                }
+            }
+        }
+    }
+
+    &._horizontal {
+        .sub-menu {
+            position: relative;
+            .menu {
+                visibility: hidden;
+                overflow: hidden;
+                background: @white;
+                width: 0;
+                top: 0;
+                left: 100%;
+                position: absolute;
+                border: 1px solid transparent;
+            }
+            &._active {
+                >.menu {
+                    z-index: 100;
+                    width: 150px;
+                    height: auto;
+                    visibility: visible;
+                    overflow: initial;
+                    border-color: @gray_b;
+                }
+            }
+        }
+        &._menu-1 {
+            height: 40px;
+            line-height: 30px;
+            >._item {
+                width: 120px;
+                height: 100%;
+                float: left;
+                line-height: 30px;
+                display: inline-block;
+            }
+            >.sub-menu {
+                >.menu {
+                    left: 0;
+                    top: 40px;
+                }
+                >._title {
+                    padding: 0 15px;
+                    line-height: 40px;
+                }
+            }
+        }
+    }
+}

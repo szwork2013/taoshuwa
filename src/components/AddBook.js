@@ -1,92 +1,106 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import * as Actions from '../actions/FriendsActions'
-import fetch from 'isomorphic-fetch';
-import {API_ROOT} from '../config'
-import BookItem from  './BookItem';
+import {isOwnEmpty} from '../utils/index.js';
+import map_pos from '../assets/images/map-pos.png';
 
-const validateBook = values => {
-  // const errors = {}
-  // if (!values.email) {
-  //   errors.email = 'Required'
-  // } else if (!/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(values.email)) {
-  //   errors.email = '无效电子邮件地址'
-  // }
-  //
-  // if (!values.password) {
-  //   errors.password = 'Required'
-  // } else if (values.password.length > 30) {
-  //   errors.password = '密码长度不超过30'
-  // }
-  // if (!values.captcha) {
-  //   errors.captcha = 'Required'
-  // } else if (values.captcha.length !== 6) {
-  //   errors.captcha = '验证码是6位'
-  // }
-  return true;
-}
+import {DropDown} from './common';
+import './common/css/demo.less';
 
-class Book extends Component {
+class AddBook extends Component {
   constructor(props) {
     super(props);
-    this.handleDelOne = this.handleDelOne.bind(this);
-    this.handCheckClick = this.handCheckClick.bind(this);
     this.handleAddOne = this.handleAddOne.bind(this);
+    this.state = {
+      value: -1,
+    };
+  }
+
+  displayChange(stat, value) {
+    this.setState({
+      [String(stat)]: value
+    });
   }
 
   componentDidMount() {
     //获取数据
-    const { actions } = this.props;
-    actions.fetchBooks();
-  }
+    const id = this.props.params.id;
+    const {actions} = this.props;
+    actions.checkOneBook(id);
 
-  handleDelOne(e,id){
-    e.preventDefault()
-    const { actions } = this.props;
-    actions.delBook(id);
   }
 
   handleAddOne(e){
     e.preventDefault()
     const { actions,onebook } = this.props;
-    actions.addBook(onebook);
-  }
-
-  handCheckClick(e){
-    e.preventDefault();
-    const { actions } = this.props;
-    let isbn_id = this.refs.isbn_id.value;
-    if(validateBook(isbn_id)){
-      actions.checkOneBook(isbn_id);
+    const choosedIndex = this.state.value;
+    if(choosedIndex === -1){
+      alert('请选择图书种类');
+      return;
     }
+
+    let saying = this.refs.saying.value;
+    if(saying != '' && saying != undefined){
+      onebook.saying = saying;
+    }
+    onebook.category = onebook.category[choosedIndex]._id;
+    actions.addBook(onebook);
   }
 
   render() {
     const { onebook,dispatch,actions } = this.props;
+    onebook.category = onebook.category || [];
+    onebook.category.map((item,index) => item.value=index);
+    const options = onebook.category;
 
+    const style = {
+      height: '39px',
+      width: '200px',
+      float: 'left',
+      display: 'inline-block',
+      marginTop: '5px',
+      marginLeft: '-1px'
+    }
     return (
-      <div>
-        <div className="container-fluid main-box">
-          <div>
-            请输入ISBN的编号：<input type='text' ref='isbn_id' defaultValue='9787115281609' />
+      <div className='donate'>
+        <div className='donate-book'>
+          <div className='face'>
+            <img src={onebook.image} />
           </div>
-          <div>
-            <button className='btn btn-primary' onClick={this.handCheckClick}>检 查</button>
+          <div className='detail'>
+            <ul>
+              <li><span className='name'>书名：</span><span className='cons'>{onebook.title}</span></li>
+              <li><span className='name'>作者：</span><span>{onebook.author}</span></li>
+              <li><span className='name'>发布到：</span><span>借书</span></li>
+            </ul>
           </div>
+        </div>
 
-          <div>
-            <h1>{!!onebook ? onebook.title : ''}</h1>
+        <div className='catogary'>
+          <div className='cont'>
+            <span>类别:</span>
+            <div style={style}>
+              <DropDown style={{'width': '280px'}} options={options} labelName='name' valueName='value'
+              placeHolder='请选择图书类别' onChange={this.displayChange.bind(this, 'value')}/>
+            </div>
           </div>
-
-          <div>
-            <button onClick={this.handleAddOne}>添加进数据库</button>
+          <div className='line'></div>
+        </div>
+        <div className='book-posi'>
+          <div className='cont'>
+            <span className='posi-title'>位置:</span>
+            <span>东三环北路，嘉盛中心</span>
+            <img src={map_pos} />
           </div>
-
-          <div>
-            <Link to='/book' className='mark'>主界面</Link>
-          </div>
+          <div className='line'></div>
+        </div>
+        <div className='saying'>
+          <div className='title'>说点什么</div>
+          <textarea ref='saying' placeholder='淘书娃，随时为你效劳。'></textarea>
+        </div>
+        <div className='donate-ok'>
+          <button onClick={this.handleAddOne}>捐出这本书</button>
         </div>
       </div>
     )
@@ -95,7 +109,8 @@ class Book extends Component {
 
 function mapStateToProps(state) {
   return {
-    onebook:state.booklist.onebook
+
+    onebook: state.booklist.onebook
   }
 }
 
@@ -109,4 +124,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Book)
+)(AddBook)
