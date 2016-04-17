@@ -64,7 +64,6 @@ const Carousel = React.createClass({
     makeCarouselItem(children){
         const {baseWidth, index} = this.state;
         let itemNodes = [];
-
         let _len = React.Children.count(children);
 
         for(let i = -1; i <= _len; i++){
@@ -72,7 +71,6 @@ const Carousel = React.createClass({
             let active = index === i ? '_active': '';
             if (_index === -1) _index = _len - 1;
             if (_index === _len) _index = 0;
-
             itemNodes.push(<div key={`carousel-item-${i}`}
                                 style={{'width': baseWidth}}
                                 className={`_item ${active}`}>
@@ -126,8 +124,8 @@ const Carousel = React.createClass({
         const {prev, next, showArrow, showDot, children} = this.props;
         const {baseWidth, count, index} = this.state;
 
+        //左右箭头
         let arrowNode = null;
-
         if (showArrow) {
             arrowNode = <div className="_arrow">
                             <div className="_prev" onClick={this.handlePrev}>
@@ -139,9 +137,11 @@ const Carousel = React.createClass({
                         </div>;
         }
 
+        //内容节点
         const contentNodes = this.makeCarouselItem(children);
-        let dotNodes = [];
 
+        //圆点索引
+        let dotNodes = [];
         if (showDot) {
             for(let i = 0; i < count; i++){
                 dotNodes.push(<a href="javascript:;" key={i}
@@ -150,11 +150,10 @@ const Carousel = React.createClass({
                                     &middot;
                             </a>);
             }
-            dotNodes = <div className="_dot">
-                            {dotNodes}
-                        </div>;
+            dotNodes = <div className="_dot">  {dotNodes} </div>;
         }
 
+        //主要内容样式
         const contentCss = {
             width: baseWidth * (count + 2),
             transform: `translate(-${baseWidth * (index + 1)}px, 0)`,

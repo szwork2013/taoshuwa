@@ -77,12 +77,12 @@ class BookDetail extends Component {
                   [ <BookItemSim title='xx' status='1' />,
                     <BookItemSim title='yy' status='2'/>,
                     <BookItemSim title='yy' status='2'/>],
-                  [ <BookItemSim title='zz' status='1' />,
-                    <BookItemSim title='ww' status='2' />,
-                    <BookItemSim title='yy' status='2'/>],
-                  [ <BookItemSim title='zz' status='3' />,
-                    <BookItemSim title='ww' status='1' />,
-                    <BookItemSim title='yy' status='2'/>]
+                  [ <BookItemSim title='aa' status='1' />,
+                    <BookItemSim title='bb' status='2' />,
+                    <BookItemSim title='cc' status='2'/>],
+                  [ <BookItemSim title='11' status='3' />,
+                    <BookItemSim title='22' status='1' />,
+                    <BookItemSim title='33' status='2'/>]
                 ]}
               </Carousel>
             </div>
@@ -103,7 +103,7 @@ class BookDetail extends Component {
 //const { book,index,handleDelOne} = this.props;
 BookDetail.propTypes = {}
 function mapStateToProps(state) {
-  return {curbook: state.booklist.curbook}
+  return {curbook: state.booklist.toJS().curbook}
 }
 function mapDispatchToProps(dispatch) {
   return {

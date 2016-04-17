@@ -13,7 +13,7 @@ export default class BookItem extends Component {
 
   render() {
     const { book,index,handleDelOne,fetchOneBook} = this.props;
-    const tags = book.tags;
+    const tags = book.tags || [{name:'node'}];
     const status = book.status;
     const tagsPart = tags.map( (tag,key) =>(<span className='tag' key={key} >{tag.name}</span>));
     const loanStatus = (function(){
@@ -45,6 +45,7 @@ export default class BookItem extends Component {
     return (
       <div className="book-item" onClick={function(){
           //fetchOneBook(book._id);
+          return;
           browserHistory.push(`/book/${book._id}`)
         }} >
 

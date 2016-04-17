@@ -15,7 +15,7 @@ class BookLoanList extends Component {
   render() {
     const {loanlist, dispatch, actions} = this.props;
     const loanTemplate = loanlist.map(item => (
-      <li>
+      <li key={item._id}>
         {item.title}
       </li>
     ))
@@ -30,7 +30,7 @@ class BookLoanList extends Component {
   }
 }
 function mapStateToProps(state) {
-  return {loanlist: state.booklist.loanlist}
+  return {loanlist: state.booklist.toJS().loanlist}
 }
 function mapDispatchToProps(dispatch) {
   return {

@@ -109,8 +109,7 @@ class AddBook extends Component {
 
 function mapStateToProps(state) {
   return {
-
-    onebook: state.booklist.onebook
+    onebook: state.booklist.toJS().onebook
   }
 }
 

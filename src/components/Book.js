@@ -16,7 +16,6 @@ class Book extends Component {
   componentDidMount() {
     //获取数据
     const {actions} = this.props;
-    console.log('boookstatet');
     actions.fetchBooks();
   }
   handleDelOne(e, id) {
@@ -27,6 +26,7 @@ class Book extends Component {
   render() {
     const {books, dispatch, actions} = this.props;
     let coBook = [];
+    console.log('---render---------------books--------------:',books);
     books.forEach(item => {
       if (item.title) {
         coBook.push({
@@ -59,7 +59,7 @@ class Book extends Component {
   }
 }
 function mapStateToProps(state) {
-  return {books: state.booklist.books}
+  return {books: state.booklist.toJS().books}
 }
 function mapDispatchToProps(dispatch) {
   return {

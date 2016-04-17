@@ -1,5 +1,5 @@
 * { margin: 0; padding: 0;}
-html,body { font-size: 16px;height: 100%;}
+html,body { font-size: 16px;}
 a {text-decoration: none; }
 ul {list-style: none;}
 
@@ -42,7 +42,7 @@ ul {list-style: none;}
 .item-right .loaninfo a {height: 20px; line-height: 20px;}
 .item-right .loaninfo img { height:14px; }
 .item-right .loaninfo span {margin-left: 5px; color: #307268;}
-.item-last { float: left; margin-left: 30px; visibility: hidden; }
+.item-last { float: left; margin-left: 30px;  }
 .mark { color: red; font-size: 16px;}
 .book-list {position: relative;}
 .book-list .fixed-footer {position: fixed; bottom: 0;width: 100%;}

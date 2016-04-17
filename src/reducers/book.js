@@ -1,50 +1,57 @@
 import * as types from '../constants/ActionTypes';
+import {
+  LOAN_BOOK_LIST,
+  CHECK_BOOK,
+  FETCH_ONE_BOOK,
+  BOOK_LIST,
+  ADD_BOOK,
+  DELETE_BOOK
+} from '../constants/ActionTypes.js'
+import {createReducer} from 'redux-immutablejs'
+import {fromJS, Map, List} from 'immutable'
 /*import omit from 'lodash/object/omit';
  import assign from 'lodash/object/assign';
  import mapValues from 'lodash/object/mapValues';*/
 var _ = require('lodash');
 
-const initialState = {
-  books: [],//首页书籍列表
-  loanlist:[],//捐书列表
-  onebook:{},//根据ISBN返回的书籍详情
-  curbook:{}//查看书的详情
-};
+const initialState = fromJS({
+  books: [], //首页书籍列表
+  loanlist: [], //捐书列表
+  onebook: {}, //根据ISBN返回的书籍详情
+  curbook: {} //查看书的详情
+});
 
-export default function books(state = initialState, action) {
-  switch (action.type) {
-    case types.LOAN_BOOK_LIST:
-      const {loanlist} = action;
-      return _.merge({},state, {loanlist:loanlist});
+export const booklist = createReducer(initialState, {
+  [BOOK_LIST]: (state, {books}) => {
+    const count = state.get('books').count();
+    if (count === 0) {
+      //直接替换
+      return state.merge({books: books})
+    } else {
+      //在已有的数组之后追加数据,点击加载更多会出现问题
+      return state.mergeDeep({
+        books: state.get('books').push({books:books})
+      })
+    }
 
-    case types.ADD_BOOK:
-      const book = action.json.book;
-      if(!book){
-        return state ;
-      }
-      state.books.push(book);
-      return {
-        books: state.books,
-        onebook:state.onebook,
-        curbook:state.curbook
-      }
-
-    case types.CHECK_BOOK:
-      const onebook = action.book;
-      return _.merge({},state,{onebook:onebook});
-
-    case types.FETCH_ONE_BOOK:
-      const curbook = action.curbook;
-      return _.merge({},state,{curbook:curbook});
-
-    case types.BOOK_LIST:
-      const books = action.books;
-      return _.merge({}, state,{books:books});
-
-    case types.DELETE_BOOK:
-      return _.merge({},state, { boks:state.books.filter( book => book._id !== action.id )})
-
-    default:
-      return state;
+  },
+  [LOAN_BOOK_LIST]: (state, {loanlist}) => {
+    return state.merge({loanlist: loanlist})
+  },
+  [FETCH_ONE_BOOK]: (state, {curbook}) => {
+    return state.merge({curbook: curbook})
+  },
+  [CHECK_BOOK]: (state, {book}) => {
+    return state.merge({onebook: book})
+  },
+  [ADD_BOOK]: (state, {loanlist}) => {
+    return state.merge({loanlist: loanlist})
+  },
+  [DELETE_BOOK]: (state, {id}) => {
+    return state.merge({
+        books: state.get('books').filter((item) =>{
+          return item.get('_id') != id;
+      })
+    })
   }
-}
+})

@@ -130,7 +130,7 @@ var by = function(name,minor){
 export function bys(name,next){
 	return function(o,p){
 		var a,b;
-		if(o && p typeof o==='object' && typeof p === 'object'){
+		if(o && p && typeof o==='object' && typeof p === 'object'){
 			a = o[name];
 			b = p[name];
 			if(a === b) {
