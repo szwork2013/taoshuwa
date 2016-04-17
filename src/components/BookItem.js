@@ -45,7 +45,6 @@ export default class BookItem extends Component {
     return (
       <div className="book-item" onClick={function(){
           //fetchOneBook(book._id);
-          return;
           browserHistory.push(`/book/${book._id}`)
         }} >
 

@@ -1,6 +1,3 @@
-export { default as AddFriendInput } from './AddFriendInput';
-export { default as FriendList } from './FriendList';
-export { default as FriendListItem } from './FriendListItem';
 export { default as About } from './About';
 export { default as Contact } from './Contact';
 export { default as Book } from './Book';
@@ -13,3 +10,5 @@ export { default as BookItemSim } from './BookItemSim';
 export { default as Nav } from './Nav';
 export { default as CheckBook } from './CheckBook';
 export { default as BookLoanList } from './BookLoanList.js';
+export { default as LoginOut } from './LoginOut.js';
+export { default as CenterItem } from './CenterItem.js';

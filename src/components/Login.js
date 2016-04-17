@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as Actions from '../actions/FriendsActions'
+import * as Actions from '../actions'
+import { checkPhone, checkPassword } from  '../utils/authCheck'
 
 class Login extends Component {
   constructor(props) {
@@ -16,8 +17,14 @@ class Login extends Component {
   handleSubmit(e){
     e.preventDefault();
     const {actions} = this.props;
-    const {phone,password} = this.refs
-    actions.loginIn(phone.value, password.value);
+    const {phone,password} = this.refs;
+    const phone = this.refs.phone.value;
+    const password = this.refs.password.value;
+    if(checkPhone(phone) && checkPassword(password)){
+      actions.loginIn(phone,password);
+    }else{
+      alert('手机号或者密码的格式不对');
+    }
   }
 
   render() {
@@ -77,4 +84,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Login)
-

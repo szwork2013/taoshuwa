@@ -43,6 +43,7 @@ export const BookResource = (method, id, data, api = 'books') => {
 export const UserResource = (method, id, data, api = 'users') => {
   return axios[method](api + (id ? ('/' + id) : ''), data)
 }
+
 export const AuthResource = (method, id, data, api = 'auth') => {
   return axios[method](api + (id ? ('/' + id) : ''), data)
 }

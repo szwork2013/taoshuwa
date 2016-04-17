@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
-import * as Actions from '../actions/FriendsActions'
+import * as Actions from '../actions'
 import fetch from 'isomorphic-fetch';
 import {API_ROOT} from '../config'
 import BookItem from './BookItem';
@@ -59,7 +59,7 @@ class Book extends Component {
   }
 }
 function mapStateToProps(state) {
-  return {books: state.booklist.toJS().books}
+  return {books: state.book.toJS().list}
 }
 function mapDispatchToProps(dispatch) {
   return {

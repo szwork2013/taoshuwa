@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as Actions from '../actions/FriendsActions'
+import * as Actions from '../actions'
 
 import BookItem from './BookItem';
 
@@ -36,7 +36,7 @@ class Book extends Component {
 
 function mapStateToProps(state) {
   return {
-    books:state.booklist.books
+    books:state.book.list
   }
 }
 

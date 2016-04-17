@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link} from 'react-router';
 import {Title, BookItemSim, BookItem} from '../components';
-import * as Actions from '../actions/FriendsActions'
+import * as Actions from '../actions'
 import icon_saying from '../assets/images/icon-saying.png';
 import {Carousel} from '../components/common';
 import '../components/common/css/demo.less';
@@ -103,7 +103,7 @@ class BookDetail extends Component {
 //const { book,index,handleDelOne} = this.props;
 BookDetail.propTypes = {}
 function mapStateToProps(state) {
-  return {curbook: state.booklist.toJS().curbook}
+  return {curbook: state.book.toJS().curbook}
 }
 function mapDispatchToProps(dispatch) {
   return {

@@ -4,11 +4,7 @@ import {Link} from 'react-router';
 import user_head from '../assets/images/user-head.png';
 import default_head from '../assets/images/default-head.png';
 import {isOwnEmpty} from '../utils/index.js';
-class CenterHeader extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+export default class CenterHeader extends Component {
   render() {
     const {user} = this.props;
     const isLogin = isOwnEmpty(user);
@@ -21,7 +17,7 @@ class CenterHeader extends Component {
             </div>
             <div className='center-header-bottom'>
               <Link to='/login'>登录</Link>｜
-              <Link to='/reg'>注册</Link>
+              <Link to='/register'>注册</Link>
             </div>
           </div>
         </div>
@@ -42,13 +38,3 @@ class CenterHeader extends Component {
     }
   }
 }
-CenterHeader.propTypes = {
-  user: PropTypes.object.isRequired
-}
-function mapStateToProps(state) {
-  return {user: state.auth.user}
-}
-function mapDispathToProps(dispatch) {
-  return {}
-}
-export default CenterHeader;

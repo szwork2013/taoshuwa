@@ -16,9 +16,18 @@ export default {
     return BookResource('get','fetchone',data)
   },
 
+  //user
+  register: function(data){
+    return UserResource('post','register',data)
+  },
+  getVCode: function(data){
+    return UserResource('get','vcode',data)
+  },
   localLogin: function (data) {
     return AuthResource('post', 'local', data)
   },
+
+  //old
   getSnsLogins: function () {
     return UserResource('get', 'snsLogins')
   },

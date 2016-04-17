@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'redux';
 import {Link} from 'react-router';
-import CenterItem from '../components/CenterItem.js';
+import {LoginOut,CenterItem} from '../components'
 import {isOwnEmpty} from '../utils';
 class CenterBody extends Component {
   constructor(props) {
@@ -12,8 +12,9 @@ class CenterBody extends Component {
     e.preventDefault();
     alert('click the handler');
   }
+
   render() {
-    const {user} = this.props;
+    const {user,logout} = this.props;
 
     const categorys = isOwnEmpty(user) ? [
       {
@@ -61,11 +62,13 @@ class CenterBody extends Component {
         return <CenterItem key={index} title={item.title} haveline={true} handler={item.handler}/>
       }
     })
+
     return (
       <div className='center-body'>
         <ul>
           {centerBody}
         </ul>
+        <LoginOut logout={logout} />
       </div>
     )
   }

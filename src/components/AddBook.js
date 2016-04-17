@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as Actions from '../actions/FriendsActions'
+import * as Actions from '../actions'
 import {isOwnEmpty} from '../utils/index.js';
 import map_pos from '../assets/images/map-pos.png';
 
@@ -109,7 +109,7 @@ class AddBook extends Component {
 
 function mapStateToProps(state) {
   return {
-    onebook: state.booklist.toJS().onebook
+    onebook: state.book.toJS().onebook
   }
 }
 

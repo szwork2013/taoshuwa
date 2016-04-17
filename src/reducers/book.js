@@ -9,28 +9,27 @@ import {
 } from '../constants/ActionTypes.js'
 import {createReducer} from 'redux-immutablejs'
 import {fromJS, Map, List} from 'immutable'
-/*import omit from 'lodash/object/omit';
- import assign from 'lodash/object/assign';
- import mapValues from 'lodash/object/mapValues';*/
-var _ = require('lodash');
+import {omit, assign, mapValues} from 'lodash'
 
 const initialState = fromJS({
-  books: [], //首页书籍列表
+  list: [], //首页书籍列表
   loanlist: [], //捐书列表
   onebook: {}, //根据ISBN返回的书籍详情
   curbook: {} //查看书的详情
 });
 
-export const booklist = createReducer(initialState, {
+export default createReducer(initialState, {
   [BOOK_LIST]: (state, {books}) => {
-    const count = state.get('books').count();
+    const count = state
+      .get('list')
+      .count();
     if (count === 0) {
       //直接替换
-      return state.merge({books: books})
+      return state.merge({list: books})
     } else {
       //在已有的数组之后追加数据,点击加载更多会出现问题
       return state.mergeDeep({
-        books: state.get('books').push({books:books})
+        list: state.get('list').push({list: books})
       })
     }
 
@@ -49,9 +48,10 @@ export const booklist = createReducer(initialState, {
   },
   [DELETE_BOOK]: (state, {id}) => {
     return state.merge({
-        books: state.get('books').filter((item) =>{
+      list: state.get('list')
+        .filter((item) => {
           return item.get('_id') != id;
-      })
+        })
     })
   }
 })

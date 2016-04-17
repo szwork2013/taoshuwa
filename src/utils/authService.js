@@ -28,11 +28,19 @@ export function isLogin() {
 export function redirectToBack(nextState, replaceState) {
 	//已经登录则不进入
   if (isLogin()) {
-    //replaceState(null, '/book')
+    if(nextState.location.pathname === '/login'){
+      replaceState(null, '/')
+    }
   }
 }
 export function redirectToLogin(nextState,replaceState) {
 	if (!isLogin()) {
     replaceState(null, '/login')
+  }
+}
+export function redirectToNow(nextState,replaceState) {
+  if(isLogin()){
+    const pathnow = nextState.routes[0].path;
+    replaceState(null,pathnow);
   }
 }
