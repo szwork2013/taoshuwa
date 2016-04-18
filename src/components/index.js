@@ -12,3 +12,7 @@ export { default as CheckBook } from './CheckBook';
 export { default as BookLoanList } from './BookLoanList.js';
 export { default as LoginOut } from './LoginOut.js';
 export { default as CenterItem } from './CenterItem.js';
+export { default as UserHead } from './UserHead.js';
+export { default as Category } from './Category.js';
+export { default as UserItem } from './UserItem.js';
+export { default as TButton } from './TButton.js';

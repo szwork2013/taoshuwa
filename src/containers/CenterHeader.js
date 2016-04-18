@@ -27,7 +27,9 @@ export default class CenterHeader extends Component {
         <div>
           <div className='center'>
             <div className='center-header-top'>
-              <img src={user_head}/>
+              <Link to='/userinfo'>
+                <img src={user_head}/>
+              </Link>
             </div>
             <div className='center-header-bottom'>
               <span>{user.phone}</span>

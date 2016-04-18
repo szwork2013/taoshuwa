@@ -6,6 +6,11 @@ ul {list-style: none;}
 .bg-white {background-color: #fff}
 .bg-default {background-color: #F0F0F0}
 
+/*common*/
+.nosee { display: none;}
+
+/**not common **/
+
 .reg {background-color: #fff; padding-top:20px;}
 .reg ul { list-style: none;}
 .reg ul li {height: 60px;padding-top: 30px; display: block;}
@@ -111,6 +116,10 @@ ul {list-style: none;}
 .component-nav .right{float: left; width: 34%}
 .component-nav .active{color: #58BD91;}
 
+.component-btn {background-color: #fff; text-align: center}
+.component-btn .btn{ text-align: center}
+.component-btn .btn a{ display: block; width: 320px; height: 50px; margin-left: auto; margin-right: auto; border-radius:4px; background-color: #58BD91;line-height: 50px; font-size: 17px; text-decoration: none; color: #fff;}
+.component-btn .btn a:active { background-color: #307268; }
 
 /**nav**/
 .nav {position: fixed;bottom: 0;height: 60px;width: 100%;background-color: #ccc; }
@@ -135,3 +144,22 @@ ul {list-style: none;}
 .posi .spot span{ margin-left: 5px; margin-top: 5px;}
 .posi .search-box {text-align: center;padding-top: 5px;}
 .posi .search-box input {width: 90%;height: 32px; border: 1px #BFBFBF solid;border-radius:4px;  text-align:center;}
+
+/*user base infomation*/
+.userinfo {background-color: #fff; margin-top: 30px; font-size: 14px;}
+.userinfo .head{ width:100%; height: 70px;}
+.userinfo .head .info{ height: 69px; padding-top: 15px; line-height: 40px;}
+.userinfo .head .info span{display: block; float: left; color: #9B9B9B; width: 20%; margin-left: 30px;}
+.userinfo .head .info img{ float:left; height: 40px;}
+.userinfo .head .line{ height: 1px; background-color: #DDDDDD;width: 95%; margin-left: 5%;}
+
+.userinfo .item {height:48px; width: 100%;}
+.userinfo .item .cons{ height:47px; padding-top: 15px; line-height: 30px; }
+.userinfo .item .cons span{display: block; float: left;color: #9B9B9B; width: 20%; margin-left: 30px; }
+.userinfo .item .cons input{display: block; float: left; border: 0px;}
+.userinfo .item .line{ height: 1px; background-color: #DDDDDD;width: 95%; margin-left: 5%;}
+.userinfo .catogary { height: 120px; overflow: hidden;}
+.userinfo .catogary .cons { display: block; color: #9B9B9B; float:left; width: 30%; height: 120px; padding-left: 30px;padding-top: 15px;}
+.userinfo .catogary .types { float:right;width: 70%; padding-top: 15px; line-height: 26px;}
+.userinfo .catogary .types a {display: block; float:left; font-size: 12px; height: 26px; margin-right: 10px; border: 1px solid #DDDDDD; border-radius: 4px; padding-left: 8px;padding-right: 8px; color: #9B9B9B; margin-bottom: 15px;}
+.userinfo .catogary .types a.choosed {background-color: #58BC90}

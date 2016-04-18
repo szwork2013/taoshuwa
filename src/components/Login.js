@@ -17,7 +17,6 @@ class Login extends Component {
   handleSubmit(e){
     e.preventDefault();
     const {actions} = this.props;
-    const {phone,password} = this.refs;
     const phone = this.refs.phone.value;
     const password = this.refs.password.value;
     if(checkPhone(phone) && checkPassword(password)){

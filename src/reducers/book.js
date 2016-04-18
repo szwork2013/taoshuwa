@@ -5,6 +5,7 @@ import {
   FETCH_ONE_BOOK,
   BOOK_LIST,
   ADD_BOOK,
+  CHOOSE_CATEGORY,
   DELETE_BOOK
 } from '../constants/ActionTypes.js'
 import {createReducer} from 'redux-immutablejs'
@@ -15,14 +16,33 @@ const initialState = fromJS({
   list: [], //首页书籍列表
   loanlist: [], //捐书列表
   onebook: {}, //根据ISBN返回的书籍详情
-  curbook: {} //查看书的详情
+  curbook: {}, //查看书的详情
+  categories: [
+    {
+      title: '信息技术',
+      choosed: true
+    }, {
+      title: '信息技术',
+      choosed: false
+    }, {
+      title: '信息技术',
+      choosed: true
+    }, {
+      title: '信息技术',
+      choosed: false
+    }, {
+      title: '信息技术',
+      choosed: false
+    }, {
+      title: '信息技术',
+      choosed: false
+    }
+  ]
 });
 
 export default createReducer(initialState, {
   [BOOK_LIST]: (state, {books}) => {
-    const count = state
-      .get('list')
-      .count();
+    const count = state.get('list').count();
     if (count === 0) {
       //直接替换
       return state.merge({list: books})
@@ -45,6 +65,11 @@ export default createReducer(initialState, {
   },
   [ADD_BOOK]: (state, {loanlist}) => {
     return state.merge({loanlist: loanlist})
+  },
+  [CHOOSE_CATEGORY]:(state,{index}) =>{
+    return state.merge({
+      categories:state.get('categories').updateIn([index,'choosed'], nowstate => !state.getIn(['categories',index,'choosed']))
+    })
   },
   [DELETE_BOOK]: (state, {id}) => {
     return state.merge({
