@@ -6,6 +6,7 @@ export const CHECK_BOOK = 'CHECK_BOOK';//使用ISBN查询书籍是否寻在
 export const FETCH_ONE_BOOK ='FETCH_ONE_BOOK';//获取某本书的详细信息
 
 export const CHOOSE_CATEGORY = 'CHOOSE_CATEGORY';//选择图书种类
+export const USER_CATEGORY = 'USER_CATEGORY';//用户当前的关注列表
 
 export const LOAN_BOOK_LIST = 'LOAN_BOOK_LIST';//借出列表
 export const BORROW_BOOK_LIST = 'BORROW_BOOK_LIST';//借入列表

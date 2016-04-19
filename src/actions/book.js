@@ -5,14 +5,6 @@ import {saveCookie, getCookie, signOut} from '../utils/authService'
 import fetch from 'isomorphic-fetch';
 import {API_ROOT} from '../config'
 
-
-export function chooseCategory(index){
-  return {
-    type:types.CHOOSE_CATEGORY,
-    index
-  }
-}
-
 export function fetchOneBook(id) {
   return function(dispatch, getState) {
     return api.fetchOneBook({params: {_id: id}})

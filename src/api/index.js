@@ -1,4 +1,4 @@
-import {UserResource,AuthResource,ArticleResource,TagResource,MobileResource,CommentResource,BookResource} from './resources'
+import {UserResource,AuthResource,ArticleResource,TagResource,MobileResource,CommentResource,BookResource, CategoryResource} from './resources'
 
 export default {
 
@@ -26,6 +26,15 @@ export default {
   localLogin: function (data) {
     return AuthResource('post', 'local', data)
   },
+  mdUser: function (data) {
+    return UserResource('put', 'update', data)
+  },
+
+  //图书类别
+  fetchCategoryWithUser:function(data){
+    return CategoryResource('get','listwithuser', data)
+  },
+
 
   //old
   getSnsLogins: function () {
@@ -34,9 +43,7 @@ export default {
   getMe: function (data) {
     return UserResource('get', 'me', data)
   },
-  mdUser: function (data) {
-    return UserResource('put', 'mdUser', data)
-  },
+
   getTagList:function () {
     return TagResource('get','getFrontTagList')
   },

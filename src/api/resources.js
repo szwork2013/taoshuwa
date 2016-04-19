@@ -47,6 +47,12 @@ export const UserResource = (method, id, data, api = 'users') => {
 export const AuthResource = (method, id, data, api = 'auth') => {
   return axios[method](api + (id ? ('/' + id) : ''), data)
 }
+
+//类别 
+export const CategoryResource = (method, id, data, api = 'category') => {
+  return axios[method](api + (id ? ('/' + id) : ''), data)
+}
+
 export const ArticleResource = (method, id, controller, data, api = 'article') => {
   return axios[method](api + (id ? ('/' + id) : '') + (controller ? ('/' + controller) : ''), data)
 }

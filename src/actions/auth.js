@@ -96,11 +96,11 @@ export const getUserInfo = (token = getCookie('token')) => {
         dispatch({type: 'GET_USERINFO_SUCCESS', user})
       })
       .catch(err => {
-        console.log('GET_USERINFO_FAILURE -----------:', err);
         dispatch({type: 'GET_USERINFO_FAILURE'})
       })
   }
 }
+
 
 //获取snslogins
 export const getSnsLogins = () => {
@@ -162,9 +162,7 @@ export function updateUser(userInfo) {
         if (status !== 'OK') {
           return dispatch(showMsg(json.data && json.data.error_msg || '更新用户资料失败'))
         }
-        dispatch(showMsg('更新用户资料成功', 'success'))
-        return dispatch(successUpdateUser(json.data))
-
+        return dispatch(getUserInfo())
       })
       .catch(err => {
         return dispatch(showMsg(err.data.error_msg || '更新用户资料失败'))
