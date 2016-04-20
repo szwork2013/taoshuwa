@@ -16,3 +16,5 @@ export { default as UserHead } from './UserHead.js';
 export { default as Category } from './Category.js';
 export { default as UserItem } from './UserItem.js';
 export { default as TButton } from './TButton.js';
+export { default as TModalIn } from './TModalIn.js';
+export { default as TModalTip } from './TModalTip.js'

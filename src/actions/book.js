@@ -97,6 +97,55 @@ export function checkOneBook(isbn) {
   }
 }
 
+
+
+export function borrowBook(bookid){
+  return dispatch =>{
+    return api.createRequest({
+      params:{
+        bookid:bookid
+      }
+    }).then(function(data){
+      console.log('data------------:',data);
+    }).catch( err => {
+      console.log('errrrrrr---:', err);
+    })
+  }
+}
+
+export function dealMessage(messageID, dealtype){
+  console.log('messageID:',messageID);
+  console.log('dealtype:',dealtype);
+  return dispatch =>{
+    api.dealRequest({
+      params:{
+        driftid:messageID,
+        dealtype
+      }
+    }).then( data =>{
+      console.log('dealmessage0------:',data);
+    }).catch(err =>{
+      console.log('err-----------:',err);
+    })
+  }
+}
+
+export function messageList(){
+  return dispatch => {
+    api.messageList()
+      .then( data =>{
+        if(data.status === 200){
+          dispatch({
+            type:types.MESSAGE_LIST,
+            messagelist: data.data.messagelist
+          })
+        }
+      }).catch(err => {
+        console.log('err-----------:',err);
+      })
+  }
+}
+
 export function delBook(id) {
   return function(dispatch, getState) {
     return fetch(API_ROOT + 'books/delbook?bookid=' + id)

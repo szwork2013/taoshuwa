@@ -1,4 +1,4 @@
-import {UserResource,AuthResource,ArticleResource,TagResource,MobileResource,CommentResource,BookResource, CategoryResource} from './resources'
+import {UserResource,AuthResource,ArticleResource,TagResource,MobileResource,CommentResource,BookResource, CategoryResource,DriftResource} from './resources'
 
 export default {
 
@@ -35,6 +35,18 @@ export default {
     return CategoryResource('get','listwithuser', data)
   },
 
+  //处理借书请求
+  dealRequest: function(data){
+    return DriftResource('get','deal',data)
+  },
+  //发送借书请求
+  createRequest: function(data){
+    return DriftResource('get','create',data)
+  },
+
+  messageList: function(data){
+    return DriftResource('get','message',data)
+  },
 
   //old
   getSnsLogins: function () {

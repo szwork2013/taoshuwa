@@ -46,6 +46,14 @@ class UserInfo extends React.Component {
 
   }
 
+  ComponentWillReceiveProps(nextProps){
+    console.log('nextProps-------',nextProps);
+  }
+
+  ComponentWillUpdate(a,b){
+    console.log('xsssss');
+  }
+
   componentDidMount(){
     //获取图书类别列表
     const {actions,userinfo} = this.props;

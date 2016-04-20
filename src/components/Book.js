@@ -26,7 +26,6 @@ class Book extends Component {
   render() {
     const {books, dispatch, actions} = this.props;
     let coBook = [];
-    console.log('---render---------------books--------------:',books);
     books.forEach(item => {
       if (item.title) {
         coBook.push({
@@ -35,6 +34,7 @@ class Book extends Component {
           image: item.image || "https://img1.doubanio.com/mpic/s28026858.jpg",
           title: item.title,
           status: item.status,
+          summary:item.summary,
           tags:item.tags && item.tags.slice(0, 2),
           category: item.category
         });

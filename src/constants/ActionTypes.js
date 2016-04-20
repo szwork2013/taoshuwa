@@ -12,6 +12,8 @@ export const LOAN_BOOK_LIST = 'LOAN_BOOK_LIST';//借出列表
 export const BORROW_BOOK_LIST = 'BORROW_BOOK_LIST';//借入列表
 export const DESIRE_BOOK_LIST = 'DESIRE_BOOK_LIST';//心愿单列表
 
+export const MESSAGE_LIST = 'MESSAGE_LIST';
+
 /**User************/
 
 export const CHECK_VCODE_SUCCESS = 'CHECK_VCODE_SUCCESS';//验证码
@@ -22,6 +24,8 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';//登录失败
 
 export const GET_USERINFO_SUCCESS = 'GET_USERINFO_SUCCESS';//获取用户信息成功
 export const GET_USERINFO_FAILURE = 'GET_USERINFO_FAILURE';//获取用户信息失败
+
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS'; //更新用户信息成功
 
 export const LOGIN_OUT = 'LOGIN_OUT';//注销
 export const REGISTER = 'REGISTER';//注册

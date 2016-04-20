@@ -2,16 +2,19 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link} from 'react-router';
-import {Title, BookItemSim, BookItem} from '../components';
+import classnames from 'classnames';
+import {Title, BookItemSim, BookItem, TModalIn} from '../components';
 import * as Actions from '../actions'
 import icon_saying from '../assets/images/icon-saying.png';
 import {Carousel} from '../components/common';
 import '../components/common/css/demo.less';
 import {isOwnEmpty} from '../utils'
-
 class BookDetail extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isTipShow: false
+    }
   }
   componentDidMount() {
     const {id} = this.props.params; //文章的_id
@@ -20,13 +23,11 @@ class BookDetail extends Component {
   }
   render() {
     const {curbook} = this.props;
-
-    if(isOwnEmpty(curbook)){
+    if (isOwnEmpty(curbook)) {
       curbook.tags = []
-    }else{
-      curbook.tags = curbook.tags.slice(0,2);
+    } else {
+      curbook.tags = curbook.tags.slice(0, 2);
     }
-    console.log('curbook---------:',curbook);
     const title = ['漂流', '内容简介', '评价'];
     return (
       <div className='book-detail'>
@@ -52,7 +53,7 @@ class BookDetail extends Component {
         <div className='content'>
           <Title title={title[1]}/>
           <div className='content-padding'>
-            <span>递进的情绪请省略，你又不是个演员，别设计那些情节，没意见我只想看看你怎么圆，你难过的太表面，像没天赋的演员</span>
+            <span>{curbook.summary}</span>
           </div>
         </div>
         <div className='comment'>
@@ -74,15 +75,12 @@ class BookDetail extends Component {
             <div className='other-books-align'>
               <Carousel autoPlay={true} delay={5000}>
                 {[
-                  [ <BookItemSim title='xx' status='1' />,
-                    <BookItemSim title='yy' status='2'/>,
-                    <BookItemSim title='yy' status='2'/>],
-                  [ <BookItemSim title='aa' status='1' />,
-                    <BookItemSim title='bb' status='2' />,
-                    <BookItemSim title='cc' status='2'/>],
-                  [ <BookItemSim title='11' status='3' />,
-                    <BookItemSim title='22' status='1' />,
-                    <BookItemSim title='33' status='2'/>]
+                  [ < BookItemSim title = 'xx' status = '1' />, < BookItemSim title = 'yy' status = '2' />, < BookItemSim title = 'yy' status = '2' />
+                  ],
+                  [ < BookItemSim title = 'aa' status = '1' />, < BookItemSim title = 'bb' status = '2' />, < BookItemSim title = 'cc' status = '2' />
+                  ],
+                  [ < BookItemSim title = '11' status = '3' />, < BookItemSim title = '22' status = '1' />, < BookItemSim title = '33' status = '2' />
+                  ]
                 ]}
               </Carousel>
             </div>
@@ -90,10 +88,22 @@ class BookDetail extends Component {
         </div>
         <div className='cando'>
           <div className='left'>
+            <button onClick={() => {
+              this.setState({commentInfo: '', isTipShow: true})
+            }}>ss</button>
             <span>读过</span>
+            <div className={classnames({
+              hidden: !this.state.isTipShow
+            })}>
+              <TModalIn name='评论' placeholder='评价一下呗' bookid={curbook._id} handleClick={() => {
+                this.setState({isTipShow: false})
+              }}/>
+            </div>
           </div>
           <div className='right'>
-            <span>申请借阅</span>
+            <Link to={`/book/borrow/${curbook._id}`}>
+              <span>申请借阅</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -103,7 +113,9 @@ class BookDetail extends Component {
 //const { book,index,handleDelOne} = this.props;
 BookDetail.propTypes = {}
 function mapStateToProps(state) {
-  return {curbook: state.book.toJS().curbook}
+  return {
+    curbook: state.book.toJS().curbook
+  }
 }
 function mapDispatchToProps(dispatch) {
   return {
