@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'redux';
-import {Link} from 'react-router';
+import {Link,browserHistory} from 'react-router';
 import {LoginOut,CenterItem} from '../components'
 import {isOwnEmpty} from '../utils';
 class CenterBody extends Component {
@@ -10,7 +10,7 @@ class CenterBody extends Component {
   }
   clickHandler(e) {
     e.preventDefault();
-    alert('click the handler');
+    browserHistory.push('messagelist');
   }
 
   render() {
@@ -19,38 +19,38 @@ class CenterBody extends Component {
     const categorys = isOwnEmpty(user) ? [
       {
         title: '我借到的书',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('messagelist');}
       }, {
         title: '我捐赠的书',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('loanlist');}
       }, {
         title: '我的心愿单',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('desirelist');}
       }, {
         title: '我的通知',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('messageList');}
       }, {
         title: '借书规则',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('borrowrules');}
       }
     ]:[{
         title: '赚积分',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('earnpoints');}
       },{
         title: '我借到的书',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('borrowlist');}
       }, {
         title: '我捐赠的书',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('loanlist');}
       }, {
         title: '我的心愿单',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('desirelist');}
       }, {
         title: '我的通知',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('messageList');}
       }, {
         title: '借书规则',
-        handler: this.clickHandler
+        handler: ()=>{return browserHistory.push('borrowrules');}
       }
     ]
 
@@ -68,7 +68,7 @@ class CenterBody extends Component {
         <ul>
           {centerBody}
         </ul>
-        <LoginOut logout={logout} />
+        {!!user ? <LoginOut logout={logout} /> : null }
       </div>
     )
   }

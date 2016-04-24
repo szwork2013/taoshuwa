@@ -48,6 +48,17 @@ export default {
     return DriftResource('get','message',data)
   },
 
+  borrowList: function(data){
+    return DriftResource('get','borrowlist',data)
+  },
+
+  desireList: function(data){
+    return DriftResource('get','desirelist',data)
+  },
+  checkBookStatus:function(data){
+    return DriftResource('get','check_drift_status',data)
+  },
+
   //old
   getSnsLogins: function () {
     return UserResource('get', 'snsLogins')

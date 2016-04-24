@@ -12,10 +12,18 @@ export const LOAN_BOOK_LIST = 'LOAN_BOOK_LIST';//借出列表
 export const BORROW_BOOK_LIST = 'BORROW_BOOK_LIST';//借入列表
 export const DESIRE_BOOK_LIST = 'DESIRE_BOOK_LIST';//心愿单列表
 
-export const MESSAGE_LIST = 'MESSAGE_LIST';
+
+
+/**Drift************/
+export const BOOK_STATUS = 'BOOK_STATUS';//当前书的状态
+export const MESSAGE_LIST = 'MESSAGE_LIST';//当前的消息列表
+export const BORROW_LIST = 'BORROW_LIST';//当前的借书列表
+export const LOAN_LIST = 'LOAN_LIST';//当前的借书列表
+export const DESIRE_LIST = 'DESIRE_LIST';//当前的借书列表
+
+
 
 /**User************/
-
 export const CHECK_VCODE_SUCCESS = 'CHECK_VCODE_SUCCESS';//验证码
 
 export const LOGIN = 'LOGIN';//登录

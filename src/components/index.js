@@ -18,3 +18,4 @@ export { default as UserItem } from './UserItem.js';
 export { default as TButton } from './TButton.js';
 export { default as TModalIn } from './TModalIn.js';
 export { default as TModalTip } from './TModalTip.js'
+export { default as BorrowRule } from './BorrowRule.js'

@@ -20,9 +20,10 @@ class BookDetail extends Component {
     const {id} = this.props.params; //文章的_id
     const {actions} = this.props;
     actions.fetchOneBook(id);
+    actions.checkBookStatus(id);
   }
   render() {
-    const {curbook} = this.props;
+    const {curbook, bookstatus,userinfo} = this.props;
     if (isOwnEmpty(curbook)) {
       curbook.tags = []
     } else {
@@ -101,9 +102,29 @@ class BookDetail extends Component {
             </div>
           </div>
           <div className='right'>
-            <Link to={`/book/borrow/${curbook._id}`}>
-              <span>申请借阅</span>
-            </Link>
+            {!userinfo ? (
+              <Link to={`/book/borrow/${curbook._id}`}>
+                <span>{curbook.status ==1 ? '申请借阅' : `加入心愿单,到期时间为${curbook.endtime}`}</span>
+              </Link>
+            ) : (
+              bookstatus && bookstatus.bookStatus === 1
+                ? (
+                  <Link to={`/book/borrow/${curbook._id}`}>
+                    <span>申请借阅</span>
+                  </Link>
+                )
+                : (bookstatus && bookstatus.bookStatus  === 2
+                  ? (
+                    <Link to={`/book/borrow/${curbook._id}`}>
+                      <span>已申请</span>
+                    </Link>
+                  )
+                  : (
+                    <Link to={`/book/borrow/${curbook._id}`}>
+                      <span>加心愿单</span>
+                    </Link>
+                  )))}
+
           </div>
         </div>
       </div>
@@ -113,9 +134,10 @@ class BookDetail extends Component {
 //const { book,index,handleDelOne} = this.props;
 BookDetail.propTypes = {}
 function mapStateToProps(state) {
-  return {
-    curbook: state.book.toJS().curbook
-  }
+  return {curbook: state.book.toJS().curbook,
+     bookstatus: state.drift.toJS().bookstatus,
+     userinfo: state.auth.toJS().user
+   }
 }
 function mapDispatchToProps(dispatch) {
   return {

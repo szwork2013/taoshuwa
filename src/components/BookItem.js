@@ -31,21 +31,26 @@ export default class BookItem extends Component {
         )
       }
     })();
+    //onClick={(e)=>{ e.stopPropagation(); browserHistory.push('../borrowrules');}}
     const pathname = window.location.pathname;
-    const whichShow = pathname==='/book' ?
+    const whichShow = pathname==='/' ?
       ( <div className='position'>
         <img src={pos_img} />
         <span>嘉盛中心</span>
         </div>) :
       (<div className='loaninfo'>
         <div>出借人：淘书娃</div>
-        <a><img src={icon_question} /><span>借书规则</span></a>
+        <Link to='/borrowrules'><img src={icon_question} /><span>借书规则</span></Link>
         </div>);
 
     return (
-      <div className="book-item" onClick={function(){
+      <div className="book-item" onClick={function(e){
           //fetchOneBook(book._id);
-          browserHistory.push(`/book/${book._id}`)
+          e.preventDefault();
+          e.stopPropagation();
+          if(pathname === '/'){
+            browserHistory.push(`/book/${book._id}`)
+          }
         }} >
 
         {loanStatus}

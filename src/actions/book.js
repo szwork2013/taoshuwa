@@ -12,6 +12,7 @@ export function fetchOneBook(id) {
       .then(({json, status}) => {
         if(status === 'OK'){
           let curbook = json.book;
+          console.log('curbook--------------:',curbook);
           dispatch({
             type:types.FETCH_ONE_BOOK,
             curbook
@@ -21,16 +22,6 @@ export function fetchOneBook(id) {
       .catch(err => {
         console.log('err-----------:',err);
       })
-  }
-}
-
-export function fetchBooks() {
-  return function(dispatch, getState) {
-    return fetch(API_ROOT + 'books')
-      .then(response => response.json())
-      .then(data => {
-        dispatch({type: types.BOOK_LIST, books:data.books})
-      });
   }
 }
 
@@ -51,6 +42,17 @@ export function fetchLoanBookList(){
       })
   }
 }
+
+export function fetchBooks() {
+  return function(dispatch, getState) {
+    return fetch(API_ROOT + 'books')
+      .then(response => response.json())
+      .then(data => {
+        dispatch({type: types.BOOK_LIST, books:data.books})
+      });
+  }
+}
+
 
 export function addBook(book) {
   return function(dispatch, getState) {
@@ -98,7 +100,6 @@ export function checkOneBook(isbn) {
 }
 
 
-
 export function borrowBook(bookid){
   return dispatch =>{
     return api.createRequest({
@@ -110,39 +111,6 @@ export function borrowBook(bookid){
     }).catch( err => {
       console.log('errrrrrr---:', err);
     })
-  }
-}
-
-export function dealMessage(messageID, dealtype){
-  console.log('messageID:',messageID);
-  console.log('dealtype:',dealtype);
-  return dispatch =>{
-    api.dealRequest({
-      params:{
-        driftid:messageID,
-        dealtype
-      }
-    }).then( data =>{
-      console.log('dealmessage0------:',data);
-    }).catch(err =>{
-      console.log('err-----------:',err);
-    })
-  }
-}
-
-export function messageList(){
-  return dispatch => {
-    api.messageList()
-      .then( data =>{
-        if(data.status === 200){
-          dispatch({
-            type:types.MESSAGE_LIST,
-            messagelist: data.data.messagelist
-          })
-        }
-      }).catch(err => {
-        console.log('err-----------:',err);
-      })
   }
 }
 

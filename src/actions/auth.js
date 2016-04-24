@@ -96,7 +96,8 @@ export const getUserInfo = (token = getCookie('token')) => {
         dispatch({type: 'GET_USERINFO_SUCCESS', user})
       })
       .catch(err => {
-        dispatch({type: 'GET_USERINFO_FAILURE'})
+        console.log('err----------------:',err);
+        //dispatch({type: 'GET_USERINFO_FAILURE'})
       })
   }
 }

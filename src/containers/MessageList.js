@@ -11,14 +11,18 @@ class MessageList extends Component {
     const {messagelist} = this.props;
     return (
       <div>
+        <h1>这里是借书的通知，共计：{messagelist.length}条</h1>
         {messagelist.map(message => (
+          message.ispassed ===0 ? (
           <div key={message._id}>{message.orderid}
             <button onClick={() => {
-                this.props.actions.dealMessage(message._id,true)
+                this.props.actions.dealMessage(message._id,true,message.bookid)
             }}>通过</button>
-            <button>取消</button>
+          <button onClick={ () => {
+              this.props.actions.dealMessage(message._id,false,message.bookid)
+            }}>取消</button>
           </div>
-        ))}
+        ):null))}
       </div>
     )
   }
