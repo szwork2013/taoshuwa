@@ -34,7 +34,7 @@ export function dealMessage(messageID, dealtype, bookid){
         bookid
       }
     }).then( data =>{
-
+      alert('完成该书的处理');
     }).catch(err =>{
       console.log('err-----------:',err);
     })
@@ -88,7 +88,28 @@ export function desireList(){
       }
     })
     .catch(err => {
-      console.log('borrowList:',err);
+      console.log('desireList:',err);
+    })
+  }
+}
+
+export function addDesire(bookid){
+  return dispatch => {
+    api.addDesire({
+      params:{
+        bookid
+      }
+    }).then( data => {
+      if(data.status === 200){
+        alert('添加成功');
+      }else if(data.status === 403){
+        alert(data.data.err_msg)
+      }
+    }).catch( err =>{
+      if(err && err.status === 403){
+        alert(err.data.err_msg);
+      }
+      console.log('err ---------------:',err);
     })
   }
 }

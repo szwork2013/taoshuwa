@@ -25,6 +25,7 @@ export default class BorrowList extends Component {
             <li key={index}>
               <span>书名：{item.bookid.title}</span>  <br />
               <span>订单号：{item.orderid}</span>  <br />
+              <span>该书唯一编号：{item.bookid._id}</span>  <br />
               <span>创建时间：{moment(item.created).format('YYYY-MM-DD')}</span>  <br />
               <span>预计归还时间：{moment(item.endtime).format('YYYY-MM-DD')}</span>  <br />
               <span>当前状态：{item.borrowStatus}</span>  <br />

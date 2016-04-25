@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link} from 'react-router';
 import classnames from 'classnames';
+import moment from 'moment';
 import {Title, BookItemSim, BookItem, TModalIn} from '../components';
 import * as Actions from '../actions'
 import icon_saying from '../assets/images/icon-saying.png';
@@ -15,6 +16,7 @@ class BookDetail extends Component {
     this.state = {
       isTipShow: false
     }
+    this.addOneDesire = this.addOneDesire.bind(this);
   }
   componentDidMount() {
     const {id} = this.props.params; //文章的_id
@@ -22,6 +24,12 @@ class BookDetail extends Component {
     actions.fetchOneBook(id);
     actions.checkBookStatus(id);
   }
+
+  addOneDesire(e){
+    const {curbook,actions} = this.props;
+    actions.addDesire(curbook._id);
+  }
+
   render() {
     const {curbook, bookstatus,userinfo} = this.props;
     if (isOwnEmpty(curbook)) {
@@ -114,15 +122,11 @@ class BookDetail extends Component {
                   </Link>
                 )
                 : (bookstatus && bookstatus.bookStatus  === 2
-                  ? (
-                    <Link to={`/book/borrow/${curbook._id}`}>
-                      <span>已申请</span>
-                    </Link>
-                  )
+                  ? (<span>已申请</span>)
                   : (
-                    <Link to={`/book/borrow/${curbook._id}`}>
-                      <span>加心愿单</span>
-                    </Link>
+                    <a onClick={this.addOneDesire}>
+                      <span>{`加心愿单,到期时间为:${moment(bookstatus.endtime).format('YYYY-MM-DD')}`}</span>
+                    </a>
                   )))}
 
           </div>

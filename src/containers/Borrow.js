@@ -11,27 +11,13 @@ class Borrow extends React.Component {
     super(props);
     this.state={
       isTipShow:false,
-      isCommentShow:false
+      isCommentShow:false,
+      weeks:0
     }
-    this.handleChangeTime = this.handleChangeTime.bind.this;
-    this.handleBorrow = this.handleBorrow.bind.this;
   }
   ComponentWillReceiveProps(nextProps) {}
   ComponentWillUpdate(a, b) {}
   componentDidMount() {}
-
-
-  handleChangeTime(){
-
-  }
-
-  handleBorrow(e){
-    e.preventDefault();
-    alert('1234');
-    const {actions,curbook} = this.props;
-    actions.borrowBook(curbook._id);
-    this.setState({isTipShow:true})
-  }
 
   render() {
     const user = this.props.user || {}
@@ -41,10 +27,14 @@ class Borrow extends React.Component {
       <div>
         <div>
           <span>借阅时间：</span>
-          <select onChange={this.handleChangeTime}>
+          <select onChange={(e)=>this.setState({ weeks:e.target.value })}>
             <option value='2'>二周</option>
             <option value='3'>三周</option>
             <option value='4'>四周</option>
+            <option value='5'>五周</option>
+            <option value='6'>六周</option>
+            <option value='7'>七周</option>
+            <option value='8'>八周</option>
           </select>
         </div>
         <div>
@@ -58,8 +48,8 @@ class Borrow extends React.Component {
         </div>
         <TButton name='确定' handleClick={()=>{
             const {actions,curbook} = this.props;
-            console.log('curbook-------------:',curbook);
-            actions.borrowBook(curbook._id);
+            const weeks = this.state.weeks;
+            actions.borrowBook(curbook._id,weeks);
             this.setState({isTipShow:true})
           }}/>
         <div className={classnames({'hidden':!this.state.isTipShow})}>

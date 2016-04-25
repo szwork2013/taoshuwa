@@ -26,8 +26,8 @@ export default createReducer(initialState, {
       return state.merge({list: books})
     } else {
       //在已有的数组之后追加数据,点击加载更多会出现问题
-      return state.mergeDeep({
-        list: state.get('list').push({list: books})
+      return state.merge({
+        list: state.get('list').unshift(books)
       })
     }
 

@@ -55,6 +55,11 @@ export default {
   desireList: function(data){
     return DriftResource('get','desirelist',data)
   },
+
+  addDesire:function(data){
+    return DriftResource('get','adddesire',data)
+  },
+
   checkBookStatus:function(data){
     return DriftResource('get','check_drift_status',data)
   },
