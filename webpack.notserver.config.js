@@ -8,9 +8,8 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var node_modules = path.resolve(__dirname, 'node_modules');
 var devFlagPlugin = new webpack.DefinePlugin({
-  __DEV__: process.env.NODE_ENV === 'production' ? true : false
+  __DEV__: false
 });
-__DEV__ = process.env.NODE_ENV === 'production' ? true : false
 
 
 module.exports = {
@@ -66,7 +65,7 @@ module.exports = {
     //最终的html文件只引入两个js文件
     //自己编写的代码都放在app.js中，本地代码使用的是index.js,如果不设置默认是main.js
     //将第三方模块的代码统一打包进入vendorjs中
-    new webpack.optimize.CommonsChunkPlugin('vendor', __DEV__ ? 'vendor.[hash].js' : 'vendor.js'),
+    new webpack.optimize.CommonsChunkPlugin('vendor','vendor.js'),
     new HtmlWebpackPlugin({
       title: 'your app title',
       template: './src/index.html',
@@ -84,7 +83,7 @@ module.exports = {
     new OpenBrowserPlugin({
       url: 'http://localhost:8080'
     }),
-    new ExtractTextPlugin(__DEV__ ? "main.[hash].css" : "main.css", {
+    new ExtractTextPlugin("main.css", {
       allChunks: true,
       disable: false
     }),

@@ -11,6 +11,14 @@ export default class CheckBook extends Component {
     super(props);
     this.handCheckClick = this.handCheckClick.bind(this);
   }
+
+  componentDidMount(){
+    console.log('wx:',wx);
+    wx.ready(function () {
+      alert('wx is ok');
+    })
+  }
+
   handCheckClick(e){
     e.preventDefault();
     const { actions } = this.props;
@@ -32,6 +40,9 @@ export default class CheckBook extends Component {
           </div>
           <div>
             <button className='btn btn-primary' onClick={this.handCheckClick}>查 看</button>
+          </div>
+          <div>
+            <button className='btn btn-primary'>去扫码</button>
           </div>
         <Nav  />
       </div>

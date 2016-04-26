@@ -12,7 +12,7 @@ class Borrow extends React.Component {
     this.state={
       isTipShow:false,
       isCommentShow:false,
-      weeks:0
+      weeks:2
     }
   }
   ComponentWillReceiveProps(nextProps) {}

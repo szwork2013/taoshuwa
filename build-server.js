@@ -21,6 +21,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('*',function(req,res,next){
   res.sendfile('./build/index.html');
 })
-app.listen(3001,function(){
-  console.log('build is listening on 3001');
+app.listen(5801,function(){
+  console.log('build is listening on 5801');
 })

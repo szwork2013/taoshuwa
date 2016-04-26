@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import api from '../api'
-import {push} from 'react-router-redux';
+import {push,browserHistory} from 'react-router-redux';
 import {saveCookie, getCookie, signOut} from '../utils/authService'
 import fetch from 'isomorphic-fetch';
 import {API_ROOT} from '../config'

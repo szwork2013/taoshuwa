@@ -17,7 +17,6 @@ export function fetchOneBook(id) {
       .then(({json, status}) => {
         if (status === 'OK') {
           let curbook = json.book;
-          console.log('curbook--------------:', curbook);
           dispatch({type: types.FETCH_ONE_BOOK, curbook})
         }
       })

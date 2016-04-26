@@ -6,7 +6,9 @@ if(CookieDomain !== ''){
 }
 
 export function saveCookie(name,value) {
-  cookie.save(name, value, cookieConfig)
+  cookie.save(name, value)
+  //cookie.save(name, value, cookieConfig)
+
 }
 
 export function getCookie(name) {
@@ -34,7 +36,7 @@ export function redirectToBack(nextState, replaceState) {
   }
 }
 export function redirectToLogin(nextState,replaceState) {
-	if (!isLogin()) {
+  if (!isLogin()) {
     replaceState(null, '/login')
   }
 }
