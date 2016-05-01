@@ -12,7 +12,8 @@ export const LOAN_BOOK_LIST = 'LOAN_BOOK_LIST';//借出列表
 export const BORROW_BOOK_LIST = 'BORROW_BOOK_LIST';//借入列表
 export const DESIRE_BOOK_LIST = 'DESIRE_BOOK_LIST';//心愿单列表
 
-
+/**Wechat***********/
+export const SCAN_CONFIG = 'SCAN_CONFIG';//扫描相关配置
 
 /**Drift************/
 export const BOOK_STATUS = 'BOOK_STATUS';//当前书的状态
@@ -39,3 +40,5 @@ export const LOGIN_OUT = 'LOGIN_OUT';//注销
 export const REGISTER = 'REGISTER';//注册
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';//注册成功
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';//注册失败
+
+export const USER_NOW_POSITION = 'USER_NOW_POSITION';//用户当前的位置信息

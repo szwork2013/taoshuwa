@@ -3,11 +3,19 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import * as Actions from '../actions';
-
 class Home extends Component {
   componentDidMount() {
     const {actions} = this.props;
-    actions.getUserInfo();
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(r => {
+      let address = r.address;
+      let point = r.point;
+      let addressInfo = {address,point}
+      //actions.setUserPosi(addressInfo);
+      console.log('address,point:',address,point);
+      actions.getNowPosi(address,point);
+      actions.getUserInfo(point);
+    })
   }
   render() {
     const {friendlist, actions, children, auth} = this.props;
@@ -18,7 +26,9 @@ class Home extends Component {
     const urlpath = window.location.pathname;
     //alert(urlpath);
     return (
-      <div className={urlpath === '/register'?'bg-white':'bg-default'}>
+      <div className={urlpath === '/register'
+        ? 'bg-white'
+        : 'bg-default'}>
         {children}
         {/*{<div className='nav'>
           <Link to='/book' className='elem'>借书</Link>

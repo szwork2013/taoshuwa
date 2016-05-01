@@ -8,7 +8,7 @@
     "build": "npm run clean &&  webpack --progress --color --config webpack.production.config.js",
     "build-server": "NODE_ENV='production' node server.js",
     "lint": "./node_modules/.bin/eslint src",
-    "clean": "rm -rf build"
+    "clean": "rm -rf /Users/pengjian/desktop/taoshuwa-api/build"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/hapiman/taoshuwa#readme",
   "dependencies": {
+    "async": "^2.0.0-rc.3",
     "axios": "^0.9.1",
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
@@ -58,12 +59,14 @@
     "react-router-redux": "^4.0.2",
     "react-ui-component": "^1.0.1",
     "react-weui": "^0.2.0",
-    "redis": "^2.5.1",
+    "redis": "^2.5.3",
     "redux": "^3.3.1",
     "redux-immutablejs": "0.0.8",
     "reload": "^0.7.0",
     "request": "^2.69.0",
     "wechat": "^2.0.3",
+    "wechat-api": "^1.27.1",
+    "wechat-oauth": "^1.1.1",
     "weui": "^0.4.0"
   },
   "devDependencies": {

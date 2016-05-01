@@ -1,4 +1,4 @@
-import {UserResource,AuthResource,ArticleResource,TagResource,MobileResource,CommentResource,BookResource, CategoryResource,DriftResource} from './resources'
+import {UserResource,AuthResource,ArticleResource,TagResource,MobileResource,CommentResource,BookResource, CategoryResource,DriftResource,WechatResource} from './resources'
 
 export default {
 
@@ -28,6 +28,9 @@ export default {
   },
   mdUser: function (data) {
     return UserResource('put', 'update', data)
+  },
+  setUserPosi:function(data){
+    return UserResource('post','setposi',data)
   },
 
   //图书类别
@@ -62,6 +65,10 @@ export default {
 
   checkBookStatus:function(data){
     return DriftResource('get','check_drift_status',data)
+  },
+
+  setScanQR:function(data){
+    return WechatResource('get','scanQRCode',data)
   },
 
   //old

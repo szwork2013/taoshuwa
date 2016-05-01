@@ -174,3 +174,12 @@ ul {list-style: none;}
 .userinfo .catogary .types { float:right;width: 70%; padding-top: 15px; line-height: 26px;}
 .userinfo .catogary .types a {display: block; float:left; font-size: 12px; height: 26px; margin-right: 10px; border: 1px solid #DDDDDD; border-radius: 4px; padding-left: 8px;padding-right: 8px; color: #9B9B9B; margin-bottom: 15px;}
 .userinfo .catogary .types a.choosed {background-color: #58BC90}
+
+/**map*********************/
+.map {background-color: #fff;}
+.map .map-head{ height: 40px; line-height: 40px; background-color: #58BD91; text-align: center; color: #fff}
+.map .map-body {height: 280px; width: 100%; position: relative; }
+.map .map-cons {position: relative;}
+.map .map-cons .searchbox{position: fixed; top: 45px;  width: 100%;}
+.map .map-cons .searchbox input {display: block;margin-left: auto;margin-right: auto; width: 80%;  border: 1px solid #58BD91;height: 32px;}
+.map .map-detail{width: 100%; background-color: #eee;}

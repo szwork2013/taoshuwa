@@ -2,13 +2,13 @@ import React from 'react'
 import { Route, IndexRoute, Redirect } from 'react-router'
 
 import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book,Login,Register,AddBook,CheckBook, BookLoanList,BorrowRule } from '../components';
-import { Home,Center,BookDetail,UserInfo,Borrow,MessageList, EarnPoint,BorrowList,DesireList} from '../containers';
+import { Home,Center,BookDetail,UserInfo,Borrow,MessageList, EarnPoint,BorrowList,DesireList,Map} from '../containers';
 import {redirectToBack,redirectToLogin,redirectToNow} from '../utils/authService.js'
 
 export default ()=> (
   <Route path="/" component={Home}>
     <IndexRoute component={Book}/>
-    <Route path="/about" component={About} />
+    <Route path="/map" component={Map} />
     <Route path="/contact" component={Contact} />
     <Route path='/book/add/:id' component={AddBook} />//添加书的界面
     <Route path='/book/check' component={CheckBook} /> //调用第三方接口查询书的数据

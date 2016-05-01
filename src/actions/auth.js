@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import api from '../api'
-import {push,browserHistory} from 'react-router-redux';
+import {push, browserHistory} from 'react-router-redux';
 import {saveCookie, getCookie, signOut} from '../utils/authService'
 import fetch from 'isomorphic-fetch';
 import {API_ROOT} from '../config'
@@ -17,14 +17,15 @@ export function logout() {
   }
 }
 
-export function getVCode(){
-  return function(dispatch){
-    return api.getVCode()
-      .then( data => {
-        dispatch({type: types.CHECK_VCODE_SUCCESS, vcode:'1234'});
+export function getVCode() {
+  return function(dispatch) {
+    return api
+      .getVCode()
+      .then(data => {
+        dispatch({type: types.CHECK_VCODE_SUCCESS, vcode: '1234'});
       })
-      .catch( err => {
-        console.log('err------:',err);
+      .catch(err => {
+        console.log('err------:', err);
       })
   }
 }
@@ -41,9 +42,9 @@ export function register(regInfo) {
         }
       })
       .catch(err => {
-        if(err && typeof err ==='object' && err.status === 403){
+        if (err && typeof err === 'object' && err.status === 403) {
           alert(err.data.err_msg);
-        }else{
+        } else {
           console.log('register-----:', err);
         }
       })
@@ -53,7 +54,8 @@ export function register(regInfo) {
 //user
 export function loginIn(username, password) {
   return (dispatch, getState) => {
-    return api.localLogin({username:username, password:password})
+    return api
+      .localLogin({username: username, password: password})
       .then(response => ({json: response.data, status: response.statusText}))
       .then(({json, status}) => {
         if (status !== 'OK') {
@@ -72,10 +74,10 @@ export function loginIn(username, password) {
       })
       .catch(err => {
         //登录异常
-        if(err && typeof err === 'object' && err.status === 403){
+        if (err && typeof err === 'object' && err.status === 403) {
           alert(err.data.error_msg);
-        }else{
-          console.log('login failure2------:',err)
+        } else {
+          console.log('login failure2------:', err)
         }
       })
   }
@@ -96,12 +98,11 @@ export const getUserInfo = (token = getCookie('token')) => {
         dispatch({type: 'GET_USERINFO_SUCCESS', user})
       })
       .catch(err => {
-        console.log('err----------------:',err);
+        console.log('err----------------:', err);
         //dispatch({type: 'GET_USERINFO_FAILURE'})
       })
   }
 }
-
 
 //获取snslogins
 export const getSnsLogins = () => {
@@ -148,6 +149,27 @@ export function localLogin(userInfo) {
       })
   }
 
+}
+
+export function getNowPosi(address, point) {
+  console.log(address);
+  return dispatch => {
+    dispatch(push('/'));
+    return dispatch({
+      type:types.USER_NOW_POSITION,
+      address:address.street || address ,
+      point
+    })
+
+  }
+}
+
+export function setUserPosi(point, address) {
+  return dispatch => {
+      type:types.USER_NOW_POSITION,
+      address,
+      point
+  }
 }
 
 //修改用户资料

@@ -3,6 +3,7 @@ import api from '../api'
 import {push} from 'react-router-redux';
 import {saveCookie, getCookie, signOut} from '../utils/authService'
 import fetch from 'isomorphic-fetch';
+import axios from 'axios'
 import {API_ROOT} from '../config'
 
 export function fetchOneBook(id) {
@@ -77,6 +78,25 @@ export function addBook(book) {
         } else {
           console.log('err----:', err)
         }
+      })
+  }
+}
+
+export function setScanQR(code) {
+  return dispatch => {
+    return api
+      .setScanQR({params: {
+        code
+      }})
+      .then((data) => {
+        console.log('data---------:', data);
+        if (data.status === 200) {
+          let scanconfig = data.data.wxConfig;
+          dispatch({type: types.SCAN_CONFIG, scanconfig})
+        }
+      })
+      .catch(err => {
+        console.log('err---------:', err);
       })
   }
 }

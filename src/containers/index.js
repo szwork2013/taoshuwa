@@ -6,4 +6,5 @@ export { default as Borrow } from './Borrow.js';
 export { default as MessageList } from './MessageList.js';
 export { default as EarnPoint } from './EarnPoint.js';
 export { default as BorrowList } from './BorrowList.js';
-export { default as DesireList } from './DesireList.js'; 
+export { default as DesireList } from './DesireList.js';
+export { default as Map } from './Map.js';

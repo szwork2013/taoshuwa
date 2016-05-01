@@ -16,7 +16,8 @@ module.exports = {
     vendor: ['react', 'react-dom']
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    //path: path.resolve( __dirname, 'build'),
+    path:'/Users/pengjian/desktop/taoshuwa-api/build',
     filename: "[name].[hash:8].js",
     publicPath: '/'
   },

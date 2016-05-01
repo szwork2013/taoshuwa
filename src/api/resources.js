@@ -53,7 +53,13 @@ export const CategoryResource = (method, id, data, api = 'category') => {
   return axios[method](api + (id ? ('/' + id) : ''), data)
 }
 
+//漂流
 export const DriftResource = (method, id, data, api = 'drift') => {
+    return axios[method](api + (id ? ('/' + id) : ''), data)
+}
+
+//微信相关
+export const WechatResource = (method, id, data, api = 'wechat') => {
     return axios[method](api + (id ? ('/' + id) : ''), data)
 }
 
