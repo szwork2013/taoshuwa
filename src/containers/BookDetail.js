@@ -24,14 +24,12 @@ class BookDetail extends Component {
     actions.fetchOneBook(id);
     actions.checkBookStatus(id);
   }
-
-  addOneDesire(e){
-    const {curbook,actions} = this.props;
+  addOneDesire(e) {
+    const {curbook, actions} = this.props;
     actions.addDesire(curbook._id);
   }
-
   render() {
-    const {curbook, bookstatus,userinfo} = this.props;
+    const {curbook, bookstatus, userinfo} = this.props;
     if (isOwnEmpty(curbook)) {
       curbook.tags = []
     } else {
@@ -76,59 +74,62 @@ class BookDetail extends Component {
             <span className='comment-user'>——熊二</span>
           </div>
         </div>
-        <div className='other-books'>
-          <div className='other-books-title'>
-            <span>这个地方其他的书</span>
-          </div>
-          <div>
-            <div className='other-books-align'>
-              <Carousel autoPlay={true} delay={5000}>
-                {[
-                  [ < BookItemSim title = 'xx' status = '1' />, < BookItemSim title = 'yy' status = '2' />, < BookItemSim title = 'yy' status = '2' />
-                  ],
-                  [ < BookItemSim title = 'aa' status = '1' />, < BookItemSim title = 'bb' status = '2' />, < BookItemSim title = 'cc' status = '2' />
-                  ],
-                  [ < BookItemSim title = '11' status = '3' />, < BookItemSim title = '22' status = '1' />, < BookItemSim title = '33' status = '2' />
-                  ]
-                ]}
-              </Carousel>
-            </div>
-          </div>
+        <div className='other-books1'>
         </div>
-        <div className='cando'>
-          <div className='left'>
-            <button onClick={() => {
-              this.setState({commentInfo: '', isTipShow: true})
-            }}>ss</button>
-            <span>读过</span>
-            <div className={classnames({
-              hidden: !this.state.isTipShow
-            })}>
-              <TModalIn name='评论' placeholder='评价一下呗' bookid={curbook._id} handleClick={() => {
-                this.setState({isTipShow: false})
-              }}/>
+        {/*
+          <div className='other-books'>
+            <div className='other-books-title'>
+              <span>这个地方其他的书</span>
             </div>
+            <div>
+              <div className='other-books-align'>
+                <Carousel autoPlay={true} delay={5000}>
+                  {[
+                    [ < BookItemSim title = 'xx' status = '1' />, < BookItemSim title = 'yy' status = '2' />, < BookItemSim title = 'yy' status = '2' />
+                    ],
+                    [ < BookItemSim title = 'aa' status = '1' />, < BookItemSim title = 'bb' status = '2' />, < BookItemSim title = 'cc' status = '2' />
+                    ],
+                    [ < BookItemSim title = '11' status = '3' />, < BookItemSim title = '22' status = '1' />, < BookItemSim title = '33' status = '2' />
+                    ]
+                  ]}
+                </Carousel>
+              </div>
+            </div>
+          </div>
+          */}
+        <div className='cando'>
+          <div className='left' onClick={() => {
+            this.setState({commentInfo: '', isTipShow: true});
+          }}>
+            <span >读过</span>
+            <TModalIn name='评论' cansee={this.state.isTipShow} placeholder='评价一下呗' bookid={curbook._id} handleClick={(e) => {
+              this.setState({isTipShow: false})
+            }}/>
           </div>
           <div className='right'>
-            {!userinfo ? (
-              <Link to={`/book/borrow/${curbook._id}`}>
-                <span>{curbook.status ==1 ? '申请借阅' : `加入心愿单,到期时间为${curbook.endtime}`}</span>
-              </Link>
-            ) : (
-              bookstatus && bookstatus.bookStatus === 1
+            {!userinfo
+              ? (
+                <Link to={`/book/borrow/${curbook._id}`}>
+                  <span>{curbook.status == 1
+                      ? '申请借阅'
+                      : `加入心愿单,到期时间为${curbook.endtime}`}</span>
+                </Link>
+              )
+              : (bookstatus && bookstatus.bookStatus === 1
                 ? (
                   <Link to={`/book/borrow/${curbook._id}`}>
                     <span>申请借阅</span>
                   </Link>
                 )
-                : (bookstatus && bookstatus.bookStatus  === 2
-                  ? (<span>已申请</span>)
+                : (bookstatus && bookstatus.bookStatus === 2
+                  ? (
+                    <span>已申请</span>
+                  )
                   : (
                     <a onClick={this.addOneDesire}>
                       <span>{`加心愿单,到期时间为:${moment(bookstatus.endtime).format('YYYY-MM-DD')}`}</span>
                     </a>
                   )))}
-
           </div>
         </div>
       </div>
@@ -138,10 +139,7 @@ class BookDetail extends Component {
 //const { book,index,handleDelOne} = this.props;
 BookDetail.propTypes = {}
 function mapStateToProps(state) {
-  return {curbook: state.book.toJS().curbook,
-     bookstatus: state.drift.toJS().bookstatus,
-     userinfo: state.auth.toJS().user
-   }
+  return {curbook: state.book.toJS().curbook, bookstatus: state.drift.toJS().bookstatus, userinfo: state.auth.toJS().user}
 }
 function mapDispatchToProps(dispatch) {
   return {

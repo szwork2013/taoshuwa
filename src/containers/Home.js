@@ -12,7 +12,6 @@ class Home extends Component {
       let point = r.point;
       let addressInfo = {address,point}
       //actions.setUserPosi(addressInfo);
-      console.log('address,point:',address,point);
       actions.getNowPosi(address,point);
       actions.getUserInfo(point);
     })

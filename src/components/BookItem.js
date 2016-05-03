@@ -36,7 +36,7 @@ export default class BookItem extends Component {
     const whichShow = pathname==='/' ?
       ( <div className='position'>
         <img src={pos_img} />
-        <span>嘉盛中心</span>
+        <span>{book.address || '嘉盛中心'}</span>
         </div>) :
       (<div className='loaninfo'>
         <div>出借人：淘书娃</div>

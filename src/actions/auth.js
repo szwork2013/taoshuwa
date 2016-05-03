@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import api from '../api'
-import {push, browserHistory} from 'react-router-redux';
+import {push,goBack, browserHistory} from 'react-router-redux';
 import {saveCookie, getCookie, signOut} from '../utils/authService'
 import fetch from 'isomorphic-fetch';
 import {API_ROOT} from '../config'
@@ -84,7 +84,8 @@ export function loginIn(username, password) {
 }
 
 //获取用户信息
-export const getUserInfo = (token = getCookie('token')) => {
+export const getUserInfo = (point) => {
+  let token = getCookie('token');
   return (dispatch, getState) => {
     return api
       .getMe({
@@ -151,19 +152,51 @@ export function localLogin(userInfo) {
 
 }
 
-export function getNowPosi(address, point) {
-  console.log(address);
+export function setBorrowPosi(address, point){
   return dispatch => {
-    dispatch(push('/'));
-    return dispatch({
-      type:types.USER_NOW_POSITION,
+    const borrowPosi = {
       address:address.street || address ,
       point
-    })
+    }
 
+    dispatch(goBack())
+    return dispatch({
+      type:types.BORROW_POSITION,
+      borrowPosi
+    })
   }
 }
 
+//设置书的位置
+export function setBookPosi(address, point){
+  return dispatch => {
+    const bookPosi = {
+      address:address.street || address ,
+      point
+    }
+
+    dispatch(goBack())
+    return dispatch({
+      type:types.BOOK_POSITION,
+      bookPosi
+    })
+  }
+}
+
+//获取用户当前的位置
+export function getNowPosi(address, point) {
+  return dispatch => {
+    //dispatch(push('/'));
+    return dispatch({
+      type:types.USER_NOW_POSITION,
+      address:address.street || address.title ,
+      curCity:address.city,
+      point
+    })
+  }
+}
+
+//设置用户的位置
 export function setUserPosi(point, address) {
   return dispatch => {
       type:types.USER_NOW_POSITION,

@@ -1,13 +1,18 @@
 import React, {Component} from 'react'
+export default function({tip, name, handleClick, cansee }) {
 
-export default function({tip,name, handleClick}){
+  let className = ['tmodal'];
+  if(cansee){
+    className.push('tipshow');
+  }else{
+    className.push('tiphide')
+  }
+  className = className.join(' ');
   return (
-    <div className='tmodal'>
+    <div className={className}>
       <div className='info'>
-        <span>
-          您的借阅申请已发出，稍后将与您联系！
-        </span>
-        <a onClick={handleClick}>知道了</a>
+        <span>{tip}</span>
+        <a onClick={handleClick}>{name}</a>
       </div>
     </div>
   )

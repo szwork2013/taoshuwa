@@ -45,9 +45,13 @@ export function fetchLoanBookList() {
   }
 }
 
-export function fetchBooks() {
+export function fetchBooks(point) {
+  let lng = point.lng;
+  let lat = point.lat;
   return function(dispatch, getState) {
-    return fetch(API_ROOT + 'books')
+    let fetchUrl = `${API_ROOT}books?lng=${lng}&lat=${lat}`;
+    console.log('fetchUrl---;',fetchUrl);
+    return fetch(fetchUrl)
       .then(response => response.json())
       .then(data => {
         dispatch({type: types.BOOK_LIST, books: data.books})
@@ -66,9 +70,8 @@ export function addBook(book) {
           return false;
         }
         alert('添加书籍成功');
-        console.log('jsonbook--------------:', json.book);
+        dispatch(push('/'));
         dispatch({type: types.BOOK_LIST, books: json.book})
-        dispatch(push('/'))
       })
       .catch(err => {
         if (err && typeof err === 'object' && err.status === 401) {
@@ -89,13 +92,13 @@ export function setScanQR(code) {
         code
       }})
       .then((data) => {
-        console.log('data---------:', data);
         if (data.status === 200) {
           let scanconfig = data.data.wxConfig;
           dispatch({type: types.SCAN_CONFIG, scanconfig})
         }
       })
       .catch(err => {
+        alert('出错了');
         console.log('err---------:', err);
       })
   }
@@ -121,13 +124,14 @@ export function checkOneBook(isbn) {
   }
 }
 
-export function borrowBook(bookid, duration) {
+export function borrowBook(bookid, duration,borrowPosi) {
   return dispatch => {
     return api
       .createRequest({
         params: {
           bookid,
-          duration
+          duration,
+          borrowPosi:JSON.stringify(borrowPosi)
         }
       })
       .then(function(data) {

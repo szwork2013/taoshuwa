@@ -3,9 +3,9 @@ export default class AddressItem extends Component {
   render() {
     const { title, address, handAddressClick} = this.props;
     return (
-      <a onClick={handAddressClick}>
-        <div>{title}</div>
-        <div>{address}</div>
+      <a onClick={handAddressClick} className='address-item'>
+        <div className='item-title'>{title}</div>
+        <div className='item-where'>{address}</div>
       </a>
     )
   }

@@ -8,7 +8,9 @@ export default {
   addNewBook:function(data){
     return BookResource('post', 'add_book', data)
   },
-
+  fetchBookList:function(data){
+    return BookResource('get','',data)
+  },
   fetchLoanBookList:function(data){
     return BookResource('get','loan',data)
   },

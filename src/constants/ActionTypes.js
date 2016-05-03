@@ -12,6 +12,9 @@ export const LOAN_BOOK_LIST = 'LOAN_BOOK_LIST';//借出列表
 export const BORROW_BOOK_LIST = 'BORROW_BOOK_LIST';//借入列表
 export const DESIRE_BOOK_LIST = 'DESIRE_BOOK_LIST';//心愿单列表
 
+export const BOOK_POSITION = 'BOOK_POSITION';//书的位置
+export const BORROW_POSITION = 'BORROW_POSITION';//借书时用户指定的位置
+
 /**Wechat***********/
 export const SCAN_CONFIG = 'SCAN_CONFIG';//扫描相关配置
 

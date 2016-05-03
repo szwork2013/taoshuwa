@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as Actions from '../actions'
 import Nav from './Nav.js';
-import fetch from 'isomorphic-fetch';
 const validateBook = values => {
   return true;
 }

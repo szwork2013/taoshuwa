@@ -16,7 +16,11 @@ class Book extends Component {
   componentDidMount() {
     //获取数据
     const {actions} = this.props;
-    actions.fetchBooks();
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(r => {
+      let point = r.point;
+      actions.fetchBooks(point);
+    })
   }
   handleDelOne(e, id) {
     e.preventDefault()
@@ -36,7 +40,8 @@ class Book extends Component {
           status: item.status,
           summary:item.summary,
           tags:item.tags && item.tags.slice(0, 2),
-          category: item.category
+          category: item.category,
+          address:item.address
         });
       }
     })
