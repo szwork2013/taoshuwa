@@ -34,7 +34,7 @@ class Book extends Component {
       if (item.title) {
         coBook.push({
           _id: item._id,
-          author:item.author,
+          author: item.author,
           image: item.image || "https://img1.doubanio.com/mpic/s28026858.jpg",
           title: item.title,
           status: item.status,
@@ -46,18 +46,18 @@ class Book extends Component {
       }
     })
     var booksList = coBook.map((book, index) => {
-      return <BookItem key={book._id} book={book} index={index} handleDelOne={this.handleDelOne} fetchOneBook={actions.fetchOneBook} />
+      return <BookItem key={book._id} book={book} index={index} handleDelOne={this.handleDelOne} fetchOneBook={actions.fetchOneBook}/>
     });
     return (
       <div className='book-list'>
         <div className='fixed-header'>
-          <Position />
+          <Position/>
         </div>
         <div className='list'>
           {booksList}
         </div>
         <div className='fixed-footer'>
-          <Nav />
+          <Nav/>
         </div>
       </div>
     )
