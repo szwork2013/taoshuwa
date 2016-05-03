@@ -16,7 +16,11 @@ class Book extends Component {
   componentDidMount() {
     //获取数据
     const {actions} = this.props;
-    actions.fetchBooks();
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(r => {
+      let point = r.point;
+      actions.fetchBooks(point);
+    })
   }
   handleDelOne(e, id) {
     e.preventDefault()
@@ -30,29 +34,29 @@ class Book extends Component {
       if (item.title) {
         coBook.push({
           _id: item._id,
-          author:item.author,
+          author: item.author,
           image: item.image || "https://img1.doubanio.com/mpic/s28026858.jpg",
           title: item.title,
           status: item.status,
-          summary:item.summary,
-          tags:item.tags && item.tags.slice(0, 2),
+          summary: item.summary,
+          tags: item.tags && item.tags.slice(0, 2),
           category: item.category
         });
       }
     })
     var booksList = coBook.map((book, index) => {
-      return <BookItem key={book._id} book={book} index={index} handleDelOne={this.handleDelOne} fetchOneBook={actions.fetchOneBook} />
+      return <BookItem key={book._id} book={book} index={index} handleDelOne={this.handleDelOne} fetchOneBook={actions.fetchOneBook}/>
     });
     return (
       <div className='book-list'>
         <div className='fixed-header'>
-          <Position />
+          <Position/>
         </div>
         <div className='list'>
           {booksList}
         </div>
         <div className='fixed-footer'>
-          <Nav />
+          <Nav/>
         </div>
       </div>
     )
