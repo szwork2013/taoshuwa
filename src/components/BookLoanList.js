@@ -15,53 +15,30 @@ class BookLoanList extends Component {
   }
   render() {
     const {loanlist, dispatch, actions} = this.props;
+    console.log('loanlist:',loanlist);
     const loanTemplate = loanlist.map(item => (
       <li key={item._id}>
-        {item.title}
+        <div className='borrowlist'>
+          <dl>
+            <dt><img src={item.image} /></dt>
+            <dd>
+              <h4 className='bookname'>{item.title}</h4>
+              <div>
+                <p>作者：{item.author}</p>
+                <p>类别：文学随笔</p>
+                <p className='loan'>已捐赠</p>
+              </div>
+              <a href='javascript:;' className='loand'>10位朋友借过</a>
+            </dd>
+          </dl>
+        </div>
       </li>
     ))
-    const loanfriends = '2';
     return (
       <div>
-        <ul>
+        <ul className='borrowlistbox'>
           {loanTemplate}
         </ul>
-        <ul className='borrowlistbox'>
-          <li>
-            <div className='borrowlist'>
-              <dl>
-                <dt><img src={book_img} /></dt>
-                <dd>
-                  <h4 className='bookname'>别让不好意思害了你</h4>
-                  <div>
-                    <p>作者：冯唐</p>
-                    <p>类别：文学随笔</p>
-                    <p className='loan'>已捐赠</p>
-                  </div>
-                  <a href='javascript:;' className='loand'>{loanfriends}位朋友借过</a>
-                </dd>
-              </dl>
-            </div>
-          </li>
-          <li>
-            <div className='borrowlist'>
-              <dl>
-                <dt><img src={book_img} /></dt>
-                <dd>
-                  <h4 className='bookname'>别让不好意思害了你</h4>
-                  <div>
-                    <p>作者：冯唐</p>
-                    <p>类别：文学随笔</p>
-                    <p className='loan'>已捐赠</p>
-                  </div>
-                  <a href='javascript:;' className='loand'>{loanfriends}位朋友借过</a>
-                </dd>
-              </dl>
-            </div>
-          </li>
-        </ul>
-
-
       </div>
     )
   }

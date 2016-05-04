@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as Actions from '../actions'
 import Nav from './Nav.js';
+import { isOwnEmpty} from '../utils'
 const validateBook = values => {
   return true;
 }
@@ -37,6 +38,16 @@ export default class CheckBook extends Component {
       alert('ISBN格式不对');
     }
   }
+
+  checkSys(){
+    let ua = navigator.userAgent.toLowerCase();
+  	if (/iphone|ipad|ipod/.test(ua)) {
+      return 'iphone';
+  	} else if (/android/.test(ua)) {
+  		return 'android';
+  	}
+  }
+
   scanQR() {
     const {scanconfig} = this.props;
     const query = this.props.location.query;
@@ -50,8 +61,9 @@ export default class CheckBook extends Component {
     });
 
     wx.error(function(res) {
+      res = JSON.stringify(res);
       console.log('验证失败:',res);
-      alert('验证失败');
+      alert(`验证失败:${res}`);
     });
 
     wx.scanQRCode({
@@ -59,18 +71,16 @@ export default class CheckBook extends Component {
       desc: 'scanQRCode desc',
       scanType: [ "qrCode", "barCode" ],
       success: function(res) {
-        alert(JSON.stringify(res));
+        console.log(JSON.stringify(res));
         var obj = res.resultStr;
         var arr = obj.split(",");
         var isbn_id = arr[1];
         browserHistory.push(`/book/add/${isbn_id}`)
-        //var url = "http://api.douban.com/v2/book/isbn/" + isbn;
-        alert(isbn_id)
       }
     });
   }
   render() {
-    const {onebook, dispatch, actions} = this.props;
+    const {onebook, dispatch, actions,scanconfig} = this.props;
     return (
       <div>
         <div>
@@ -79,9 +89,9 @@ export default class CheckBook extends Component {
         <div>
           <button className='btn btn-primary' onClick={this.handCheckClick}>查 看</button>
         </div>
-        <div>
+        { this.checkSys()==='iphone' || isOwnEmpty(scanconfig) ? null : <div>
           <button className='btn btn-primary' onClick={this.scanQR}>去扫码</button>
-        </div>
+        </div>}
         <Nav/>
       </div>
     )

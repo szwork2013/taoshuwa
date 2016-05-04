@@ -58,7 +58,7 @@ export default class Borrow extends React.Component {
                 <option value='7'>七周</option>
                 <option value='8'>八周</option>
               </select>
-              <span className='down'><img src={array_down} /></span>
+              {/*<span className='down'><img src={array_down} /></span>*/}
             </li>
             <li>
               <span className='gr'>我得地址：</span>
@@ -81,6 +81,7 @@ export default class Borrow extends React.Component {
               alert('请选择借书地址');
               return;
             }
+            actions.borrowBook(curbook._id,weeks,borrowPosi);
             {/*actions.borrowBook(curbook._id,weeks,borrowPosi);*/}
             this.setState({isTipShow:true})
           }}/>

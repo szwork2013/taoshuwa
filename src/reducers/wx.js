@@ -9,7 +9,6 @@ const initialState = fromJS({
 
 export default createReducer(initialState, {
   ['SCAN_CONFIG']: (state, action) => {
-    alert('scanconfig');
     return state.merge({scanconfig: action.scanconfig})
   }
 })

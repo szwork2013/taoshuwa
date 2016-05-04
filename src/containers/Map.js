@@ -88,6 +88,7 @@ export default class Map extends Component {
 
   handleChange(e) {
     var searchSpot = e.target.value;
+    console.log('this.state.curCity--:',this.state.curCity);
     this.state.local.search(searchSpot);
     this.state.myGeo.getPoint(searchSpot, (point) => {
       if (point) {
@@ -102,10 +103,20 @@ export default class Map extends Component {
       <div className='map'>
         <div className='map-head'>
           地区：
-          <select defaultValue={this.state.curCity} onChange={(e)=>{this.setState({curCity:e.target.value})}}>
+          <select onChange={(e)=>this.setState({curCity:e.target.value})}>
             <option value='北京市'>北京市</option>
             <option value='成都市'>成都市</option>
           </select>
+
+          {/*<select>
+            <option value='2'>二周</option>
+            <option value='3'>三周</option>
+            <option value='4'>四周</option>
+            <option value='5'>五周</option>
+            <option value='6'>六周</option>
+            <option value='7'>七周</option>
+            <option value='8'>八周</option>
+          </select>*/}
         </div>
         <div className='map-cons'>
           <div className='map-body' ref='bmap'></div>

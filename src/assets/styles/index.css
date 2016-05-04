@@ -37,7 +37,7 @@ ul {list-style: none;}
 .book-item .book-status span {line-height: 32px; display: block; text-align: center; color:#fff }
 .book-item .book-status-in { background-color: #58BD91;}
 .book-item .book-status-out { background-color: #FF9E77;}
-.book-item .tag { background-color:#9FD8DF; margin-right: 4px; height: 16px; border: 1px; border-radius: 23px;padding-left: 8px; padding-right: 8px; line-height: 16px; color: #fff}
+.book-item .tag { background-color:#9FD8DF;margin-right: 4px; height: 16px; border: 1px; border-radius: 23px;padding-left: 8px; padding-right: 8px; line-height: 16px; color: #fff}
 
 .item-left { float: left; margin-left: 18px;}
 .item-left img { height: 130px;margin-left: 4px;margin-right: 20px;margin-top: 5px;}
@@ -198,7 +198,7 @@ ul {list-style: none;}
 
 /**map*********************/
 .map {background-color: #fff;}
-.map .map-head{ height: 40px; line-height: 40px; background-color: #58BD91; text-align: center; color: #fff}
+.map .map-head{ height: 40px; line-height: 40px; background-color: #58BD91; text-align: center; color: #000}
 .map .map-body {height: 280px; width: 100%; position: relative; }
 .map .map-cons {position: relative;}
 .map .map-cons .searchbox{position: fixed; top: 45px;  width: 100%;}
@@ -231,7 +231,7 @@ ul {list-style: none;}
 .borrowlist{ position: relative; padding:16px; background-color: #fff; margin-bottom: 8px;}
 /*.borrowlistbox li:last-child div{ margin-bottom: 24px;}*/
 
-.borrowlist span.tag{ display: inline-block; width:70px; height: 32px; line-height: 32px; text-align: center; color: #fff; position: absolute; left:0; top:16px; z-index: 9; font-size: 12px;}
+.borrowlist span.tag{ display: inline-block; width:70px; height: 32px; line-height: 32px; text-align: center; color: #fff; position: absolute; left:0; top:16px; z-index: 0; font-size: 12px;}
 .borrowlist dl{ overflow: hidden;}
 .borrowlist dl dt{ float: left; width:104px; height: 138px; margin-left: 10px;}
 .borrowlist dl dt img{ display: block; width:104px; height: 100%;}

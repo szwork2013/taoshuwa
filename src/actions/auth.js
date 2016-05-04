@@ -200,7 +200,7 @@ export function getNowPosi(address, point) {
 export function setUserPosi(point, address) {
   return dispatch => {
       type:types.USER_NOW_POSITION,
-      address,
+      address, 
       point
   }
 }
