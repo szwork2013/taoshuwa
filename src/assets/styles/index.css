@@ -205,7 +205,37 @@ ul {list-style: none;}
 .map .map-cons .searchbox input {display: block;margin-left: auto;margin-right: auto; width: 80%;  border: 1px solid #58BD91;height: 32px;}
 .map .map-detail{width: 100%; background-color: #eee;}
 
+/**Address*************/
+.address {}
+.address .head { height: 60px; background-color: #FFF; border-bottom: 1px #DDDDDD solid; color: #58BD91; line-height: 60px; text-align: center;}
 
+.address .detail{ font-size: 14px; background-color: #FFF;padding-top: 15px;padding-bottom: 25px;}
+.address .detail ul{ padding-left: 20px;}
+.address .detail ul li{height: 45px; border-bottom: 1px #DDDDDD solid;line-height: 45px;}
+.address .detail ul li input{ width: 200px;}
+.address .detail ul li img{display:inline-block; float: right; width:8px;    margin-top: 13px;margin-right: 16px;}
+.address .detail .title {color: #9B9B9B; width: 80px; display: inline-block;}
+.address .list { margin-top:20px; padding:20 0 10 0;}
+.address .list .onelist{ background-color: #FFF; height:145px;margin-bottom: 10px; padding:20px 10px 20px 10px;}
+.address .list .onelist .address {display: block; margin-bottom: 6px;}
+.address .list .onelist .name {color:#9B9B9B; }
+.address .list .onelist .info {padding-left: 15px;}
+.address .list .onelist .func {margin-top: 15px; padding-left: 20px;}
+.address .list .onelist .func img {width: 14px;}
+.address .list .onelist .func span {color:#9B9B9B; display: inline-block; margin-right: 20px;}
+.address .list .onelist .func a {color:#FFF; padding: 6px 15px 6px 15px; background-color: #58BD91; border-radius: 4px; margin-left: 10px;}
+.address .list .onelist .func a:active{background-color:#307268 }
+
+.address-choose{position: fixed; top:0; left: 0; height: 100%; width: 100%; background-color: #efefef;}
+.address-choose .searchBar {margin-top: 5px;background-color: #FFF; width: 100%; padding-top: 15px;padding-bottom: 10px;text-align: center;}
+.address-choose .searchBar input{ border: 1px solid #DDD; height: 25px; width: 250px; border-radius: 4px;}
+.address-choose .searchBar button{margin-left: 5px; border: 1px solid #DDD; height: 25px;  border-radius: 4px; padding: 5px 10px 5px 10px;}
+.address-choose .list-item{margin-top: 10px; background-color: #FFF; padding-left: 20px; padding-bottom: 20px; padding-top: 10px;}
+.address-choose .list-item ul li {height: 60px; line-height:25px; border-bottom:1px solid #DDD; padding-top: 5px;}
+.address-choose .list-item ul li .district{display: block; font-size: 14px; color: #DDD}
+.address-choose .list-item ul li .address{display: block; font-size: 16px;}
+.address-choose-visible {visibility: visible}
+.address-choose-hide {visibility: hidden}
 
 /* earnpoints */
 .earnpoints{background-color: #f0f0f0;}

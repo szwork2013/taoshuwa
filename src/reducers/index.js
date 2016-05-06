@@ -6,6 +6,7 @@ import category from  './category';
 import drift from  './drift';
 import wx from  './wx';
 import posi from  './position';
+import other from  './other';
 
 export default combineReducers({
   book,
@@ -14,5 +15,6 @@ export default combineReducers({
   drift,
   wx,
   posi,
+  other,
   routing: routerReducer
 })

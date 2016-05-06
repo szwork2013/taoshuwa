@@ -26,6 +26,8 @@ export const LOAN_LIST = 'LOAN_LIST';//当前的借书列表
 export const DESIRE_LIST = 'DESIRE_LIST';//当前的借书列表
 
 
+/**Other************/
+export const SET_CITY_MODAL = 'SET_CITY_MODAL';//当前的借书列表
 
 /**User************/
 export const CHECK_VCODE_SUCCESS = 'CHECK_VCODE_SUCCESS';//验证码
@@ -45,3 +47,4 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';//注册成功
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';//注册失败
 
 export const USER_NOW_POSITION = 'USER_NOW_POSITION';//用户当前的位置信息
+export const SEARCH_POSITION = 'SEARCH_POSITION';//用户设置的搜索地址 

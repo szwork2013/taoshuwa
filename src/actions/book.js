@@ -98,7 +98,6 @@ export function setScanQR(code) {
         }
       })
       .catch(err => {
-        alert('出错了');
         console.log('err---------:', err);
       })
   }

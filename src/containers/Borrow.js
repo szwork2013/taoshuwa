@@ -63,7 +63,7 @@ export default class Borrow extends React.Component {
             <li>
               <span className='gr'>我得地址：</span>
               <span className=''>{borrowPosi.address}</span>
-              <span className='map'><img src={map_pos} onClick={() => {browserHistory.push('/map?from=borrow')}}  /></span>
+              <span className='map'><img src={map_pos} onClick={() =>{alert('choose borrow address')}}  /></span>
             </li>
             <li>
               <span className='gr' >我的电话：</span>{user.phone}

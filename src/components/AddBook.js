@@ -16,10 +16,9 @@ function mapDispatchToProps(dispatch) {
   }
 }
 @connect(state => {
-  console.log('state.posi.toJS()----:',state.posi.toJS());
   return {
     onebook : state.book.toJS().onebook,
-    bookPosi: state.posi.toJS().bookPosi
+    posi: state.posi.toJS()
   }
 }, dispatch => ({
   actions : bindActionCreators(Actions, dispatch)
@@ -61,9 +60,10 @@ export default class AddBook extends Component {
     actions.addBook(onebook);
   }
   render() {
-    const {onebook, dispatch, actions,bookPosi} = this.props;
+    const {onebook, dispatch, actions,bookPosi,posi} = this.props;
     onebook.category = onebook.category || [];
     onebook.category.map((item, index) => item.value = index);
+    console.log('posi:',posi.autoPosi);
     const options = onebook.category;
     const style = {
       height: '39px',
@@ -110,10 +110,8 @@ export default class AddBook extends Component {
         <div className='book-posi'>
           <div className='cont'>
             <span className='posi-title'>位置:</span>
-            <span>{ !isOwnEmpty(bookPosi) && bookPosi.address}</span>
-            <img src={map_pos} onClick={() => {
-              browserHistory.push('/map?from=addbook')
-            }}/>
+            <span>设置默认地址，如果有的话，则显示；</span>
+            <img src={map_pos} onClick={() => { alert('to add map'); }}/>
           </div>
           <div className='line'></div>
         </div>

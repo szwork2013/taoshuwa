@@ -183,15 +183,35 @@ export function setBookPosi(address, point){
   }
 }
 
+export function getSearchPosi(searchPosi){
+  return dispatch => {
+    dispatch(push('/'));
+    return dispatch({
+      type:types.SEARCH_POSITION,
+      searchPosi
+    })
+  }
+}
 //获取用户当前的位置
 export function getNowPosi(address, point) {
+  console.log('address-----:',address);
   return dispatch => {
-    //dispatch(push('/'));
+    dispatch(push('/'));
     return dispatch({
       type:types.USER_NOW_POSITION,
-      address:address.street || address.title ,
+      address:address.street ||  address.address,
       curCity:address.city,
       point
+    })
+  }
+}
+
+//获取用户当前的位置
+export function getAutoPosi(autoPosi) {
+  return dispatch => {
+    return dispatch({
+      type:types.USER_NOW_POSITION,
+      autoPosi
     })
   }
 }
@@ -200,7 +220,7 @@ export function getNowPosi(address, point) {
 export function setUserPosi(point, address) {
   return dispatch => {
       type:types.USER_NOW_POSITION,
-      address, 
+      address,
       point
   }
 }

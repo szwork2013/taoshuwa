@@ -1,14 +1,14 @@
 import React from 'react'
 import { Route, IndexRoute, Redirect } from 'react-router'
 
-import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book,Login,Register,AddBook,CheckBook, BookLoanList,BorrowRule } from '../components';
-import { Home,Center,BookDetail,UserInfo,Borrow,MessageList, EarnPoint,BorrowList,DesireList,BMap} from '../containers';
+import {AddFriendInput,FriendList,FriendListItem,About,Contact,Book,Login,Register,AddBook,CheckBook, BookLoanList,BorrowRule,ChooseCity,Demo} from '../components';
+import { Home,Center,BookDetail,UserInfo,Borrow,MessageList, EarnPoint,BorrowList,DesireList,BMap,Address} from '../containers';
 import {redirectToBack,redirectToLogin,redirectToNow} from '../utils/authService.js'
 
 export default ()=> (
   <Route path="/" component={Home}>
     <IndexRoute component={Book}/>
-    <Route path="/contact" component={Contact} />
+    <Route path="/contact" component={Demo} />
     <Route path='/book/check' component={CheckBook} /> //调用第三方接口查询书的数据
     <Route path='/book/add/:id' component={AddBook} />//添加书的界面
     <Route path="/login" component={Login} onEnter={redirectToBack}  />
@@ -24,6 +24,7 @@ export default ()=> (
     <Route path="/borrowrules" component={BorrowRule} /> //借书规则
     <Route path="/earnpoints" component={EarnPoint} /> //赚积分
     <Route path="/map" component={BMap} />
+    <Route path='/address' component={Address} />
     <Redirect from="/*" to="/" />
   </Route>
 )

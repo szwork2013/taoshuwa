@@ -8,3 +8,4 @@ export { default as EarnPoint } from './EarnPoint.js';
 export { default as BorrowList } from './BorrowList.js';
 export { default as DesireList } from './DesireList.js';
 export { default as BMap } from './Map.js';
+export { default as Address } from './Address.js';

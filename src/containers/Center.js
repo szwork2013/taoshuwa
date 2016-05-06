@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux';
 import CenterHeader from './CenterHeader.js'
 import CenterBody from './CenterBody.js'
+import {Nav} from '../components'
 import * as Actions from '../actions'
 import {saveCookie, getCookie, signOut} from '../utils/authService'
 
@@ -26,6 +27,7 @@ export default class Center extends Component {
       <div>
         <CenterHeader user={user}/>
         <CenterBody user={user} logout={actions.logout}/>
+        <Nav />
       </div>
     )
   }

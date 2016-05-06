@@ -20,16 +20,17 @@ const initialState = fromJS({
 
 export default createReducer(initialState, {
   [BOOK_LIST]: (state, {books}) => {
-    const count = state.get('list').count();
-    if (count === 0) {
-      //直接替换
-      return state.merge({list: books})
-    } else {
-      //在已有的数组之后追加数据,点击加载更多会出现问题
-      return state.merge({
-        list: state.get('list').unshift(books)
-      })
-    }
+    return state.merge({list: books})
+    // const count = state.get('list').count();
+    // if (count === 0) {
+    //   //直接替换
+    //   return state.merge({list: books})
+    // } else {
+    //   //在已有的数组之后追加数据,点击加载更多会出现问题
+    //   return state.merge({
+    //     list: state.get('list').unshift(books)
+    //   })
+    // }
 
   },
   [LOAN_BOOK_LIST]: (state, {loanlist}) => {
@@ -46,7 +47,8 @@ export default createReducer(initialState, {
   },
   [DELETE_BOOK]: (state, {id}) => {
     return state.merge({
-      list: state.get('list')
+      list: state
+        .get('list')
         .filter((item) => {
           return item.get('_id') != id;
         })

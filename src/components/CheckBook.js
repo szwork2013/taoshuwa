@@ -60,11 +60,11 @@ export default class CheckBook extends Component {
       jsApiList: scanconfig.jsApiList
     });
 
-    wx.error(function(res) {
-      res = JSON.stringify(res);
-      console.log('验证失败:',res);
-      alert(`验证失败:${res}`);
-    });
+    // wx.error(function(res) {
+    //   res = JSON.stringify(res);
+    //   console.log('验证失败:',res);
+    //   alert(`验证失败:${res}`);
+    // });
 
     wx.scanQRCode({
       needResult: 1,

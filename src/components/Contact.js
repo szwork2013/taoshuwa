@@ -5,6 +5,11 @@ export default class Contact extends Component {
   handleClick(stat){
     console.log('stat:',stat);
   }
+
+  ComponentDidMount() {
+    console.log('ComponentDidMountddd---:');
+  }
+
   render () {
     return (
       <li>

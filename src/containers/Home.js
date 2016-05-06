@@ -8,13 +8,11 @@ class Home extends Component {
     const {actions} = this.props;
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(r => {
-      let address = r.address;
       let point = r.point;
-      let addressInfo = {address,point}
-      //actions.setUserPosi(addressInfo);
-      actions.getNowPosi(address,point);
+      actions.getAutoPosi(r);
       actions.getUserInfo(point);
     })
+    actions.fetchBooks({});
   }
   render() {
     const {friendlist, actions, children, auth} = this.props;

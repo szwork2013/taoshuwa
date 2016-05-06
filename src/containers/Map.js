@@ -2,9 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux';
 import * as Actions from '../actions'
-import {AddressItem} from '../components'
+import {AddressItem,ChooseCity} from '../components'
 import {saveCookie, getCookie, signOut} from '../utils/authService'
-@connect(state => ({user: state.auth.toJS().user,curCity:state.posi.toJS().curCity}), dispatch => ({
+@connect(state => ({user: state.auth.toJS().user, curCity: state.posi.toJS().curCity, cityModal:state.other.toJS().cityModal}), dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
 }))
 export default class Map extends Component {
@@ -16,12 +16,16 @@ export default class Map extends Component {
       local: null,
       myGeo: null,
       addressResults: [],
-      curCity:props.curCity
+      curCity: props.curCity,
+      chooseCity: false
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleChooseCity = this.handleChooseCity.bind(this);
   }
   componentDidMount() {
+    console.log('componentDidMount----:');
     const {actions} = this.props;
+    actions.setCityModal(false);
     // if (getCookie('token')) {
     //   actions.borrowList();
     // }
@@ -85,10 +89,8 @@ export default class Map extends Component {
       })
     }, {enableHighAccuracy: true})
   }
-
   handleChange(e) {
     var searchSpot = e.target.value;
-    console.log('this.state.curCity--:',this.state.curCity);
     this.state.local.search(searchSpot);
     this.state.myGeo.getPoint(searchSpot, (point) => {
       if (point) {
@@ -97,26 +99,17 @@ export default class Map extends Component {
       }
     }, this.state.curCity)
   }
+  handleChooseCity() {
+    const {actions} = this.props;
+    actions.setCityModal(true);
+  }
   render() {
     const {user, actions} = this.props;
+
     return (
       <div className='map'>
         <div className='map-head'>
-          地区：
-          <select onChange={(e)=>this.setState({curCity:e.target.value})}>
-            <option value='北京市'>北京市</option>
-            <option value='成都市'>成都市</option>
-          </select>
-
-          {/*<select>
-            <option value='2'>二周</option>
-            <option value='3'>三周</option>
-            <option value='4'>四周</option>
-            <option value='5'>五周</option>
-            <option value='6'>六周</option>
-            <option value='7'>七周</option>
-            <option value='8'>八周</option>
-          </select>*/}
+          地区：<label onClick={this.handleChooseCity}>北京市</label>
         </div>
         <div className='map-cons'>
           <div className='map-body' ref='bmap'></div>
@@ -127,18 +120,10 @@ export default class Map extends Component {
         <div className='map-detail'>
           {this.state.addressResults.map((item, index) => <AddressItem key={index} address={item.address} title={item.title} handAddressClick={() => {
             const {actions} = this.props;
-            let from = this.props.location.query.from;
-            if(from && from==='addbook'){
-              actions.setBookPosi(item.title, item.point);
-            }else if(from && from==='borrow'){
-              console.log('item-----:',item);
-              let chooseAddress = `${item.city+item.address+item.title}`;
-              actions.setBorrowPosi(chooseAddress, item.point);
-            }else{
-              actions.getNowPosi(item, item.point);
-            }
+            actions.getSearchPosi(item);
           }}/>)}
         </div>
+        <ChooseCity actions={this.props.actions} />
       </div>
     )
   }
