@@ -6,19 +6,13 @@ import * as Actions from '../actions'
 import {isOwnEmpty} from '../utils/index.js';
 import map_pos from '../assets/images/map-pos.png';
 import {DropDown} from './common';
-import './common/css/demo.less';
-function mapStateToProps(state) {
-  return {onebook: state.book.toJS().onebook}
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  }
-}
+import {Address} from '../containers'
+
 @connect(state => {
   return {
     onebook : state.book.toJS().onebook,
-    posi: state.posi.toJS()
+    posi: state.posi.toJS(),
+    userinfo:state.auth.toJS().user
   }
 }, dispatch => ({
   actions : bindActionCreators(Actions, dispatch)
@@ -28,7 +22,7 @@ export default class AddBook extends Component {
     super(props);
     this.handleAddOne = this.handleAddOne.bind(this);
     this.state = {
-      value: -1
+      value: -1 //图书种类
     };
   }
   displayChange(stat, value) {
@@ -41,12 +35,13 @@ export default class AddBook extends Component {
     const id = this.props.params.id;
     const {actions} = this.props;
     actions.checkOneBook(id);
+
   }
   handleAddOne(e) {
     e.preventDefault()
-    const {actions, onebook,bookPosi} = this.props;
+    const {actions, onebook,bookPosi,userinfo} = this.props;
     const choosedIndex = this.state.value;
-    if (choosedIndex === -1) {
+    if (choosedIndex === -1 || choosedIndex === '-1' ) {
       alert('请选择图书种类');
       return;
     }
@@ -54,25 +49,26 @@ export default class AddBook extends Component {
     if (saying != '' && saying != undefined) {
       onebook.saying = saying;
     }
-    onebook.address = bookPosi.address;
-    onebook.position = [bookPosi.point.lng, bookPosi.point.lat];
-    onebook.category = onebook.category[choosedIndex]._id;
+
+    let curAddress = userinfo.address_list.filter(item => item.isdefault===true)
+    let defaultAddress = curAddress[0].address.selAddress + curAddress[0].address.address_unit;
+    onebook.address = defaultAddress;
+    onebook.position = [curAddress[0].address.point.lng, curAddress[0].address.point.lat];
+    onebook.category = choosedIndex;
     actions.addBook(onebook);
   }
   render() {
-    const {onebook, dispatch, actions,bookPosi,posi} = this.props;
+    const {onebook, dispatch, actions,bookPosi, posi,userinfo} = this.props;
     onebook.category = onebook.category || [];
     onebook.category.map((item, index) => item.value = index);
-    console.log('posi:',posi.autoPosi);
-    const options = onebook.category;
-    const style = {
-      height: '39px',
-      width: '200px',
-      float: 'left',
-      display: 'inline-block',
-      marginTop: '5px',
-      marginLeft: '-1px'
+
+    let defaultAddress = '';
+    let curAddress = [];
+    if(userinfo){
+      curAddress = userinfo.address_list.filter(item => item.isdefault===true)
+      defaultAddress = curAddress[0].address.selAddress + curAddress[0].address.address_unit;
     }
+    const options = onebook.category;
     return (
       <div className='donate'>
         <div className='donate-book'>
@@ -83,7 +79,7 @@ export default class AddBook extends Component {
             <ul>
               <li>
                 <span className='name'>书名：</span>
-                <span className='cons'>{onebook.title}</span>
+                <span className='cons'>{onebook.title && onebook.title.length > 12 ? onebook.title.slice(0,11)+'...':onebook.title}</span>
               </li>
               <li>
                 <span className='name'>作者：</span>
@@ -96,25 +92,29 @@ export default class AddBook extends Component {
             </ul>
           </div>
         </div>
+
+        <div className='book-posi'>
+          <div className='cont'>
+            <span className='posi-title'>位置:</span>
+            <span>{defaultAddress}</span>
+            <img src={map_pos} onClick={() =>{ browserHistory.push('/address')}}/>
+          </div>
+          <div className='line'></div>
+        </div>
+
         <div className='catogary'>
           <div className='cont'>
             <span>类别:</span>
-            <div style={style}>
-              <DropDown style={{
-                'width': '280px'
-              }} options={options} labelName='name' valueName='value' placeHolder='请选择图书类别' onChange={this.displayChange.bind(this, 'value')}/>
+            <div>
+              <select onChange={(e)=>{this.setState({value:e.target.value})}}>
+                <option value='-1'>请选择图书的类别</option>
+                {options.map((one,index)=><option value={one._id}>{one.name}</option>)}
+              </select>
             </div>
           </div>
           <div className='line'></div>
         </div>
-        <div className='book-posi'>
-          <div className='cont'>
-            <span className='posi-title'>位置:</span>
-            <span>设置默认地址，如果有的话，则显示；</span>
-            <img src={map_pos} onClick={() => { alert('to add map'); }}/>
-          </div>
-          <div className='line'></div>
-        </div>
+
         <div className='saying'>
           <div className='title'>说点什么</div>
           <textarea ref='saying' placeholder='淘书娃，随时为你效劳。'></textarea>

@@ -39,7 +39,7 @@ export default class BookItem extends Component {
         <span>{book.address || '嘉盛中心'}</span>
         </div>) :
       (<div className='loaninfo'>
-        <div>出借人：淘书娃</div>
+        <div className='pad-down'>出借人：淘书娃</div>
         <Link to='/borrowrules'><img src={icon_question} /><span>借书规则</span></Link>
         </div>);
 

@@ -35,6 +35,22 @@ export default {
     return UserResource('post','setposi',data)
   },
 
+  addUserAddress:function(data){
+    return UserResource('post','add_address',data)
+  },
+
+  updateUserAddress:function(data){
+    return UserResource('post','update_address',data)
+  },
+
+  fetchAddressList:function(data){
+    return UserResource('get','addresslist',data)
+  },
+
+  setDefaultAddress:function(data){
+    return UserResource('get','set_default_address',data)
+  },
+
   //图书类别
   fetchCategoryWithUser:function(data){
     return CategoryResource('get','listwithuser', data)

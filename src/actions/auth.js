@@ -225,6 +225,59 @@ export function setUserPosi(point, address) {
   }
 }
 
+export function fetchAddressList(){
+  return dispatch =>{
+    api.fetchAddressList()
+    .then( data => {
+      if(data.status === 200){
+        dispatch({
+          type:types.ADDRESS_LIST,
+          addressList:data.data.addressList
+        })
+      }
+    }).catch( err => {
+      console.log('addAddress---:',err);
+    })
+  }
+}
+
+export function addAddress(address){
+  return dispatch =>{
+    api.addUserAddress(address)
+      .then( data => {
+        if(data.status === 200){
+          dispatch({
+            type:types.ADD_ADDRESS_INFO,
+            oneAddress:address
+          })
+        }
+      }).catch( err => {
+        console.log('addAddress---:',err);
+      })
+  }
+}
+
+export function setDefaultAddress(index){
+  return dispatch =>{
+    api.setDefaultAddress({
+        params:{
+          index
+        }
+      })
+      .then( data => {
+        if(data.status === 200){
+          let addressList = data.data.addressList;
+          dispatch({
+            type:types.ADDRESS_LIST,
+            addressList
+          })
+        }
+      }).catch(err => {
+        console.log('err:',err);
+      })
+  }
+}
+
 //修改用户资料
 function successUpdateUser(user) {
   return {type: types.UPDATE_USER_SUCCESS, user: user}

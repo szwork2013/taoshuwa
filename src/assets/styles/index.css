@@ -39,15 +39,16 @@ ul {list-style: none;}
 .book-item .book-status-out { background-color: #FF9E77;}
 .book-item .tag { background-color:#9FD8DF;margin-right: 4px; height: 16px; border: 1px; border-radius: 23px;padding-left: 8px; padding-right: 8px; line-height: 16px; color: #fff}
 
-.item-left { float: left; margin-left: 18px;}
-.item-left img { height: 130px;margin-left: 4px;margin-right: 20px;margin-top: 5px;}
-.item-right {float: left;padding-top: 10px;}
-.item-right dt { font-size: 16px; color: #3C3C3C;}
+.item-left { float: left; width: 35%; text-align: center;}
+.item-left img { height: 130px;  margin-top: 5px;}
+.item-right {float: left; padding-top: 10px; width: 65%;}
+.item-right dt { font-size: 16px; color: #3C3C3C; padding-bottom: 8px;}
 .item-right dd { font-size: 14px;color: #9B9B9B }
 .item-right .position { height: 24px; margin-top: 8px;}
 .item-right .position img { margin-left: 5px; width: 9px; height: 12px;}
 .item-right .position span { margin-left: 5px;line-height: 24px;font-size: 12px;color: #3C3C3C;}
-.item-right .loaninfo {font-size: 14px;}
+.item-right .loaninfo {font-size: 14px; margin-top: 19px;}
+.item-right .loaninfo .pad-down{margin-bottom: 2px;}
 .item-right .loaninfo a {height: 20px; line-height: 20px;}
 .item-right .loaninfo img { height:14px; }
 .item-right .loaninfo span {margin-left: 5px; color: #307268;}
@@ -56,7 +57,7 @@ ul {list-style: none;}
 .book-list {position: relative;}
 .book-list .fixed-footer {position: fixed; bottom: 0;width: 100%;}
 .book-list .fixed-header {position: fixed; top: 0; width: 100%; z-index: 1000;}
-.book-list .list {margin-top: 110px; margin-bottom: 65px;}
+.book-list .list {margin-top: 92px; margin-bottom: 65px;}
 .book-list .list a:hover{background-color: red;}
 /*bookdetail*/
 .book-detail { margin-top: 10px;}
@@ -76,25 +77,31 @@ ul {list-style: none;}
 .book-detail .other-books1 { padding-top: 20px; margin-bottom: 60px;}
 .book-detail .other-books .other-books-title{font-size: 16px;text-align: center;margin-bottom: 20px;}
 .book-detail .other-books .other-books-align {padding-left: 6px;}
-.book-detail .cando { position: fixed; bottom: 0;width: 100%;height: 56px; line-height: 56px; text-align: center;font-size: 16px;}
-.book-detail .cando .left {float: left; width: 33%; color:#58BD91; background-color: #fff;}
-.book-detail .cando .right {float: left; width: 67%; background-color: #58BD91; color: #fff;}
+.book-detail .cando { position: fixed; bottom: 0;width: 100%;height: 56px;  text-align: center;font-size: 16px;}
+.book-detail .cando .left {float: left; width: 33%;height: 56px; line-height: 56px;color:#58BD91; background-color: #fff;}
+.book-detail .cando .right {float: left; width: 67%;height: 56px; background-color: #58BD91; }
+.book-detail .cando .right .toask{ color: #FFF; display: inline-block; line-height: 56px;}
+.book-detail .cando .right-done{background-color: #FFF;}
+.book-detail .cando .right-done .done{ color: #C8C8C8; line-height: 56px;height: 56px;}
+.book-detail .cando .right .status {padding-top: 10px; padding-bottom: 10px;}
+.book-detail .cando .right .status .title {color: #FFF; margin-bottom: 6px;}
+.book-detail .cando .right .status .tip {color: #FFF;font-size: 14px;}
 
 .donate {background-color: #fff; padding-top: 16px;padding-left: 15px;padding-right: 15px;font-size: 14px;}
 .donate .donate-book {margin:20px 0px 10px 0px; padding-top: 16px;border: 1px solid #58BD91;box-shadow: 4px 4px 4px #F0F0F0; height: 190px;}
-.donate .donate-book .face { width: 40%; padding: 5px; float:left;}
-.donate .donate-book .detail{ width: 60%; padding-right: 5px; padding-top: 18px;float:left;}
+.donate .donate-book .face { width: 40%; float:left;text-align: center;}
+.donate .donate-book .detail{ width: 60%;  padding-top: 18px;float:left;}
 .donate .donate-book .detail ul{ margin-top: 10px;}
 .donate .donate-book .detail ul li {height: 36px;}
 .donate .donate-book .detail ul li .name{color:#9b9b9b;}
 .donate .donate-ok{margin-top: 50px;text-align: center;}
 .donate .donate-ok button {height: 50px; width: 90%; border:none;background-color: #58BD91;border-radius: 4px;font-size: 18px; color: #fff;}
-.donate .catogary {height: 40px;  margin-top: 40px; font-size: 14px;}
+.donate .catogary {height: 40px;  font-size: 14px;}
 .donate .catogary .cont { height: 39px;line-height: 39px;}
 .donate .catogary .cont span { margin-right: 30px; float: left;}
 .donate .catogary .cont select {width: 200px; border:1px solid #efefef; background-color: #fff; -webkit-appearance: none;height: 32px;}
 .donate .catogary .line {height: 1px;background-color: #DDDDDD;width: 100%;}
-.donate .book-posi {height: 40px;  margin-top: 10px; font-size: 14px;}
+.donate .book-posi {height: 40px;  margin-top: 40px; font-size: 14px;}
 .donate .book-posi .cont { height: 39px;line-height: 39px;}
 .donate .book-posi .cont .posi-title { margin-right: 30px; }
 .donate .book-posi .cont img { display: block; height:24px; width: 18px; float: right; margin-top: 8px; margin-right: 5px;}
@@ -130,14 +137,16 @@ ul {list-style: none;}
 .component-btn .btn a{ display: block; width: 320px; height: 50px; margin-left: auto; margin-right: auto; border-radius:4px; background-color: #58BD91;line-height: 50px; font-size: 17px; text-decoration: none; color: #fff;}
 .component-btn .btn a:active { background-color: #307268; }
 
-.tmodal {width: 100%; height: 1000px; position: fixed; z-index: 999;top: 0; background-color: #000; opacity: 0.8;}
-.tmodal .info { width: 70%; background-color: white; border-radius: 4px; margin-left: auto; padding: 20px 10px 20px 10px; text-align: center; margin-right: auto; margin-top: 25%;}
+.tmodal {width: 100%; height: 1000px; position: fixed; z-index: 0;top: 0; background-color: #000; opacity: 0.8;}
+
 
 /*弹出框*/
-.tmodal .info button {display: block;}
-.tmodal .info textarea{width: 94%; height: 100px; padding-left: 6px;padding-right: 6px; border-radius: 8px; border: 1px #ccc solid; color: #000}
-.tmodal .info a {display: block; background-color:#58BD91; height: 36px; line-height: 36px; padding-left: 40px; padding-right: 40px; color: #fff; margin-top: 30px; border-radius:4px; }
-.tmodal .info a:hover {background-color: #307268}
+.info { width: 70%; background-color:#FFF;opacity:1; border-radius: 4px; margin-left: 13%; padding: 20px 10px 20px 10px; text-align: center;  margin-top: 25%;z-index: 9999; position: fixed; top:0;}
+ .info button {display: block;}
+ .info textarea{width: 94%; height: 100px; padding-left: 6px;padding-right: 6px; border-radius: 8px; border: 1px #ccc solid; color: #000}
+ .info a {display: block; background-color:#58BD91; height: 36px; line-height: 36px; padding-left: 40px; padding-right: 40px; color: #fff; margin-top: 30px; border-radius:4px; }
+ .info a:hover {background-color: #307268}
+
 .modalshow {visibility:visible}
 .modalhide {visibility: hidden}
 .tipshow {visibility:visible}
@@ -170,11 +179,11 @@ ul {list-style: none;}
 .center-body .center-item .one-line { height: 1px;width: 95%; background-color: #EFEFEF; margin-left: 5%;}
 
 /*position*/
-.posi{ width: 100%; height:100px; background-color: #fff; margin-bottom: 8px;}
-.posi .spot{ height: 50%;  text-align: center; font-size: 18px; padding-top: 20px;}
-.posi .spot img{ width: 14px; height: 18px;}
-.posi .spot span{ margin-left: 5px; margin-top: 5px;}
-.posi .search-box {text-align: center;padding-top: 5px;}
+.posi{ width: 100%;  background-color: #fff; margin-bottom: 8px;border-bottom: 1px solid #DDD; padding-top: 12px;}
+.posi .spot{ height: 50%;  text-align: center; font-size: 18px; padding-top: 20px; padding-left: 10px; text-align: center;}
+.posi .spot img{ width: 14px; height: 18px; }
+.posi .spot span{ margin-left: 5px; margin-top: 5px; color: #3C3C3C; font-size: 18px;}
+.posi .search-box {text-align: center;padding-top: 5px;     padding-bottom: 23px;}
 .posi .search-box input {width: 90%;height: 32px; border: 1px #BFBFBF solid;border-radius:4px;  text-align:center;}
 
 /*user base infomation*/
@@ -197,14 +206,30 @@ ul {list-style: none;}
 .userinfo .catogary .types a.choosed {background-color: #58BC90}
 
 /**map*********************/
-.map {background-color: #fff;}
-.map .map-head{ height: 40px; line-height: 40px; background-color: #58BD91; text-align: center; color: #000}
+.map {background-color: #fff; position: relative;}
+.map .map-fixed {position: absolute; top: 0px;  width: 100%;}
+.map .map-head{ height: 40px; line-height: 40px; background-color: #58BD91; text-align: center; color: #FFF; }
+.map .map-head img {width: 9px; margin-left: 3px;}
 .map .map-body {height: 280px; width: 100%; position: relative; }
-.map .map-cons {position: relative;}
-.map .map-cons .searchbox{position: fixed; top: 45px;  width: 100%;}
-.map .map-cons .searchbox input {display: block;margin-left: auto;margin-right: auto; width: 80%;  border: 1px solid #58BD91;height: 32px;}
-.map .map-detail{width: 100%; background-color: #eee;}
+.map .map-cons {position: relative; margin-left: auto; margin-right: auto; }
+.map .map-cons .set-center{padding-left: auto; padding-right: auto;position: fixed; top: 45px;  width:80%; margin-left: 10%;}
+.map .map-cons .set-center .searchbox{ background-color: #FFF; border: 2px solid #58BD91;height: 32px; border-radius: 4px; line-height: 32px; line-height: 32px;}
+.map .map-cons .set-center .searchbox img{width: 14px; margin-left: 5px; margin-right: 5px;vertical-align:middle;line-height: 32px;}
+.map .map-cons .set-center .searchbox .oneline{width: 1px; height: 20px; line-height: 32px; display:inline-block;vertical-align:middle; background-color:#EEE;}
+.map .map-cons .set-center .searchbox label{color: #58BD91; font-size: 14px;margin-right: 5px; float: right;}
+.map .map-cons .set-center .searchbox input{width: 65%;width: 72%;height: 20px;font-size: 14px; border: none;}
+.map .map-cons .set-center .searchbox label{vertical-align:middle; line-height: 35px;}
+.map .map-detail{position: absolute; top: 330px; width: 100%;  background-color: #f0f0f0; padding-bottom: 5px;}
 
+/**choosecity************/
+.choose-city{  width: 100%; height: 100%; position: fixed; top: 0;left: 0;background-color: #F0F0F0; visibility: visible; z-index: 9999}
+.choose-city .auto-title{padding:25px 20px 8px 20px;}
+.choose-city .auto-city{background-color: #FFF; height: 50px;line-height: 50px; padding-left: 25px;}
+.choose-city .choose-title{padding-top: 25px;padding-bottom: 5px; padding-left: 20px;}
+.choose-city .choose-items{background-color: #FFF;}
+.choose-city .choose-items ul {padding-left: 20px;}
+.choose-city .choose-items ul li {height:50px; border-bottom: 1px solid #DDD;line-height: 50px; padding-left: 5px;}
+.choose-city .choose-items ul li:last-child{border:none}
 /**Address*************/
 .address {}
 .address .head { height: 60px; background-color: #FFF; border-bottom: 1px #DDDDDD solid; color: #58BD91; line-height: 60px; text-align: center;}
@@ -216,21 +241,21 @@ ul {list-style: none;}
 .address .detail ul li img{display:inline-block; float: right; width:8px;    margin-top: 13px;margin-right: 16px;}
 .address .detail .title {color: #9B9B9B; width: 80px; display: inline-block;}
 .address .list { margin-top:20px; padding:20 0 10 0;}
-.address .list .onelist{ background-color: #FFF; height:145px;margin-bottom: 10px; padding:20px 10px 20px 10px;}
+.address .list .onelist{ background-color: #FFF; margin-bottom: 10px; padding:20px 10px 20px 10px;}
 .address .list .onelist .address {display: block; margin-bottom: 6px;}
 .address .list .onelist .name {color:#9B9B9B; }
-.address .list .onelist .info {padding-left: 15px;}
+.address .list .onelist .one-info {padding-left: 15px;}
 .address .list .onelist .func {margin-top: 15px; padding-left: 20px;}
 .address .list .onelist .func img {width: 14px;}
 .address .list .onelist .func span {color:#9B9B9B; display: inline-block; margin-right: 20px;}
-.address .list .onelist .func a {color:#FFF; padding: 6px 15px 6px 15px; background-color: #58BD91; border-radius: 4px; margin-left: 10px;}
+.address .list .onelist .func a {color:#FFF; padding: 6px 15px 6px 15px; background-color: #58BD91; border-radius: 4px; margin-left: 6px;}
 .address .list .onelist .func a:active{background-color:#307268 }
 
 .address-choose{position: fixed; top:0; left: 0; height: 100%; width: 100%; background-color: #efefef;}
 .address-choose .searchBar {margin-top: 5px;background-color: #FFF; width: 100%; padding-top: 15px;padding-bottom: 10px;text-align: center;}
 .address-choose .searchBar input{ border: 1px solid #DDD; height: 25px; width: 250px; border-radius: 4px;}
 .address-choose .searchBar button{margin-left: 5px; border: 1px solid #DDD; height: 25px;  border-radius: 4px; padding: 5px 10px 5px 10px;}
-.address-choose .list-item{margin-top: 10px; background-color: #FFF; padding-left: 20px; padding-bottom: 20px; padding-top: 10px;}
+.address-choose .list-item{margin-top: 10px; background-color: #FFF; padding-left: 20px; padding-bottom: 20px; padding-top: 10px; overflow: auto;}
 .address-choose .list-item ul li {height: 60px; line-height:25px; border-bottom:1px solid #DDD; padding-top: 5px;}
 .address-choose .list-item ul li .district{display: block; font-size: 14px; color: #DDD}
 .address-choose .list-item ul li .address{display: block; font-size: 16px;}
@@ -267,9 +292,11 @@ ul {list-style: none;}
 .borrowlist dl dt img{ display: block; width:104px; height: 100%;}
 .borrowlist dl dd{ float: right; width:60%; font-size: 14px; color:#9b9b9b;}
 .borrowlist dl dd button{ border:none; padding:8px 24px; margin: 0 6px; border-radius: 4px; color:#fff;}
-.borrowlist dl dd .bookname{ font-size: 20px; font-weight: 100; color:#3c3c3c; margin:0; margin-bottom: 8px; padding-top: 6px;}
+.borrowlist dl dd .bookname{ font-size: 16px; font-weight: 100; color:#3c3c3c; margin:0; margin-bottom: 8px; padding-top: 6px;}
 .borrowlist dl dd p{ margin: 0; padding: 0; line-height: 24px;}
 .borrowlist dl dd .btngroup{ margin-top: 16px;}
+.borrowlist dl dd .btngroup .position {padding-top: -5px;font-size:14px;}
+.borrowlist dl dd .btngroup .position img{width: 10px; margin-right: 5px;}
 .borrowlist dl dd .btngroup .middlebtn{ width:90%; height:42px; background-color: #58BD91; font-size: 18px; font-weight: normal;}
 .borrowlist dl dd .btngroup .middlebtn:hover,.borrowlist dl dd .btngroup .middlebtn:focus{ background-color:#307268; }
 

@@ -39,7 +39,7 @@ export default class Book extends Component {
             <dl>
               <dt><img src={book.image}/></dt>
               <dd>
-                <h4 className='bookname'>{book.title}</h4>
+                <h4 className='bookname'>{book.title.length <12 ? book.title :book.title.slice(0, 11)+'...' }</h4>
                 <div>
                   <p>作者：{book.author}</p>
                   <p>类别：{book.category.name}</p>

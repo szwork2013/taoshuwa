@@ -8,7 +8,6 @@ import {Title, BookItemSim, BookItem, TModalIn} from '../components';
 import * as Actions from '../actions'
 import icon_saying from '../assets/images/icon-saying.png';
 import {Carousel} from '../components/common';
-import '../components/common/css/demo.less';
 import {isOwnEmpty} from '../utils'
 class BookDetail extends Component {
   constructor(props) {
@@ -74,8 +73,7 @@ class BookDetail extends Component {
             <span className='comment-user'>——熊二</span>
           </div>
         </div>
-        <div className='other-books1'>
-        </div>
+        <div className='other-books1'></div>
         {/*
           <div className='other-books'>
             <div className='other-books-title'>
@@ -96,42 +94,56 @@ class BookDetail extends Component {
               </div>
             </div>
           </div>
+
+
           */}
         <div className='cando'>
           <div className='left' onClick={() => {
             this.setState({commentInfo: '', isTipShow: true});
           }}>
-            <span >读过</span>
-            <TModalIn name='评论' cansee={this.state.isTipShow} placeholder='评价一下呗' bookid={curbook._id} handleClick={(e) => {
-              this.setState({isTipShow: false})
-            }}/>
+            <span >评论</span>
           </div>
-          <div className='right'>
-            {!userinfo
-              ? (
+          {!userinfo
+            ? (
+              <div className='right'>
                 <Link to={`/book/borrow/${curbook._id}`}>
-                  <span>{curbook.status == 1
-                      ? '申请借阅'
-                      : `加入心愿单,到期时间为${curbook.endtime}`}</span>
+                  {curbook.status == 1
+                    ? <span className='toask'>申请借阅</span>
+                    : (
+                      <div className='status'>
+                        <div className='title'>添加心愿单</div>
+                        <div className='tip'>(已借出，归还时间{curbook.endtime})</div>
+                      </div>
+                    )}
                 </Link>
-              )
-              : (bookstatus && bookstatus.bookStatus === 1
-                ? (
+              </div>
+            )
+            : (bookstatus && bookstatus.bookStatus === 1
+              ? (
+                <div className='right'>
                   <Link to={`/book/borrow/${curbook._id}`}>
-                    <span>申请借阅</span>
+                    <span className='toask'>申请借阅</span>
                   </Link>
-                )
-                : (bookstatus && bookstatus.bookStatus === 2
-                  ? (
+                </div>
+              )
+              : (bookstatus && bookstatus.bookStatus === 2
+                ? (
+                  <div className='right-done'>
                     <span>已申请</span>
-                  )
-                  : (
-                    <a onClick={this.addOneDesire}>
-                      <span>{`加心愿单,到期时间为:${moment(bookstatus.endtime).format('YYYY-MM-DD')}`}</span>
-                    </a>
-                  )))}
-          </div>
+                  </div>
+                )
+                : (
+                  <div className='right'>
+                    <div className='status' onClick={this.addOneDesire}>
+                      <div className='title'>添加心愿单</div>
+                      <div className='tip'>(已借出，归还时间{moment(bookstatus.endtime).format('YYYY-MM-DD')})</div>
+                    </div>)
+                  </div>
+                )))}
         </div>
+        <TModalIn name='评论' cansee={this.state.isTipShow} placeholder='评价一下呗' bookid={curbook._id} handleClick={(e) => {
+          this.setState({isTipShow: false})
+        }}/>
       </div>
     )
   }

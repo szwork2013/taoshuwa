@@ -4,12 +4,7 @@ import {connect} from 'react-redux';
 import * as Actions from '../actions'
 import {AddressItem, ChooseCity} from '../components'
 import {saveCookie, getCookie, signOut} from '../utils/authService'
-@connect(state => ({
-  user: state.auth.toJS().user,
-  curCity: state.posi.toJS().curCity,
-  cityModal: state.other.toJS().cityModal
-}),
-  dispatch => ({
+@connect(state => ({user: state.auth.toJS().user, curCity: state.posi.toJS().curCity, cityModal: state.other.toJS().cityModal}), dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
 }))
 export default class Demo extends React.Component {
@@ -28,35 +23,38 @@ export default class Demo extends React.Component {
     this.setState({state: nextProps.open})
   }
   render() {
-    const style = {
-      width: '100%',
-      height: '1000px',
-      position: 'fixed',
-      top: '0',
-      left: '0',
-      backgroundColor: '#fff',
-      visibility: 'visible',
-      zIndex: '9999'
-    }
-    const cityArray = ['成都市','广州市','上海市'];
+    const cityArray = ['北京市','成都市', '广州市', '上海市'];
+    const {cityModal,handleOnChoosed,autoCity} = this.props;
+    const rhtml = cityModal
+      ? (
+        <div className='choose-city' onClick={()=>{
+          const {actions} = this.props;
+          actions.setCityModal(false);
+            }}>
+          <div className='auto-title'>当前城市：</div>
+          <div className='auto-city' onClick={() => {
+            const {actions} = this.props;
+            actions.setCityModal(false);
+            handleOnChoosed('北京市')
+          }} >{autoCity}</div>
+          <div className='choose-title'>可选城市：</div>
+          <div className='choose-items'>
+            <ul>
+              {cityArray.map((city, index) => {
+                return <li key={index} onClick={() => {
+                  const {actions} = this.props;
+                  actions.setCityModal(false);
+                  handleOnChoosed(city)
+                }}>{city}</li>
+              })}
+            </ul>
+          </div>
+        </div>
+      )
+      : (null)
     return (
       <div>
-        {this.props.cityModal
-          ? (
-            <div style={style} >
-              <label>当前城市：</label> <br /> 北京市<br />
-              <label>可选城市：</label> <br />
-              <ul>
-                {cityArray.map( (city,index) =>{
-                  return <li key={index} onClick={() => {
-                    const {actions} = this.props;
-                    actions.setCityModal(false);
-                  }}>{city}</li>
-                })}
-              </ul>
-            </div>
-          )
-          : null}
+        {rhtml}
       </div>
     )
   }

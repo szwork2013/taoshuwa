@@ -4,7 +4,12 @@ import {connect} from 'react-redux';
 import * as Actions from '../actions'
 import {AddressItem,ChooseCity} from '../components'
 import {saveCookie, getCookie, signOut} from '../utils/authService'
-@connect(state => ({user: state.auth.toJS().user, curCity: state.posi.toJS().curCity, cityModal:state.other.toJS().cityModal}), dispatch => ({
+
+import pos_down from '../assets/images/icon-array-down-pos.png'
+import icon_search from '../assets/images/icon-search.png'
+import oneline from '../assets/images/icon-oneline.png'
+
+@connect(state => ({user: state.auth.toJS().user, autoPosi: state.posi.toJS().autoPosi, cityModal:state.other.toJS().cityModal}), dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
 }))
 export default class Map extends Component {
@@ -15,17 +20,19 @@ export default class Map extends Component {
       map: null,
       local: null,
       myGeo: null,
-      addressResults: [],
-      curCity: props.curCity,
-      chooseCity: false
+      addressResults: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleChooseCity = this.handleChooseCity.bind(this);
+    this.handleOnChoosed  = this.handleOnChoosed.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
   componentDidMount() {
+
     console.log('componentDidMount----:');
-    const {actions} = this.props;
+    const {actions,address} = this.props;
     actions.setCityModal(false);
+    this.setState({curCity: address && address.city})
     // if (getCookie('token')) {
     //   actions.borrowList();
     // }
@@ -64,6 +71,7 @@ export default class Map extends Component {
     this.setState({myGeo: myGeo})
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(r => {
+      this.setState({curCity: r.address.city});
       var mk = new BMap.Marker(r.point);
       this.setState({mk: mk});
       mk.setPosition(r.point)
@@ -90,6 +98,7 @@ export default class Map extends Component {
     }, {enableHighAccuracy: true})
   }
   handleChange(e) {
+    return;
     var searchSpot = e.target.value;
     this.state.local.search(searchSpot);
     this.state.myGeo.getPoint(searchSpot, (point) => {
@@ -103,18 +112,47 @@ export default class Map extends Component {
     const {actions} = this.props;
     actions.setCityModal(true);
   }
-  render() {
-    const {user, actions} = this.props;
 
+  handleOnChoosed(newCity){
+    //当前选择的城市
+    console.log('newState:',newCity);
+    this.setState({curCity: newCity});
+  }
+
+  handleSearch(){
+    var searchSpot = this.refs.findvalue.value;
+    if(searchSpot && searchSpot.trim() != ''){
+      this.state.local.search(searchSpot);
+      this.state.myGeo.getPoint(searchSpot, (point) => {
+        if (point) {
+          this.state.map.panTo(point);
+          this.state.mk.setPosition(point);
+        }
+      }, this.state.curCity)
+    }else{
+      alert('data is wrong');
+    }
+  }
+
+  render() {
+    const {user, actions, autoPosi } = this.props;
     return (
       <div className='map'>
-        <div className='map-head'>
-          地区：<label onClick={this.handleChooseCity}>北京市</label>
-        </div>
-        <div className='map-cons'>
-          <div className='map-body' ref='bmap'></div>
-          <div className='searchbox'>
-            <input type='text' placeholder='请输入小区或大厦名称' onChange={this.handleChange}/>
+        <div className='map-fixed '>
+          <div className='map-head'>
+            地区：<label onClick={this.handleChooseCity}>{this.state.curCity}</label>
+          <img src={pos_down} />
+          </div>
+          <div className='map-cons'>
+            <div className='map-body' ref='bmap'></div>
+            <div className='set-center'>
+              <div className='searchbox'>
+                <img src={icon_search} />
+                <input type='text' ref='findvalue' placeholder='请输入小区或大厦名称' onChange={this.handleChange}/>
+                <div className='oneline'></div>
+                <label onClick={this.handleSearch}>确定</label>
+              </div>
+            </div>
           </div>
         </div>
         <div className='map-detail'>
@@ -123,7 +161,7 @@ export default class Map extends Component {
             actions.getSearchPosi(item);
           }}/>)}
         </div>
-        <ChooseCity actions={this.props.actions} />
+        <ChooseCity actions={this.props.actions} handleOnChoosed={this.handleOnChoosed} autoCity={autoPosi.address && autoPosi.address.city}  />
       </div>
     )
   }
