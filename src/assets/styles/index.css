@@ -15,21 +15,19 @@ ul {list-style: none;}
 
 /**not common **/
 
-.reg {background-color: #fff; padding-top:20px;}
-.reg ul { list-style: none;}
-.reg ul li {height: 60px;padding-top: 30px; display: block;}
-.reg ul li .content .reg-icon-type {float: left; width: 70px; text-align: center;}
+.reg {background-color: #fff; padding-top:20px; height:100%;}
+.reg ul { list-style: none; padding-left: 24px;}
+.reg ul li { height: 56px; display: block; border-bottom: 1px solid #efefef; padding-top: 10px;}
+.reg ul li .content .reg-icon-type {float: left; width: 64px; height: 30px; line-height: 36px;text-align: center;}
 .reg ul li .content .reg-icon-type img {height: 18px;}
-.reg ul li .content .reg-icon-split {float: left; width: 20px;  height: 22px;}
-.reg ul li .content .reg-icon-split img { height: 22px;}
-.reg ul li .content .reg-input {float: left; width: 74%;font-size: 14px;}
-.reg ul li .content .reg-input a {display: block;float: right; margin-right: 0px; color: #58BD91; border: 1px solid #58BD91; border-radius: 4px; height: 28px; line-height: 28px; padding-left: 8px; padding-right: 8px;}
-.reg ul li .content input {float: left; height: 30px;width: 60%;margin-left: 20px; border: none; }
-.reg ul li .one-line {  clear:both; height: 1px;width: 95%; background-color: #EFEFEF; margin-left: 5%;}
+.reg ul li .content .reg-input {float: left; font-size: 14px;}
+.reg ul li .content .reg-input a { padding:6px 8px; border-radius: 4px; color: #58BD91; border: 1px solid #58BD91; position: absolute; right:24px;}
+.reg ul li .content .reg-input a:hover,.reg ul li .content .reg-input a:focus{ background-color:#58BD91; color:#fff; }
+.reg ul li .content input {float: left; height: 30px; line-height: 30px; border: none; font-size: 14px;}
 .reg .icode-tip{height:20px; padding-right: 15px;text-align: right;}
-.reg .icode-tip a{ display:inline-block; color: #307268; font-size: 14px;}
+.reg .icode-tip a{ display:inline-block; color: #307268; font-size: 14px; margin-top: 8px;}
 .reg .reg-finish{ margin-top: 60px; text-align: center}
-.reg .reg-finish a{ display: block; width: 320px; height: 50px; margin-left: auto; margin-right: auto; border-radius:4px; background-color: #58BD91;line-height: 50px; font-size: 17px; text-decoration: none; color: #fff;}
+.reg .reg-finish a{ display: block; width: 320px; height: 50px; margin-left: auto; margin-right: auto; border-radius:4px; background-color: #58BD91;line-height: 50px; font-size: 18px; text-decoration: none; color: #fff;}
 .reg .reg-finish a:active { background-color: #307268; }
 
 .book-item {width: 100%;height: 160px;background-color: #ffffff; margin-bottom: 8px;position: relative;}
@@ -143,6 +141,17 @@ ul {list-style: none;}
 .tipshow {visibility:visible}
 .tiphide {visibility:hidden}
 
+/* 登陆/login */
+.signin-box{ background-color: #fff;}
+.signin-container .title{ text-align: center; font-size: 20px; padding-top:24px; padding-bottom: 16px;}
+.signin-container ul{ padding-left: 24px;}
+.signin-container ul li{ padding-left: 40px; border-bottom: 1px solid #efefef; height: 48px; line-height: 48px;}
+.signin-container ul .loginphone{ background-image:url('../images/icon-mobile.png'); background-repeat: no-repeat; background-size: 13px 18px; background-position: 16px center;}
+.signin-container ul .loginpassword{ background-image:url('../images/icon-password.png'); background-repeat: no-repeat; background-size: 14px 18px; background-position: 16px center;}
+.signin-container ul li input{ background-color: #fff; border: none; font-size: 14px;}
+.loginbtn{ border:none; background-color:#58BD91; width:90%; height:48px; margin: 16px 5%; color:#fff; border-radius: 4px; font-size: 18px;}
+.loginbtn:hover,.loginbtn:focus{ background-color: #307268;}
+
 
 /**nav**/
 .nav {position: fixed;bottom: 0;height: 60px;width: 100%;background-color: #ccc; }
@@ -163,7 +172,9 @@ ul {list-style: none;}
 .center .center-header-bottom {height: 30%; text-align: center;}
 .center .center-header-top img { margin-left: auto; margin-right: auto;text-align: center; width: 60px;height: auto; display: block;padding-top: 30px;}
 .center-body{ background-color: #fff; padding-top: 20px; margin-top: 15px;}
-.center-body .center-item{ height: 50px; font-size: 14px;}
+.center-body .center-item{ height: 50px; font-size: 14px; background-image:url('../images/icon-array-left.png'); background-repeat: no-repeat; background-size: 6px 12px; background-position: 95% center;}
+.center-body .center-item:hover,.center-body .center-item:focus{ background-color: #efefef;}
+
 .center-body .center-item .category{ height: 49px; line-height: 49px; }
 .center-body .center-item .category span { margin-left: 8%;}
 .center-body .center-item .category div { float: right; margin-right: 20px;}
@@ -221,7 +232,7 @@ ul {list-style: none;}
 .navlist ul li:hover,.navlist ul li:focus{ background-color: #f0f0f0;}
 .navlist ul li a{ display: block; border-top: 1px solid #efefef; margin-left: 16px; padding-left: 16px; color:#3C3C3C; text-decoration: none; background:url('../images/icon-array-left.png'); background-repeat: no-repeat; background-size: 6px 12px; background-position: 95% center;}
 .navlist .points{ padding-left: 6px; color:#58BD91;}
-.navlist .pointbtn{ display: block; padding:6px 16px; border-radius: 4px; background-color: #58BD91; float: right; color:#fff;}
+.navlist .pointbtn{ display: block; padding:0 16px; border-radius: 4px; background-color: #58BD91; float: right; color:#fff; margin-top: -8px;}
 .navlist .pointbtn:hover,.navlist .pointbtn:focus{background-color: #307268}
 .tsw-pt-8{ padding-top: 8px;}
 .tsw-pb-8{ padding-bottom: 8px;}

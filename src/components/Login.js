@@ -29,38 +29,16 @@ class Login extends Component {
   render() {
     const {dispatch,actions } = this.props;
     return (
-      <div className="signin-box">
-        <div className="signin-container">
-          <h4 className="title">登 录</h4>
-          <form className="signin-form form-horizontal" name="signinForm" onSubmit={this.handleSubmit} noValidate>
-            <div className="form-group">
-              <div className="input-group">
-                <div className="input-group-addon">
-                  <i className="fa fa-envelope-o"></i>
-                </div>
-                <input type="text"
-                       className="form-control"
-                       required
-                       ref="phone"
-                       placeholder="用户手机号码"/>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="input-group">
-                <div className="input-group-addon"><i className="fa fa-unlock-alt"></i></div>
-                <input type="password"
-                       required
-                       className="form-control"
-                       ref="password"
-                       placeholder="密码"/>
-              </div>
-            </div>
-            <div className="form-group">
-              <button className="btn btn-primary btn-lg btn-block" type="submit">登 录</button>
-            </div>
 
-          </form>
-        </div>
+      <div className="signin-box">
+          <div className="signin-container">
+            <h4 className="title">登 录</h4>
+            <ul>
+              <li className='loginphone'><input placeholder="请输入手机号" /></li>
+              <li className='loginpassword'><input type='password' placeholder="请输入密码" /></li>
+            </ul>
+            <button type='button' className='loginbtn' >登陆</button>
+          </div>
       </div>
     )
   }
