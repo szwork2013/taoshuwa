@@ -48,7 +48,7 @@
     "moment": "^2.13.0",
     "mongoose": "^4.4.7",
     "morgan": "^1.7.0",
-    "react": "^0.14.7",
+    "react": "^0.14.8",
     "react-component-lib": "^0.3.23",
     "react-cookie": "^0.4.5",
     "react-dom": "^0.14.7",

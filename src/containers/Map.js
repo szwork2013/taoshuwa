@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux';
+import classnames from 'classnames';
 import * as Actions from '../actions'
 import {AddressItem,ChooseCity} from '../components'
 import {saveCookie, getCookie, signOut} from '../utils/authService'
@@ -136,9 +137,10 @@ export default class Map extends Component {
 
   render() {
     const {user, actions, autoPosi } = this.props;
+    const winHeight = document.body.clientHeight;
     return (
-      <div className='map'>
-        <div className='map-fixed '>
+      <div className='map' style={{height:winHeight}}>
+        <div className='map-fixed'>
           <div className='map-head'>
             地区：<label onClick={this.handleChooseCity}>{this.state.curCity}</label>
           <img src={pos_down} />

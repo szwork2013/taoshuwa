@@ -34,10 +34,10 @@ class Login extends Component {
           <div className="signin-container">
             <h4 className="title">登 录</h4>
             <ul>
-              <li className='loginphone'><input placeholder="请输入手机号" /></li>
-              <li className='loginpassword'><input type='password' placeholder="请输入密码" /></li>
+              <li className='loginphone'><input placeholder="请输入手机号" ref='phone'  /></li>
+              <li className='loginpassword'><input type='password' ref='password' placeholder="请输入密码" /></li>
             </ul>
-            <button type='button' className='loginbtn' >登陆</button>
+            <button type='button' className='loginbtn' onClick={this.handleSubmit} >登陆</button>
           </div>
       </div>
     )

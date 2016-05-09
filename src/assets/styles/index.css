@@ -1,5 +1,5 @@
 * { margin: 0; padding: 0;}
-html,body { font-size: 16px;}
+html,body { font-size: 16px; height: 100%}
 a {text-decoration: none; }
 ul {list-style: none;}
 
@@ -126,7 +126,7 @@ ul {list-style: none;}
 .component-nav .right{float: left; width: 34%}
 .component-nav .active{color: #58BD91;}
 
-.address-item { display: block; background-color: #fff;height: 70px;font-size: 14px; border-bottom: 1px solid #DDDDDD; padding:10px 20px 5px 20px;}
+.address-item { display: block; background-color: #fff;height: 40px;font-size: 14px; border-bottom: 1px solid #DDDDDD; padding:10px 20px 5px 20px;}
 .address-item .item-title{background-color: #fff; }
 .address-item .item-where{background-color: #fff; color: #9B9B9B;margin-top: 10px;}
 
@@ -217,12 +217,12 @@ ul {list-style: none;}
 .userinfo .catogary .types a.choosed {background-color: #58BC90}
 
 /**map*********************/
-.map {background-color: #fff; position: relative;}
-.map .map-fixed {position: absolute; top: 0px;  width: 100%;}
+.map {background-color: #fff; position: relative; }
+.map .map-fixed { width: 100%;height: 100%;}
 .map .map-head{ height: 40px; line-height: 40px; background-color: #58BD91; text-align: center; color: #FFF; }
 .map .map-head img {width: 9px; margin-left: 3px;}
-.map .map-body {height: 280px; width: 100%; position: relative; }
-.map .map-cons {position: relative; margin-left: auto; margin-right: auto; }
+.map .map-body {height: 100%; width: 100%; position: relative; }
+.map .map-cons {position: relative; margin-left: auto; margin-right: auto; height: 60%;}
 .map .map-cons .set-center{padding-left: auto; padding-right: auto;position: fixed; top: 45px;  width:80%; margin-left: 10%;}
 .map .map-cons .set-center .searchbox{ background-color: #FFF; border: 2px solid #58BD91;height: 32px; border-radius: 4px; line-height: 32px; line-height: 32px;}
 .map .map-cons .set-center .searchbox img{width: 14px; margin-left: 5px; margin-right: 5px;vertical-align:middle;line-height: 32px;}
@@ -230,7 +230,7 @@ ul {list-style: none;}
 .map .map-cons .set-center .searchbox label{color: #58BD91; font-size: 14px;margin-right: 5px; float: right;}
 .map .map-cons .set-center .searchbox input{width: 65%;width: 72%;height: 20px;font-size: 14px; border: none;}
 .map .map-cons .set-center .searchbox label{vertical-align:middle; line-height: 35px;}
-.map .map-detail{position: absolute; top: 330px; width: 100%;  background-color: #f0f0f0; padding-bottom: 5px;}
+.map .map-detail{ position: absolute;  height: 40%; bottom:0; width: 100%;  background-color: #f0f0f0; padding-bottom: 5px;padding-top: 5px;z-index: 0; overflow: auto;}
 
 /**choosecity************/
 .choose-city{  width: 100%; height: 100%; position: fixed; top: 0;left: 0;background-color: #F0F0F0; visibility: visible; z-index: 9999}

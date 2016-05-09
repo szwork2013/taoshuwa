@@ -2,6 +2,7 @@
 node_modules
 app/lib/config.js
 test.html
+text.html
 test.js
 dist
 npm-debug.log
