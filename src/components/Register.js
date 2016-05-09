@@ -8,7 +8,6 @@ import icon_mobile from '../assets/images/icon-mobile.png'
 import icon_check_code from '../assets/images/icon-check-code.png'
 import icon_password from '../assets/images/icon-password.png'
 import icon_icode from '../assets/images/icon-icode.png'
-import icon_split from '../assets/images/icon-split.png'
 import btn_big from '../assets/images/btn-big.png'
 
 
@@ -84,9 +83,6 @@ class Register extends Component {
               <div className='reg-icon-type'>
                 <img src={icon_mobile}/>
               </div>
-              <div className='reg-icon-split'>
-                <img src={icon_split}/>
-              </div>
               <div className='reg-input'>
                 <input type='text' ref='phone' placeholder='请输入手机号'/>
               </div>
@@ -98,12 +94,9 @@ class Register extends Component {
               <div className='reg-icon-type'>
                 <img src={icon_check_code}/>
               </div>
-              <div className='reg-icon-split'>
-                <img src={icon_split}/>
-              </div>
               <div className='reg-input'>
                 <input type='text' ref='vcode' placeholder='请输入验证码'/>
-                <a onClick={this.getVCode}><span>获取验证码</span></a>
+                <a onClick={this.getVCode}>获取验证码</a>
               </div>
             </div>
             <div className='one-line'></div>
@@ -112,9 +105,6 @@ class Register extends Component {
             <div className='content'>
               <div className='reg-icon-type'>
                 <img src={icon_password}/>
-              </div>
-              <div className='reg-icon-split'>
-                <img src={icon_split}/>
               </div>
               <div className='reg-input'>
                 <input type='password' ref='password' placeholder='请输入密码'/>
@@ -126,9 +116,6 @@ class Register extends Component {
             <div className='content'>
               <div className='reg-icon-type'>
                 <img src={icon_icode}/>
-              </div>
-              <div className='reg-icon-split'>
-                <img src={icon_split}/>
               </div>
               <div className='reg-input'>
                 <input type='text' ref='icode' placeholder='请输入邀请码'/>
