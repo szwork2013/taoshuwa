@@ -27,22 +27,24 @@ export function isLogin() {
   return !!cookie.load('token')
 }
 
-export function redirectToBack(nextState, replaceState) {
+export function redirectToBack(nextState, replace) {
 	//已经登录则不进入
+	let pathname = nextState.location.pathname;
   if (isLogin()) {
-    if(nextState.location.pathname === '/login'){
-      replaceState(null, '/')
+    if( pathname === '/login'){
+      replace('/')
     }
   }
 }
-export function redirectToLogin(nextState,replaceState) {
+export function redirectToLogin(nextState,replace) {
   if (!isLogin()) {
-    replaceState(null, '/login')
+    replace('/login')
   }
 }
-export function redirectToNow(nextState,replaceState) {
+export function redirectToNow(nextState,replace) {
+  const pathnow = nextState.routes[0].path;
+
   if(isLogin()){
-    const pathnow = nextState.routes[0].path;
-    replaceState(null,pathnow);
+    replace(pathnow);
   }
 }

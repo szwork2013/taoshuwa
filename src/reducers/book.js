@@ -5,7 +5,8 @@ import {
   FETCH_ONE_BOOK,
   BOOK_LIST,
   ADD_BOOK,
-  DELETE_BOOK
+  DELETE_BOOK,
+  CHECK_BOOK_FETCHING
 } from '../constants/ActionTypes.js'
 import {createReducer} from 'redux-immutablejs'
 import {fromJS, Map, List} from 'immutable'
@@ -15,7 +16,8 @@ const initialState = fromJS({
   list: [], //首页书籍列表
   loanlist: [], //捐书列表
   onebook: {}, //根据ISBN返回的书籍详情
-  curbook: {} //查看书的详情
+  curbook: {}, //查看书的详情
+  onebook_isFetching:false,//查询onebook转动
 });
 
 export default createReducer(initialState, {
@@ -44,6 +46,9 @@ export default createReducer(initialState, {
   },
   [ADD_BOOK]: (state, {loanlist}) => {
     return state.merge({loanlist: loanlist})
+  },
+  [CHECK_BOOK_FETCHING]:(state,{fetching})=>{
+    return state.merge({onebook_isFetching:fetching})
   },
   [DELETE_BOOK]: (state, {id}) => {
     return state.merge({

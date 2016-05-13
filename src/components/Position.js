@@ -16,7 +16,7 @@ import pos_img from '../assets/images/map-pos-now.png';
 export default class Position extends Component {
   render() {
     const {autoPosi,searchPosi} = this.props;
-    const curAddress = !isOwnEmpty(searchPosi) ? searchPosi.title : (!isOwnEmpty(autoPosi) && autoPosi.address.street);
+    const curAddress = !isOwnEmpty(searchPosi) ? searchPosi.title : (!isOwnEmpty(autoPosi) && autoPosi.address);
     return (
       <div className='posi'>
         <Link className='spot' to='/map'>

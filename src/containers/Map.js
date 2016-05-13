@@ -29,8 +29,6 @@ export default class Map extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
   componentDidMount() {
-
-    console.log('componentDidMount----:');
     const {actions,address} = this.props;
     actions.setCityModal(false);
     this.setState({curCity: address && address.city})

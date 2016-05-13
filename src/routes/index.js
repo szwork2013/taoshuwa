@@ -8,8 +8,8 @@ import {redirectToBack,redirectToLogin,redirectToNow} from '../utils/authService
 export default ()=> (
   <Route path="/" component={Home}>
     <IndexRoute component={Book}/>
-    <Route path="/contact" component={Demo} />
-    <Route path='/book/check' component={CheckBook} /> //调用第三方接口查询书的数据
+    <Route path="/contact" component={Contact} />
+    <Route path='/book/check' component={CheckBook} onEnter={redirectToLogin} /> //调用第三方接口查询书的数据
     <Route path='/book/add/:id' component={AddBook} />//添加书的界面
     <Route path="/login" component={Login} onEnter={redirectToBack}  />
     <Route path="/register" component={Register} onEnter={redirectToNow}/>

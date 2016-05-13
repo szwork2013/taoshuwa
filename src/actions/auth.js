@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import api from '../api'
-import {push,goBack, browserHistory} from 'react-router-redux';
+import {push,goBack} from 'react-router-redux';
 import {saveCookie, getCookie, signOut} from '../utils/authService'
 import fetch from 'isomorphic-fetch';
 import {API_ROOT} from '../config'
@@ -86,6 +86,9 @@ export function loginIn(username, password) {
 //获取用户信息
 export const getUserInfo = (point) => {
   let token = getCookie('token');
+  const mytoken = `this is my token:${token}`;
+  // console.log(mytoken);
+  // alert(mytoken);
   return (dispatch, getState) => {
     return api
       .getMe({
@@ -267,6 +270,7 @@ export function setDefaultAddress(index){
       .then( data => {
         if(data.status === 200){
           let addressList = data.data.addressList;
+          dispatch(goBack());
           dispatch({
             type:types.ADDRESS_LIST,
             addressList

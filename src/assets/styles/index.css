@@ -97,16 +97,22 @@ ul {list-style: none;}
 .donate .catogary {height: 40px;  font-size: 14px;}
 .donate .catogary .cont { height: 39px;line-height: 39px;}
 .donate .catogary .cont span { margin-right: 30px; float: left;}
-.donate .catogary .cont select {width: 200px; border:1px solid #efefef; background-color: #fff; -webkit-appearance: none;height: 32px;}
+.donate .catogary .cont select {width: 200px;  border: none; background-color: #fff; -webkit-appearance: none; height: 32px;}
 .donate .catogary .line {height: 1px;background-color: #DDDDDD;width: 100%;}
 .donate .book-posi {height: 40px;  margin-top: 40px; font-size: 14px;}
 .donate .book-posi .cont { height: 39px;line-height: 39px;}
 .donate .book-posi .cont .posi-title { margin-right: 30px; }
 .donate .book-posi .cont img { display: block; height:24px; width: 18px; float: right; margin-top: 8px; margin-right: 5px;}
+.donate .book-posi .cont .myspot{font-size: 12px;}
 .donate .book-posi .line {height: 1px;background-color: #DDDDDD;width: 100%;}
 .donate .saying {width: 100%; height: 120px;padding:12px 0px 12px 0px;font-size: 14px;}
 .donate .saying textarea{width: 100%; border: 1px solid #BFBFBF; border-radius: 4px; height: 75px;resize: none;margin-top: 10px;font-size: 14px;}
 
+.checkbook .add-content {background-color: #FFF; padding: 30px 12px 30px 12px; }
+.checkbook .add-content .word {border: 1px solid #58BD91; padding:30px 8px 10px 25px; box-shadow: 4px 4px 4px #F0F0F0}
+.checkbook .add-content .word label {display: block; margin-bottom: 15px; margin-left: 8px; font-size:16px;}
+.checkbook .add-content .input .title {display: block; color:#3c3c3c;  margin-top: 25px; font-size: 14px; margin-left: 5%;}
+.checkbook .add-content .input input {display: block; padding-left: 10px; font-size: 16px; margin-top: 10px; margin-left: auto; margin-right: auto; border: 1px solid #DDDDDD; border-radius: 2px; width:90%; height:35px;}
 /*独立组件样式*/
 .component-title{font-size: 16px; margin-left: 16px;}
 .component-title .decorate{display: inline-block;;width: 4px; height: 14px;background-color:#58BD91;}
@@ -180,7 +186,7 @@ ul {list-style: none;}
 .center .center-header-top {height: 70%;}
 .center .center-header-bottom {height: 30%; text-align: center;}
 .center .center-header-top img { margin-left: auto; margin-right: auto;text-align: center; width: 60px;height: auto; display: block;padding-top: 30px;}
-.center-body{ background-color: #fff; padding-top: 20px; margin-top: 15px;}
+.center-body{ background-color: #fff; padding-top: 20px; margin-top: 15px; margin-bottom: 80px;}
 .center-body .center-item{ height: 50px; font-size: 14px; background-image:url('../images/icon-array-left.png'); background-repeat: no-repeat; background-size: 6px 12px; background-position: 95% center;}
 .center-body .center-item:hover,.center-body .center-item:focus{ background-color: #efefef;}
 
@@ -248,7 +254,7 @@ ul {list-style: none;}
 .address .detail{ font-size: 14px; background-color: #FFF;padding-top: 15px;padding-bottom: 25px;}
 .address .detail ul{ padding-left: 20px;}
 .address .detail ul li{height: 45px; border-bottom: 1px #DDDDDD solid;line-height: 45px;}
-.address .detail ul li input{ width: 200px;}
+.address .detail ul li input{ width: 200px; border: none;height: 22px;}
 .address .detail ul li img{display:inline-block; float: right; width:8px;    margin-top: 13px;margin-right: 16px;}
 .address .detail .title {color: #9B9B9B; width: 80px; display: inline-block;}
 .address .list { margin-top:20px; padding:20 0 10 0;}
@@ -263,7 +269,7 @@ ul {list-style: none;}
 .address .list .onelist .func a:active{background-color:#307268 }
 
 .address-choose{position: fixed; top:0; left: 0; height: 100%; width: 100%; background-color: #efefef;}
-.address-choose .searchBar {margin-top: 5px;background-color: #FFF; width: 100%; padding-top: 15px;padding-bottom: 10px;text-align: center;}
+.address-choose .searchBar {margin-top: 5px;background-color: #FFF; width: 100%; padding-top: 30px;padding-bottom: 10px;text-align: center;}
 .address-choose .searchBar input{ border: 1px solid #DDD; height: 25px; width: 250px; border-radius: 4px;}
 .address-choose .searchBar button{margin-left: 5px; border: 1px solid #DDD; height: 25px;  border-radius: 4px; padding: 5px 10px 5px 10px;}
 .address-choose .list-item{margin-top: 10px; background-color: #FFF; padding-left: 20px; padding-bottom: 20px; padding-top: 10px; overflow: auto;}

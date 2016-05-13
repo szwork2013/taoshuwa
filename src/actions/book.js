@@ -48,13 +48,21 @@ export function fetchLoanBookList() {
 export function fetchBooks(point) {
   let lng = point.lng;
   let lat = point.lat;
-  return function(dispatch, getState) {
+
+  return dispatch => {
     let fetchUrl = `${API_ROOT}books?lng=${lng}&lat=${lat}`;
-    console.log('fetchUrl---;',fetchUrl);
+    dispatch({
+      type:types.SET_FITCHING,
+      isFetching:true
+    })
     return fetch(fetchUrl)
       .then(response => response.json())
       .then(data => {
         dispatch({type: types.BOOK_LIST, books: data.books})
+        dispatch({
+          type:types.SET_FITCHING,
+          isFetching:false
+        })
       });
   }
 }
@@ -103,8 +111,16 @@ export function setScanQR(code) {
   }
 }
 
+function setCheckBookFetching(state){
+  return {
+    type:types.CHECK_BOOK_FETCHING,
+    fetching:state
+  }
+}
+
 export function checkOneBook(isbn) {
   return function(dispatch, getState) {
+    dispatch(setCheckBookFetching(true))
     return fetch(API_ROOT + 'books/fetch_isbn?isbn=' + isbn)
       .then(response => response.json().then(json => ({json, response})))
       .then(({json, response}) => {
@@ -112,7 +128,7 @@ export function checkOneBook(isbn) {
           console.log(`查询数据出错:${json.err_msg}`);
           alert(json.err_msg);
         } else {
-          console.log(`json:${json}`);
+          dispatch(setCheckBookFetching(false))
           let book = json.book;
           dispatch({type: types.CHECK_BOOK, book})
         }

@@ -25,6 +25,8 @@ export default createReducer(initialState,{
   [REGISTER_FAILURE]: (state, action) => {},
 
   [LOGIN_OUT]: (state,action)=> {
-    return initialState.set('token',null)
+    alert('user is over');
+    alert('token is over')
+    return state.merge({user:null, token:null})
   }
 })

@@ -2,12 +2,15 @@ import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import classnames from 'classnames'
+var Loading = require('react-loading');
+
 export default class AddressChoose extends Component {
   constructor(props) {
     super(props);
     this.state = {
       local: null,
-      addressResults:[]
+      addressResults:[],
+      isFetching:false
     }
     this.handleSearch = this.handleSearch.bind(this);
   }
@@ -24,7 +27,7 @@ export default class AddressChoose extends Component {
       onSearchComplete: (results) => {
         if (local.getStatus() == BMAP_STATUS_SUCCESS) {
           self.setState({addressResults: results.wr});
-          console.log('results.wr:',results.wr);
+          self.setState({isFetching:false})
         }
       }
     };
@@ -34,6 +37,7 @@ export default class AddressChoose extends Component {
   handleSearch() {
     let searchSpot = this.refs.insearch.value;
     if(searchSpot === undefined || searchSpot.trim()==='') return;
+    this.setState({isFetching:true})
     this.state.local.search(searchSpot);
   }
   render() {
@@ -46,8 +50,10 @@ export default class AddressChoose extends Component {
     }
     class_name = class_name.join(' ');
     const options = this.state.addressResults;
+    const winHeight = document.body.clientHeight;
+    const winWidth = document.body.clientWidth;
     return (
-      <div className={class_name} onClick={() => {
+      <div className={class_name} style={{height:winHeight,backgroundColor:'#FFF'}} onClick={() => {
         handleSelOpen(false)
       }}>
         <div className='searchBar' onClick={(e) => {
@@ -69,6 +75,9 @@ export default class AddressChoose extends Component {
               </li>
             ))}
           </ul>
+        </div>
+        <div style={{position:'fixed',top:winHeight/2-32, left:winWidth/2-48, display: this.state.isFetching ? 'inherit':'none'}}>
+          <Loading type='spokes' color='#58BD91'/>
         </div>
         <div ref='addmap'></div>
       </div>

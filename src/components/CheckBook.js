@@ -4,9 +4,11 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as Actions from '../actions'
 import Nav from './Nav.js';
-import { isOwnEmpty} from '../utils'
+import {TButton} from '../components';
+import {isOwnEmpty,isISBN} from '../utils'
+
 const validateBook = values => {
-  return true;
+  return isISBN(values);
 }
 function mapStateToProps(state) {
   return {scanconfig: state.wx.toJS().scanconfig}
@@ -38,16 +40,14 @@ export default class CheckBook extends Component {
       alert('ISBN格式不对');
     }
   }
-
-  checkSys(){
+  checkSys() {
     let ua = navigator.userAgent.toLowerCase();
-  	if (/iphone|ipad|ipod/.test(ua)) {
+    if (/iphone|ipad|ipod/.test(ua)) {
       return 'iphone';
-  	} else if (/android/.test(ua)) {
-  		return 'android';
-  	}
+    } else if (/android/.test(ua)) {
+      return 'android';
+    }
   }
-
   scanQR() {
     const {scanconfig} = this.props;
     const query = this.props.location.query;
@@ -59,17 +59,17 @@ export default class CheckBook extends Component {
       signature: scanconfig.signature,
       jsApiList: scanconfig.jsApiList
     });
-
     // wx.error(function(res) {
     //   res = JSON.stringify(res);
     //   console.log('验证失败:',res);
     //   alert(`验证失败:${res}`);
     // });
-
     wx.scanQRCode({
       needResult: 1,
       desc: 'scanQRCode desc',
-      scanType: [ "qrCode", "barCode" ],
+      scanType: [
+        "qrCode", "barCode"
+      ],
       success: function(res) {
         console.log(JSON.stringify(res));
         var obj = res.resultStr;
@@ -80,18 +80,36 @@ export default class CheckBook extends Component {
     });
   }
   render() {
-    const {onebook, dispatch, actions,scanconfig} = this.props;
+    const {onebook, dispatch, actions, scanconfig} = this.props;
     return (
-      <div>
-        <div>
-          请输入ISBN的编号：<input type='text' ref='isbn_id' defaultValue='9787115281609'/>
+      <div className='checkbook'>
+        <div className='add-content'>
+          <div className='word'>
+            <label>
+              <span>我知道，我想要的书就在这里，</span> <br/>
+              <span>关注三余，口袋里的私人图书馆；</span>
+            </label>
+            <label>
+              <span>我知道，懂我的人也在这里，</span> <br/>
+              <span>关注三余，遇见更好的他和她；</span>
+            </label>
+            <label>打开三余，感受有温度的人、书和世界。</label>
+          </div>
+          <div className='input'>
+            <label className='title'>输入书背后的ISBN的编号：</label>
+            <div>
+              <input type='text' ref='isbn_id' defaultValue='9787115281609'/>
+            </div>
+          </div>
         </div>
         <div>
-          <button className='btn btn-primary' onClick={this.handCheckClick}>查 看</button>
+          <TButton mtop='40' bgcolor="#f0f0f0" name='捐出这本书' handleClick={this.handCheckClick}/>
         </div>
-        { this.checkSys()==='iphone' || isOwnEmpty(scanconfig) ? null : <div>
-          <button className='btn btn-primary' onClick={this.scanQR}>去扫码</button>
-        </div>}
+        {this.checkSys() === 'iphone' || isOwnEmpty(scanconfig)
+          ? null
+          : <div>
+            <button className='btn btn-primary' onClick={this.scanQR} >去扫码</button>
+          </div>}
         <Nav/>
       </div>
     )

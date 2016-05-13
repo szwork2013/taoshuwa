@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+var Loading = require('react-loading');
+
 
 export default class Contact extends Component {
 
@@ -12,10 +14,11 @@ export default class Contact extends Component {
 
   render () {
     return (
-      <li>
-        this is contact page.
-        <button onClick={this.handleClick.bind(this,'display')}>测试bind使用</button>
-      </li>
+     <div>
+       u  s ss
+       <Loading type='spokes' color='#ff0000' />
+       i ama  a a
+     </div>
     );
   }
 }

@@ -15,6 +15,7 @@ export const DESIRE_BOOK_LIST = 'DESIRE_BOOK_LIST';//心愿单列表
 export const BOOK_POSITION = 'BOOK_POSITION';//书的位置
 export const BORROW_POSITION = 'BORROW_POSITION';//借书时用户指定的位置
 
+export const CHECK_BOOK_FETCHING =  'CHECK_BOOK_FETCHING';//查询书的时候
 /**Wechat***********/
 export const SCAN_CONFIG = 'SCAN_CONFIG';//扫描相关配置
 
@@ -28,6 +29,8 @@ export const DESIRE_LIST = 'DESIRE_LIST';//当前的借书列表
 
 /**Other************/
 export const SET_CITY_MODAL = 'SET_CITY_MODAL';
+export const SET_FITCHING = 'SET_FITCHING';
+
 
 /**User************/
 export const CHECK_VCODE_SUCCESS = 'CHECK_VCODE_SUCCESS';//验证码

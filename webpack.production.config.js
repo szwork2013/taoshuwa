@@ -71,12 +71,12 @@ module.exports = {
       title: 'your app title',
       template: './src/index.html',
     }),
-    new webpack.ProvidePlugin({
-      "$": "jquery",
-      "jQuery": "jquery",
-      "window.jQuery": "jquery",
-      "window.$": "jquery"
-    }),
+    // new webpack.ProvidePlugin({
+    //   "$": "jquery",
+    //   "jQuery": "jquery",
+    //   "window.jQuery": "jquery",
+    //   "window.$": "jquery"
+    // }),
     new ExtractTextPlugin("main.[hash:8].css", {
       allChunks: true,
       disable: false

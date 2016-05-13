@@ -51,6 +51,9 @@ class CenterBody extends Component {
       }, {
         title: '借书规则',
         handler: ()=>{return browserHistory.push('borrowrules');}
+      }, {
+        title: '注销',
+        handler: ()=>{logout()}
       }
     ]
 
@@ -68,7 +71,6 @@ class CenterBody extends Component {
         <ul>
           {centerBody}
         </ul>
-        {!!user ? <LoginOut logout={logout} /> : null }
       </div>
     )
   }

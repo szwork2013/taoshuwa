@@ -40,6 +40,9 @@ export function formatDate(time) {
   return year + '.' + mathon + '.' + day + ' ' + hours + ':' + minutes
 }
 
+export function isISBN(sStr){
+	return /^978[\d]{10}$|^978-[\d]{10}$/.test(sStr);
+}
 
 /*
  * 检测对象是否是空对象(不包含任何可读属性)。

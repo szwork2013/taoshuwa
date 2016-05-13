@@ -2,17 +2,19 @@ import React, {Component, PropTypes} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {browserHistory} from 'react-router'
+import {push,goBack} from 'react-router-redux';
 import * as Actions from '../actions'
 import {isOwnEmpty} from '../utils/index.js';
 import map_pos from '../assets/images/map-pos.png';
 import {DropDown} from './common';
 import {Address} from '../containers'
-
+var Loading = require('react-loading');
 @connect(state => {
   return {
     onebook : state.book.toJS().onebook,
     posi: state.posi.toJS(),
-    userinfo:state.auth.toJS().user
+    userinfo:state.auth.toJS().user,
+    onebook_isFetching:state.book.toJS().onebook_isFetching
   }
 }, dispatch => ({
   actions : bindActionCreators(Actions, dispatch)
@@ -39,7 +41,7 @@ export default class AddBook extends Component {
   }
   handleAddOne(e) {
     e.preventDefault()
-    const {actions, onebook,bookPosi,userinfo} = this.props;
+    const {actions, onebook, bookPosi,userinfo} = this.props;
     const choosedIndex = this.state.value;
     if (choosedIndex === -1 || choosedIndex === '-1' ) {
       alert('请选择图书种类');
@@ -58,69 +60,85 @@ export default class AddBook extends Component {
     actions.addBook(onebook);
   }
   render() {
-    const {onebook, dispatch, actions,bookPosi, posi,userinfo} = this.props;
+    const {onebook, dispatch, actions,bookPosi, posi,userinfo,onebook_isFetching} = this.props;
     onebook.category = onebook.category || [];
     onebook.category.map((item, index) => item.value = index);
 
     let defaultAddress = '';
     let curAddress = [];
-    if(userinfo){
-      curAddress = userinfo.address_list.filter(item => item.isdefault===true)
+    if(posi.addressList.length > 0){
+      curAddress = posi.addressList.filter(item => item.isdefault===true);
       defaultAddress = curAddress[0].address.selAddress + curAddress[0].address.address_unit;
+      defaultAddress = defaultAddress.length > 20 ?"..."+defaultAddress.slice(-20) : defaultAddress;
+    }else{
+      if(!!userinfo){
+        curAddress = userinfo.address_list.filter(item => item.isdefault===true)
+        defaultAddress = curAddress[0].address.selAddress + curAddress[0].address.address_unit;
+        defaultAddress = defaultAddress.length > 20 ?"..."+defaultAddress.slice(-20) : defaultAddress;
+      }
     }
+
     const options = onebook.category;
+    const winHeight = document.body.clientHeight;
+    const winWidth = document.body.clientWidth;
+
     return (
-      <div className='donate'>
-        <div className='donate-book'>
-          <div className='face'>
-            <img src={onebook.image}/>
-          </div>
-          <div className='detail'>
-            <ul>
-              <li>
-                <span className='name'>书名：</span>
-                <span className='cons'>{onebook.title && onebook.title.length > 12 ? onebook.title.slice(0,11)+'...':onebook.title}</span>
-              </li>
-              <li>
-                <span className='name'>作者：</span>
-                <span>{onebook.author}</span>
-              </li>
-              <li>
-                <span className='name'>发布到：</span>
-                <span>借书</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className='book-posi'>
-          <div className='cont'>
-            <span className='posi-title'>位置:</span>
-            <span>{defaultAddress}</span>
-            <img src={map_pos} onClick={() =>{ browserHistory.push('/address')}}/>
-          </div>
-          <div className='line'></div>
-        </div>
-
-        <div className='catogary'>
-          <div className='cont'>
-            <span>类别:</span>
-            <div>
-              <select onChange={(e)=>{this.setState({value:e.target.value})}}>
-                <option value='-1'>请选择图书的类别</option>
-                {options.map((one,index)=><option value={one._id}>{one.name}</option>)}
-              </select>
+      <div className='donate' style={{height:winHeight}}>
+        <div  style={{display: onebook_isFetching ? 'none': 'inherit'}} >
+          <div className='donate-book'>
+            <div className='face'>
+              <img src={onebook.image}/>
+            </div>
+            <div className='detail'>
+              <ul>
+                <li>
+                  <span className='name'>书名：</span>
+                  <span className='cons'>{onebook.title && onebook.title.length > 12 ? onebook.title.slice(0,11)+'...':onebook.title}</span>
+                </li>
+                <li>
+                  <span className='name'>作者：</span>
+                  <span>{onebook.author}</span>
+                </li>
+                <li>
+                  <span className='name'>发布到：</span>
+                  <span>借书</span>
+                </li>
+              </ul>
             </div>
           </div>
-          <div className='line'></div>
-        </div>
 
-        <div className='saying'>
-          <div className='title'>说点什么</div>
-          <textarea ref='saying' placeholder='淘书娃，随时为你效劳。'></textarea>
+          <div className='book-posi'>
+            <div className='cont'>
+              <span className='posi-title'>位置:</span>
+              <span className="myspot">{defaultAddress}</span>
+              <img src={map_pos} onClick={() =>{ browserHistory.push('/address')}}/>
+            </div>
+            <div className='line'></div>
+          </div>
+
+          <div className='catogary'>
+            <div className='cont'>
+              <span>类别:</span>
+              <div>
+                <select onChange={(e)=>{this.setState({value:e.target.value})}}>
+                  <option value='-1'>请选择图书的类别</option>
+                  {options.map((one,index)=><option value={one._id}>{one.name}</option>)}
+                </select>
+              </div>
+            </div>
+            <div className='line'></div>
+          </div>
+
+          <div className='saying'>
+            <div className='title'>说点什么</div>
+            <textarea ref='saying' placeholder='淘书娃，随时为你效劳。'></textarea>
+          </div>
+          <div className='donate-ok'>
+            <button onClick={this.handleAddOne}>捐出这本书</button>
+          </div>
         </div>
-        <div className='donate-ok'>
-          <button onClick={this.handleAddOne}>捐出这本书</button>
+        <div style={{position:'fixed',top:winHeight/2-32, left:winWidth/2-48, display: onebook_isFetching ? 'inherit':'none'}}>
+          <Loading type='spokes' color='#58BD91'/>
         </div>
       </div>
     )
