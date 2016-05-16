@@ -98,7 +98,7 @@ export default class CheckBook extends Component {
           <div className='input'>
             <label className='title'>输入书背后的ISBN的编号：</label>
             <div>
-              <input type='text' ref='isbn_id' defaultValue='9787115281609'/>
+              <input type='text' ref='isbn_id' />
             </div>
           </div>
         </div>

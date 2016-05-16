@@ -6,7 +6,7 @@ export default class UserHead extends React.Component {
   render() {
     return (
       <div className='head'>
-        <div className='info'>
+        <div className='head-info'>
           <span>头像:</span>
           <img src={icon_head_sm} />
         </div>

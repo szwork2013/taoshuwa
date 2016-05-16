@@ -139,18 +139,14 @@ export function checkOneBook(isbn) {
   }
 }
 
-export function borrowBook(bookid, duration,borrowPosi) {
+export function borrowBook(borrowInfo) {
   return dispatch => {
     return api
-      .createRequest({
-        params: {
-          bookid,
-          duration,
-          borrowPosi:JSON.stringify(borrowPosi)
-        }
-      })
+      .createRequest(borrowInfo)
       .then(function(data) {
-        console.log('data------------:', data);
+        if(data.status === 200){
+          console.log('借阅成功');
+        }
       })
       .catch(err => {
         console.log('errrrrrr---:', err);

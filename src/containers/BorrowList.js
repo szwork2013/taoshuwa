@@ -6,6 +6,17 @@ import {connect} from 'react-redux';
 import * as Actions from '../actions'
 import {saveCookie, getCookie, signOut} from '../utils/authService'
 import book_img from '../assets/images/book-1.jpg'
+
+
+function mapStateToProps(state) {
+  return {borrowlist: state.drift.toJS().borrowlist}
+}
+function mapDispathToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  }
+}
+@connect(mapStateToProps, mapDispathToProps)
 export default class BorrowList extends Component {
   componentDidMount() {
     const {actions} = this.props;
@@ -154,12 +165,3 @@ export default class BorrowList extends Component {
     )
   }
 }
-function mapStateToProps(state) {
-  return {borrowlist: state.drift.toJS().borrowlist}
-}
-function mapDispathToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  }
-}
-export default connect(mapStateToProps, mapDispathToProps)(BorrowList);

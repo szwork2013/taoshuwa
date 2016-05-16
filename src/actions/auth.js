@@ -70,7 +70,7 @@ export function loginIn(username, password) {
         dispatch(getUserInfo(json.token))
         dispatch(loginSuccess(json.token))
         //dispatch(showMsg('登录成功,欢迎光临!','success'))
-        dispatch(push('/'))
+        dispatch(goBack())
       })
       .catch(err => {
         //登录异常
@@ -228,6 +228,29 @@ export function setUserPosi(point, address) {
   }
 }
 
+//删除用户地址列表中的地址
+export function delUserAddr(index){
+  console.log('delete:',index);
+  return dispatch =>{
+    api.delUserAddress({
+      params:{
+        index:index
+      }
+    }).then(data =>{
+      console.log('data---:',data.data);
+      if(data.status === 200){
+        dispatch({
+          type:types.ADDRESS_LIST,
+          addressList:data.data.addressList
+        })
+      }
+    }).catch( err => {
+      console.log('err----------:',err);
+    })
+  }
+}
+
+//查询用户的地址列表
 export function fetchAddressList(){
   return dispatch =>{
     api.fetchAddressList()
@@ -244,6 +267,7 @@ export function fetchAddressList(){
   }
 }
 
+//添加用户的地址
 export function addAddress(address){
   return dispatch =>{
     api.addUserAddress(address)
@@ -260,6 +284,7 @@ export function addAddress(address){
   }
 }
 
+//选择用户的默认地址
 export function setDefaultAddress(index){
   return dispatch =>{
     api.setDefaultAddress({

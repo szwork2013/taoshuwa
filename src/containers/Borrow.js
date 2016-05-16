@@ -16,7 +16,8 @@ function mapStateToProps(state) {
   return {
     user: state.auth.toJS().user,
     curbook:state.book.toJS().curbook,
-    borrowPosi:state.posi.toJS().borrowPosi
+    borrowPosi:state.posi.toJS().borrowPosi,
+    addressList:state.posi.toJS().addressList
   }
 }
 
@@ -34,15 +35,44 @@ export default class Borrow extends React.Component {
       isCommentShow:false,
       weeks:2
     }
+    this.handleBorrowClick = this.handleBorrowClick.bind(this);
   }
-  ComponentWillReceiveProps(nextProps) {}
-  ComponentWillUpdate(a, b) {}
-  componentDidMount() {}
+  ComponentWillReceiveProps(nextProps) {
+    console.log('Borrow-ComponentWillReceiveProps');
+  }
+  ComponentWillUpdate(a, b) {
+    console.log('Borrow-ComponentWillUpdate');
+  }
+  componentDidMount() {
+    const {actions} = this.props;
+    actions.fetchAddressList();
+  }
+
+  handleBorrowClick(){
+    const {actions,curbook,addressList} = this.props;
+    const weeks = this.state.weeks;
+    const defaultAddress = addressList.filter(item=>item.isdefault===true);
+    const borrowPosi = {
+      address:defaultAddress[0].address.selAddress,
+      point:defaultAddress[0].address.point
+    }
+
+    const borrowInfo = {
+      bookid:curbook._id,
+      duration:weeks,
+      borrowPosi:borrowPosi
+    }
+    actions.borrowBook(borrowInfo);
+    this.setState({isTipShow:true})
+  }
 
   render() {
     const user = this.props.user || {}
     const curbook = this.props.curbook || {}
     const borrowPosi = this.props.borrowPosi || {}
+    const addressList = this.props.addressList || {}
+    const defaultAddr = addressList.filter(item => item.isdefault===true);
+    const lastAddr = defaultAddr.length > 0 ? defaultAddr[0].address.selAddress:''
     return (
       <div>
         <div className='borrowpart'>
@@ -62,11 +92,14 @@ export default class Borrow extends React.Component {
             </li>
             <li>
               <span className='gr'>我得地址：</span>
-              <span className=''>{borrowPosi.address}</span>
-              <span className='map'><img src={map_pos} onClick={() =>{alert('choose borrow address')}}  /></span>
+              <span className=''>{lastAddr}</span>
+              <span className='map'>
+                <img src={map_pos} onClick={() =>{browserHistory.push('/address')}}/>
+              </span>
             </li>
             <li>
-              <span className='gr' >我的电话：</span>{user.phone}
+              <span className='gr' >我的电话：</span>
+              <input type='text' defaultValue={user.phone} />
             </li>
             <li>
               <span className='gr'>使用积分：</span>
@@ -74,21 +107,24 @@ export default class Borrow extends React.Component {
             </li>
           </ul>
         </div>
-        <TButton name='确定' bgcolor='#F0F0F0' mtop='100'  handleClick={()=>{
-            const {actions,curbook,borrowPosi} = this.props;
-            const weeks = this.state.weeks;
-            if(isOwnEmpty(borrowPosi)){
-              alert('请选择借书地址');
-              return;
-            }
-            actions.borrowBook(curbook._id,weeks,borrowPosi);
-            {/*actions.borrowBook(curbook._id,weeks,borrowPosi);*/}
-            this.setState({isTipShow:true})
-          }}/>
 
-        <TModalTip name='知道了' cansee={this.state.isTipShow} tip='您的借阅申请已发出，稍后将与您联系' handleClick={()=> {this.setState({isTipShow:false, isCommentShow:true})}}/>
+        <TButton
+          name='确定'
+          bgcolor='#F0F0F0'
+          mtop='100'
+          handleClick={this.handleBorrowClick}/>
 
-        <TModalIn  bookid={this.props.params.id} name='发送' holder='评价一下呗' handleClick={()=> {this.setState({isCommentShow:false})}} cansee={this.state.isCommentShow}/>
+        <TModalTip
+          name='知道了'
+          cansee={this.state.isTipShow}
+          tip='您的借阅申请已发出，稍后将与您联系'
+          handleClick={()=> { browserHistory.push(`/book/${this.props.params.id}`) }}/>
+
+        {/*<TModalIn
+          name='发送'
+          holder='评价一下呗'
+          handleClick={()=> {this.setState({isCommentShow:false})}}
+          handleTouchClick={()=> {this.setState({isCommentShow:false})}} cansee={this.state.isCommentShow}/>*/}
       </div>
     )
   }

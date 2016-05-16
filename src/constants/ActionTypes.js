@@ -26,6 +26,9 @@ export const BORROW_LIST = 'BORROW_LIST';//当前的借书列表
 export const LOAN_LIST = 'LOAN_LIST';//当前的借书列表
 export const DESIRE_LIST = 'DESIRE_LIST';//当前的借书列表
 
+/**Comment******/
+export const ADD_COMMENT = 'ADD_COMMENT';//添加评论
+export const COMMENT_LIST = 'COMMENT_LIST';//评论列表
 
 /**Other************/
 export const SET_CITY_MODAL = 'SET_CITY_MODAL';

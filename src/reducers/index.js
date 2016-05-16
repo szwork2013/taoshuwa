@@ -6,6 +6,7 @@ import category from  './category';
 import drift from  './drift';
 import wx from  './wx';
 import posi from  './position';
+import comment from  './comment';
 import other from  './other';
 
 export default combineReducers({
@@ -13,6 +14,7 @@ export default combineReducers({
   auth,
   category,
   drift,
+  comment,
   wx,
   posi,
   other,

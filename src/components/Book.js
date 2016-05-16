@@ -35,7 +35,6 @@ export default class Book extends Component {
     const {searchPosi,actions} = this.props;
     if(!isOwnEmpty(searchPosi)){
       let point = searchPosi.point;
-      console.log('book point:',point);
       actions.fetchBooks(point);
     }
   }
@@ -72,7 +71,8 @@ export default class Book extends Component {
                 <div className='btngroup'>
                   <div className='position'>
                     <img src={pos_img}/>
-                    <span>{book.address || '嘉盛中心'}</span>
+                    <span>{book.address}</span>
+                    <span style={{color:'green'}}>{book.created}</span>
                   </div>
                 </div>
               </dd>

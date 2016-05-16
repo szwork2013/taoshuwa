@@ -17,7 +17,7 @@ ul {list-style: none;}
 
 .reg {background-color: #fff; padding-top:20px; height:100%;}
 .reg ul { list-style: none; padding-left: 24px;}
-.reg ul li { height: 56px; display: block; border-bottom: 1px solid #efefef; padding-top: 10px;}
+.reg ul li { height: 40px; display: block; border-bottom: 1px solid #efefef; padding-top: 10px;}
 .reg ul li .content .reg-icon-type {float: left; width: 64px; height: 30px; line-height: 36px;text-align: center;}
 .reg ul li .content .reg-icon-type img {height: 18px;}
 .reg ul li .content .reg-input {float: left; font-size: 14px;}
@@ -52,10 +52,10 @@ ul {list-style: none;}
 .item-right .loaninfo span {margin-left: 5px; color: #307268;}
 .item-last { float: left; margin-left: 30px; display: none;}
 .mark { color: red; font-size: 16px;}
-.book-list {position: relative;}
+.book-list {position: relative; padding-left: 4px; padding-right: 4px;}
 .book-list .fixed-footer {position: fixed; bottom: 0;width: 100%;}
-.book-list .fixed-header {position: fixed; top: 0; width: 100%; z-index: 1000;}
-.book-list .list {margin-top: 92px; margin-bottom: 65px;}
+.book-list .fixed-header {position: fixed; top: 0; left: 4px; right: 4px; z-index: 1000;}
+.book-list .list {margin-top: 100px; margin-bottom: 65px;}
 .book-list .list a:hover{background-color: red;}
 /*bookdetail*/
 .book-detail { margin-top: 10px;}
@@ -70,6 +70,7 @@ ul {list-style: none;}
 .book-detail .content .content-padding span {margin-left: 5px;font-size: 14px;}
 .book-detail .comment .comment-item {margin-top: 3px;}
 .book-detail .comment .comment-item .comment-content{font-size: 14px; margin-top: 6px; padding-left: 20px;}
+.book-detail .pad-bott{ margin-bottom: 180px;}
 .book-detail .comment .comment-item .comment-user{font-size: 14px; color: #9B9B9B; }
 .book-detail .other-books { padding-top: 20px; margin-bottom: 60px;height: 250px;}
 .book-detail .other-books1 { padding-top: 20px; margin-bottom: 60px;}
@@ -126,7 +127,7 @@ ul {list-style: none;}
 .component-bookitem-sim .title{text-align: center}
 
 .component-nav { width: 100%; height: 56px;line-height: 56px;background-color: #fff;font-size: 16px; text-align: center;position: fixed;bottom: 0;border-top: 1px solid #ddd;}
-.component-nav a {color:#9B9B9B}
+.component-nav a {color:#9B9B9B; display: block; width: 100%; height: 100%;}
 .component-nav .left{float: left; width: 33%}
 .component-nav .middle{float: left; width: 33%}
 .component-nav .right{float: left; width: 34%}
@@ -166,6 +167,10 @@ ul {list-style: none;}
 .signin-container ul li input{ background-color: #fff; border: none; font-size: 14px;}
 .loginbtn{ border:none; background-color:#58BD91; width:90%; height:48px; margin: 16px 5%; color:#fff; border-radius: 4px; font-size: 18px;}
 .loginbtn:hover,.loginbtn:focus{ background-color: #307268;}
+.signin-box .goreg { text-align: right; padding-top: 10px;font-size: 14px;padding-right: 16px;padding-bottom:10px;}
+
+.signin-box .goreg span { color:#DDD }
+.signin-box .goreg a { color:#307268 }
 
 
 /**nav**/
@@ -174,7 +179,7 @@ ul {list-style: none;}
 
 /**borrow**/
 .borrowpart {margin-top: 20px; background-color:#fff; padding-left: 20px; padding-top: 6px;font-size: 14px; height: 100%}
-.borrowpart ul li{ height: 40px;  border-bottom: 1px solid #DDDDDD; padding-top: 10px;}
+.borrowpart ul li{ height: 40px;  border-bottom: 1px solid #DDDDDD; padding-top: 6px; line-height: 40px;}
 .borrowpart ul li:last-child{ border-bottom:0}
 .borrowpart ul li .gr{display: inline-block; color:#9B9B9B; margin-right: 8px;}
 .borrowpart ul li .score{color:#58BD91;}
@@ -204,23 +209,30 @@ ul {list-style: none;}
 .posi .search-box input {width: 90%;height: 32px; border: 1px #BFBFBF solid;border-radius:4px;  text-align:center;}
 
 /*user base infomation*/
-.userinfo {background-color: #fff; margin-top: 30px; font-size: 14px;}
+.userinfo {background-color: #fff; padding-top: 30px; font-size: 14px;}
 .userinfo .head{ width:100%; height: 70px;}
-.userinfo .head .info{ height: 69px; padding-top: 15px; line-height: 40px;}
-.userinfo .head .info span{display: block; float: left; color: #9B9B9B; width: 20%; margin-left: 30px;}
-.userinfo .head .info img{ float:left; height: 40px;}
+.userinfo .head .head-info{ height: 69px; padding-top: 15px; line-height: 40px;}
+.userinfo .head .head-info span{display: block; float: left; color: #9B9B9B; width: 20%; margin-left: 30px;}
+.userinfo .head .head-info img{ float:left; height: 40px;}
 .userinfo .head .line{ height: 1px; background-color: #DDDDDD;width: 95%; margin-left: 5%;}
 
 .userinfo .item {height:48px; width: 100%;}
-.userinfo .item .cons{ height:47px; padding-top: 15px; line-height: 30px; }
+.userinfo .item .cons{ height:47px;  line-height: 47px; }
 .userinfo .item .cons span{display: block; float: left;color: #9B9B9B; width: 20%; margin-left: 30px; }
-.userinfo .item .cons input{display: block; float: left; border: 0px;}
+.userinfo .item .addr img{width: 16px;display: block; float: right; margin-right: 10px; margin-top: 7px;}
+.userinfo .item .top img {width: 32px; margin-top: 7px;}
+.userinfo .item .cons input{ border: 0px;}
 .userinfo .item .line{ height: 1px; background-color: #DDDDDD;width: 95%; margin-left: 5%;}
-.userinfo .catogary { height: 120px; overflow: hidden;}
+.userinfo .catogary { height: 120px;}
 .userinfo .catogary .cons { display: block; color: #9B9B9B; float:left; width: 30%; height: 120px; padding-left: 30px;padding-top: 15px;}
-.userinfo .catogary .types { float:right;width: 70%; padding-top: 15px; line-height: 26px;}
+.userinfo .catogary .types { padding-top: 15px; line-height: 26px;}
 .userinfo .catogary .types a {display: block; float:left; font-size: 12px; height: 26px; margin-right: 10px; border: 1px solid #DDDDDD; border-radius: 4px; padding-left: 8px;padding-right: 8px; color: #9B9B9B; margin-bottom: 15px;}
 .userinfo .catogary .types a.choosed {background-color: #58BC90}
+
+.userinfo .userinfo-ul li{ border-bottom: 1px solid #DDD; padding-top: 5px; padding-bottom: 5px;}
+
+.user-modify {text-align: right; color: #58BD91;padding-right: 15px;font-size: 14px;}
+.user-modify img{width: 16px;}
 
 /**map*********************/
 .map {background-color: #fff; position: relative; }
@@ -286,9 +298,10 @@ ul {list-style: none;}
 .earnpoints .title .mypoints{width: 100px; height: 100px; border-radius: 50%; border: 1px solid #ccc; margin:auto; text-align: center; line-height: 100px; position: relative; top:24px; color: #fff;}
 .tsw-title{ height: 48px; background-color: #f0f0f0; line-height: 56px; padding:0 32px; font-weight: 400;}
 .navlist{ background-color: #fff; padding-top: 8px;}
-.navlist dl{ overflow: hidden; height: 48px; line-height: 48px; margin-bottom: 0; padding:0 16px;}
+.navlist dl{ overflow: hidden; margin-bottom: 0; padding:0 16px;}
 .navlist dl dt{float:left; font-weight: normal; line-height: 48px; margin-left: 16px;}
-.navlist dl dd{ float: right;margin-top: 8px;}
+.navlist dl dd{ float: right;margin-top: 10px;}
+.navlist dl dd a {text-decoration: none; display: block; padding-left: 12px; padding-right: 12px; color: #FFF; background-color: #58BD91; border-radius: 4px; padding-top: 5px;height: 20px;}
 .navlist ul li{ height: 48px; line-height: 48px; }
 .navlist ul li:hover,.navlist ul li:focus{ background-color: #f0f0f0;}
 .navlist ul li a{ display: block; border-top: 1px solid #efefef; margin-left: 16px; padding-left: 16px; color:#3C3C3C; text-decoration: none; background:url('../images/icon-array-left.png'); background-repeat: no-repeat; background-size: 6px 12px; background-position: 95% center;}

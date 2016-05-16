@@ -63,14 +63,16 @@ export const WechatResource = (method, id, data, api = 'wechat') => {
     return axios[method](api + (id ? ('/' + id) : ''), data)
 }
 
+//评论相关
+export const CommentResource = (method, id, controller, data, api = 'comment') => {
+  return axios[method](api + (id ? ('/' + id) : ''), data)
+}
+
 export const ArticleResource = (method, id, controller, data, api = 'article') => {
   return axios[method](api + (id ? ('/' + id) : '') + (controller ? ('/' + controller) : ''), data)
 }
 export const TagResource = (method, id, data, api = 'tags') => {
   return axios[method](api + (id ? ('/' + id) : ''), data)
-}
-export const CommentResource = (method, id, controller, data, api = 'comment') => {
-  return axios[method](api + (id ? ('/' + id) : '') + (controller ? ('/' + controller) : ''), data)
 }
 export const MobileResource = (method, id, data, api = 'mobile') => {
   return axios[method](api + (id ? ('/' + id) : ''), data)

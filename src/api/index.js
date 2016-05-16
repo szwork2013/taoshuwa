@@ -39,8 +39,8 @@ export default {
     return UserResource('post','add_address',data)
   },
 
-  updateUserAddress:function(data){
-    return UserResource('post','update_address',data)
+  delUserAddress:function(data){
+    return UserResource('get','delete_address',data)
   },
 
   fetchAddressList:function(data){
@@ -62,7 +62,7 @@ export default {
   },
   //发送借书请求
   createRequest: function(data){
-    return DriftResource('get','create',data)
+    return DriftResource('post','create',data)
   },
 
   messageList: function(data){
@@ -87,6 +87,14 @@ export default {
 
   setScanQR:function(data){
     return WechatResource('get','scanQRCode',data)
+  },
+
+  //comment
+  getCommentList:function (data) {
+    return CommentResource('get','comment_list',null,data)
+  },
+  addNewComment:function (data) {
+    return CommentResource('post', 'add_comment', null, data)
   },
 
   //old
@@ -119,13 +127,7 @@ export default {
   getPrenext:function (id,options) {
     return ArticleResource('get',id,'getPrenext', {params:options})
   },
-  //comment
-  getCommentList:function (id) {
-    return CommentResource('get',id,'getFrontCommentList')
-  },
-  addNewComment:function (data) {
-    return CommentResource('post', 'addNewComment', null, data)
-  },
+
   addNewReply: function (id,data) {
     return CommentResource('post', id, 'addNewReply', data)
   },

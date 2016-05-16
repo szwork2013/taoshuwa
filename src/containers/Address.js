@@ -34,6 +34,7 @@ export default class Address extends Component {
     this.handleSelOpen = this.handleSelOpen.bind(this);
     this.handleAddAddress = this.handleAddAddress.bind(this);
     this.handleSetDefault = this.handleSetDefault.bind(this);
+    this.handleDelAddr = this.handleDelAddr.bind(this);
   }
   componentDidMount() {
     const {actions} = this.props;
@@ -50,6 +51,16 @@ export default class Address extends Component {
   handleSetDefault(index) {
     const {actions} = this.props;
     actions.setDefaultAddress(index);
+  }
+
+  handleDelAddr(item,index){
+    const defaultTrue = item.isdefault;
+    const {actions} = this.props;
+    if(defaultTrue){
+      return alert('默认地址不能删除');
+    }else{
+      actions.delUserAddr(index);
+    }
   }
 
   handleAddAddress() {
@@ -96,8 +107,7 @@ export default class Address extends Component {
       <div className='onelist'  key={'onelist-' + index}  >
         <div className='one-info'>
           <span className='address'>{item.address.city + '-' + item.address.selAddress}</span>
-          <span className='name'>{item.username}
-          </span>
+          <span className='name'>{item.username}</span>
           <span className='name'>{item.phonenum}</span>
         </div>
         <div className='func'>
@@ -107,8 +117,7 @@ export default class Address extends Component {
             ? icon_radio_selected
             : icon_radio_nselected}/>
           <span>设置为当前地址</span>
-          <a>修改</a>
-          <a>删除</a>
+          <a onClick={()=>{this.handleDelAddr(item,index)}}>删除</a>
         </div>
       </div>
     ))
