@@ -18,6 +18,7 @@ export default {
     return BookResource('get','fetchone',data)
   },
 
+
   //user
   register: function(data){
     return UserResource('post','register',data)
@@ -75,6 +76,10 @@ export default {
 
   desireList: function(data){
     return DriftResource('get','desirelist',data)
+  },
+  
+  finishReading:function(data){
+    return DriftResource('post','finish_reading',data)
   },
 
   addDesire:function(data){

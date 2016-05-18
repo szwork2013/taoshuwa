@@ -22,10 +22,10 @@ export default class Nav extends Component {
           <Link onClick={(e)=>{e.stopPropagation()}} activeClassName={indexClass} to='/'>首页</Link>
         </div>
         <div className='middle'>
-        {/*<a onClick={()=>{           window.location.href='http://www.taoshuwa.com/wechat/scanQRCodeAuth'}}>捐书</a>*/}
-          {<Link onClick={(e)=>{e.stopPropagation()}} to='/book/check' activeClassName='active'>
+        {<a onClick={()=>{           window.location.href='http://www.taoshuwa.com/wechat/scanQRCodeAuth'}}>捐书</a>}
+          {/*<Link onClick={(e)=>{e.stopPropagation()}} to='/book/check' activeClassName='active'>
             捐书
-          </Link>}
+          </Link>*/}
         </div>
         <div className='right'>
           <Link onClick={(e)=>{e.stopPropagation()}} activeClassName='active' to='/center'>我的</Link>

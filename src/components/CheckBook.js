@@ -28,6 +28,7 @@ export default class CheckBook extends Component {
   componentDidMount() {
     const {actions} = this.props;
     const code = this.props.location.query.code
+    console.log('code:',code);
     actions.setScanQR(code);
   }
   handCheckClick(e) {
@@ -59,11 +60,10 @@ export default class CheckBook extends Component {
       signature: scanconfig.signature,
       jsApiList: scanconfig.jsApiList
     });
-    // wx.error(function(res) {
-    //   res = JSON.stringify(res);
-    //   console.log('验证失败:',res);
-    //   alert(`验证失败:${res}`);
-    // });
+    wx.error(function(res) {
+      res = JSON.stringify(res);
+      alert(`验证失败:${res}`);
+    });
     wx.scanQRCode({
       needResult: 1,
       desc: 'scanQRCode desc',
@@ -95,21 +95,8 @@ export default class CheckBook extends Component {
             </label>
             <label>打开三余，感受有温度的人、书和世界。</label>
           </div>
-          <div className='input'>
-            <label className='title'>输入书背后的ISBN的编号：</label>
-            <div>
-              <input type='text' ref='isbn_id' />
-            </div>
-          </div>
         </div>
-        <div>
-          <TButton mtop='40' bgcolor="#f0f0f0" name='捐出这本书' handleClick={this.handCheckClick}/>
-        </div>
-        {this.checkSys() === 'iphone' || isOwnEmpty(scanconfig)
-          ? null
-          : <div>
-            <button className='btn btn-primary' onClick={this.scanQR} >去扫码</button>
-          </div>}
+        <TButton mtop='40' bgcolor="#f0f0f0" name='捐出这本书' handleClick={this.scanQR}/>
         <Nav/>
       </div>
     )

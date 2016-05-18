@@ -315,7 +315,7 @@ ul {list-style: none;}
 /* borrowlist */
 .borrowlist{ position: relative; padding:16px; background-color: #fff; margin-bottom: 8px;}
 /*.borrowlistbox li:last-child div{ margin-bottom: 24px;}*/
-
+.borrowlistbox{padding-left: 4px; padding-right: 4px;}
 .borrowlist span.tag{ display: inline-block; width:70px; height: 32px; line-height: 32px; text-align: center; color: #fff; position: absolute; left:0; top:16px; z-index: 0; font-size: 12px;}
 .borrowlist dl{ overflow: hidden;}
 .borrowlist dl dt{ float: left; width:104px; height: 138px; margin-left: 10px;}

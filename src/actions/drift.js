@@ -34,7 +34,13 @@ export function dealMessage(messageID, dealtype, bookid){
         bookid
       }
     }).then( data =>{
-      alert('完成该书的处理');
+      if(data.status === 200){
+        dispatch({
+          type:types.MESSAGE_LIST,
+          messagelist: data.data.messagelist
+        })
+      }
+      alert('请求处理成功');
     }).catch(err =>{
       console.log('err-----------:',err);
     })
@@ -89,6 +95,24 @@ export function desireList(){
     })
     .catch(err => {
       console.log('desireList:',err);
+    })
+  }
+}
+
+export function finishReading(data){
+  return dispatch=>{
+    api.finishReading(data)
+    .then(data =>{
+      if(data.status === 200){
+        console.log('data---:',data);
+        const borrowlist = data.data.borrowList;
+        dispatch({
+          type:types.BORROW_LIST,
+          borrowlist
+        })
+      }
+    }).catch(err => {
+      console.log('finishReading:',err);
     })
   }
 }
