@@ -17,12 +17,17 @@ export function logout() {
   }
 }
 
-export function getVCode() {
+export function getVCode(phoneObj) {
   return function(dispatch) {
     return api
-      .getVCode()
+      .getVCode({
+        params:phoneObj
+      })
       .then(data => {
-        dispatch({type: types.CHECK_VCODE_SUCCESS, vcode: '1234'});
+        if(data.status === 200){
+          let vcode = data.data.vcode;
+          dispatch({type: types.CHECK_VCODE_SUCCESS, vcode});
+        }
       })
       .catch(err => {
         console.log('err------:', err);

@@ -25,7 +25,6 @@ export default class BookLoanList extends Component {
   }
   render() {
     const {loanlist, dispatch, actions} = this.props;
-    console.log('loanlist--:',loanlist);
     const loanTemplate = loanlist.map(item => (
       <li key={item._id}>
         <div className='borrowlist'>

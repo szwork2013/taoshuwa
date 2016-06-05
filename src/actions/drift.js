@@ -104,7 +104,6 @@ export function finishReading(data){
     api.finishReading(data)
     .then(data =>{
       if(data.status === 200){
-        console.log('data---:',data);
         const borrowlist = data.data.borrowList;
         dispatch({
           type:types.BORROW_LIST,

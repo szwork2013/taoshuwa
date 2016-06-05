@@ -10,12 +10,28 @@ import icon_password from '../assets/images/icon-password.png'
 import icon_icode from '../assets/images/icon-icode.png'
 import btn_big from '../assets/images/btn-big.png'
 
+function mapStateToProps(state) {
+  return {
+    vcode: state.auth.toJS().vcode
+  }
+}
 
-class Register extends Component {
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getVCode = this.getVCode.bind(this);
+    this.state = {
+      canClicked:true,
+      aButtonTxt:'获取验证码'
+    }
   }
   componentDidMount() {
     //获取数据
@@ -30,23 +46,23 @@ class Register extends Component {
 
     if(!checkVCode(vcode)){
       alert('验证码格式不正确');
-      return;
+      return false;
     }
 
     const realVcode = this.props.vcode;
     if( Number(vcode) !== Number(realVcode)){
       alert('验证码输入不正确');
-      return;
+      return false;
     }
 
     if(!checkPassword(password)){
       alert('密码的格式不正确,只能输入6到20位的字母，数字及下划线');
-      return;
+      return false;
     }
 
     if(!checkICode(icode)){
       alert('邀请码格式不正确');
-      return;
+      return false;
     }
 
     return true;
@@ -55,13 +71,32 @@ class Register extends Component {
   //获取验证码
   getVCode(){
     const {actions} = this.props;
-    actions.getVCode();
+    const phonenum = this.refs.phone.value;
+
+    if(!checkPhone(phonenum)){
+      alert('手机号码格式不正确');
+      return false;
+    }
+
+    if(this.state.canClicked){
+      this.setState({canClicked:false})
+      let time = 60;
+      let myInterval = setInterval(()=>{
+        time = time - 1;
+        this.setState({aButtonTxt:`重新获取(${time})`})
+        if(time <= -1){
+          clearInterval(myInterval);
+          this.setState({aButtonTxt:'获取验证码'})
+          this.setState({canClicked:true})
+        }
+      },1000)
+      actions.getVCode({phonenum});
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const {actions} = this.props;
-    console.log(this.refs);
     const {phone, password, icode, vcode} = this.refs;
     const regInfo = {
       phone: phone.value,
@@ -69,14 +104,16 @@ class Register extends Component {
       icode: icode.value,
       vcode:vcode.value
     }
+
     if(this.checkRegInfo(regInfo)){
       actions.register(regInfo);
     }
   }
   render() {
     const {dispatch, actions} = this.props;
+    const winHeigt = document.body.clientHeight;
     return (
-      <div className='reg'>
+      <div className='reg' style={{height:winHeigt}}>
         <ul>
           <li>
             <div className='content'>
@@ -96,7 +133,7 @@ class Register extends Component {
               </div>
               <div className='reg-input'>
                 <input type='text' ref='vcode' placeholder='请输入验证码'/>
-                <a onClick={this.getVCode}>获取验证码</a>
+                <a onClick={this.getVCode} ref='abutton'>{this.state.aButtonTxt}</a>
               </div>
             </div>
             <div className='one-line'></div>
@@ -118,7 +155,7 @@ class Register extends Component {
                 <img src={icon_icode}/>
               </div>
               <div className='reg-input'>
-                <input type='text' ref='icode' placeholder='请输入邀请码'/>
+                <input type='text' ref='icode' placeholder='没有，不填该项'/>
               </div>
             </div>
             <div className='one-line'></div>
@@ -132,53 +169,5 @@ class Register extends Component {
         </div>
       </div>
     )
-    return;
-    return (
-      <div className="signin-box">
-        <div className="signin-container">
-          <h4 className="title">注 册</h4>
-          <form className="signin-form form-horizontal" name="signinForm" onSubmit={this.handleSubmit} noValidate>
-            <div className="form-group">
-              <div className="input-group">
-                <div className="input-group-addon">
-                  <i className="fa fa-envelope-o"></i>
-                </div>
-                <input type="text" className="form-control" required ref="phone" placeholder="用户手机号码"/>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="input-group">
-                <div className="input-group-addon">
-                  <i className="fa fa-unlock-alt"></i>
-                </div>
-                <input type="password" required className="form-control" ref="password" placeholder="密码"/>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="input-group">
-                <div className="input-group-addon">
-                  <i className="fa fa-unlock-alt"></i>
-                </div>
-                <input type="password" required className="form-control" ref="cpassword" placeholder="确认密码"/>
-              </div>
-            </div>
-            <div className="form-group">
-              <button className="btn btn-primary btn-lg btn-block" type="submit">登 录</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    )
   }
 }
-function mapStateToProps(state) {
-  return {
-    vcode: state.auth.toJS().vcode
-  }
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Register)

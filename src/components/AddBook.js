@@ -53,7 +53,7 @@ export default class AddBook extends Component {
     }
 
     let curAddress = userinfo.address_list.filter(item => item.isdefault===true)
-    let defaultAddress = curAddress[0].address.selAddress + curAddress[0].address.address_unit;
+    let defaultAddress = curAddress[0].address.selAddress + (curAddress[0].address.address_unit || '');
     onebook.address = defaultAddress;
     onebook.position = [curAddress[0].address.point.lng, curAddress[0].address.point.lat];
     onebook.category = choosedIndex;

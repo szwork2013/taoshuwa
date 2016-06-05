@@ -22,7 +22,7 @@ ul {list-style: none;}
 .reg ul li .content .reg-icon-type img {height: 18px;}
 .reg ul li .content .reg-input {float: left; font-size: 14px;}
 .reg ul li .content .reg-input a { padding:6px 8px; border-radius: 4px; color: #58BD91; border: 1px solid #58BD91; position: absolute; right:24px;}
-.reg ul li .content .reg-input a:hover,.reg ul li .content .reg-input a:focus{ background-color:#58BD91; color:#fff; }
+.reg ul li .content .reg-input a:active,.reg ul li .content .reg-input a:focus{ background-color:#58BD91; color:#fff; }
 .reg ul li .content input {float: left; height: 30px; line-height: 30px; border: none; font-size: 14px;}
 .reg .icode-tip{height:20px; padding-right: 15px;text-align: right;}
 .reg .icode-tip a{ display:inline-block; color: #307268; font-size: 14px; margin-top: 8px;}
@@ -110,7 +110,7 @@ ul {list-style: none;}
 .donate .saying textarea{width: 100%; border: 1px solid #BFBFBF; border-radius: 4px; height: 75px;resize: none;margin-top: 10px;font-size: 14px;}
 
 .checkbook .add-content {background-color: #FFF; padding: 30px 12px 30px 12px; }
-.checkbook .add-content .word {border: 1px solid #58BD91; padding:30px 8px 10px 25px; box-shadow: 4px 4px 4px #F0F0F0}
+.checkbook .add-content .word {border: 1px solid #58BD91; padding:30px 8px 10px 25px; box-shadow: 4px 4px 4px #F0F0F0; font-family: 'Tahoma'}
 .checkbook .add-content .word label {display: block; margin-bottom: 15px; margin-left: 8px; font-size:16px;}
 .checkbook .add-content .input .title {display: block; color:#3c3c3c;  margin-top: 25px; font-size: 14px; margin-left: 5%;}
 .checkbook .add-content .input input {display: block; padding-left: 10px; font-size: 16px; margin-top: 10px; margin-left: auto; margin-right: auto; border: 1px solid #DDDDDD; border-radius: 2px; width:90%; height:35px;}
@@ -315,7 +315,7 @@ ul {list-style: none;}
 /* borrowlist */
 .borrowlist{ position: relative; padding:16px; background-color: #fff; margin-bottom: 8px;}
 /*.borrowlistbox li:last-child div{ margin-bottom: 24px;}*/
-.borrowlistbox{padding-left: 4px; padding-right: 4px;}
+.borrowlistbox{padding-left: 0px; padding-right: 0px;}
 .borrowlist span.tag{ display: inline-block; width:70px; height: 32px; line-height: 32px; text-align: center; color: #fff; position: absolute; left:0; top:16px; z-index: 0; font-size: 12px;}
 .borrowlist dl{ overflow: hidden;}
 .borrowlist dl dt{ float: left; width:104px; height: 138px; margin-left: 10px;}
@@ -353,6 +353,6 @@ ul {list-style: none;}
 @media only screen and (max-width:320px){
   .borrowlist dl dd .bookname{ font-size: 18px;}
   .borrowlist dl dd button{ padding:8px 20px;}
-  .borrowlist dl dt{ margin-left: 5px;}
+  .borrowlist dl dt{ margin-left: 0px;}
 
 }

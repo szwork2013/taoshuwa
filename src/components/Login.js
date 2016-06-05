@@ -31,7 +31,7 @@ class Login extends Component {
     const {dispatch,actions } = this.props;
 
     return (
-      <div className="signin-box">
+      <div className="signin-box" style={{height: document.body.clientHeight}}>
           <div className="signin-container">
             <h4 className="title">登 录</h4>
             <ul>

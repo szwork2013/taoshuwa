@@ -122,11 +122,9 @@ export default class UserInfo extends React.Component {
       return ageArr;
     })();
     //昵称
-    const nicknamePart = this.state.canEdit
-      ? (<input type='text' ref='nickname' defaultValue={userinfo.nickname} placeholder='请输入你的昵称'/>)
-      : (
-        <label>{userinfo.nickname}</label>
-      )
+    const nicknamePart = !!userinfo.nickname ?  (
+      <label>{userinfo.nickname}</label>
+    ) : (<input type='text' ref='nickname' defaultValue={userinfo.nickname} placeholder='请输入你的昵称'/>)
 
     //性别
     const sexPart = this.state.canEdit

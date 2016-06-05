@@ -62,7 +62,7 @@ export default class CheckBook extends Component {
     });
     wx.error(function(res) {
       res = JSON.stringify(res);
-      alert(`验证失败:${res}`);
+      console.log(`验证失败:${res}`);
     });
     wx.scanQRCode({
       needResult: 1,
@@ -96,7 +96,7 @@ export default class CheckBook extends Component {
             <label>打开三余，感受有温度的人、书和世界。</label>
           </div>
         </div>
-        <TButton mtop='40' bgcolor="#f0f0f0" name='捐出这本书' handleClick={this.scanQR}/>
+        <TButton mtop='40' bgcolor="#f0f0f0" name='捐 书' handleClick={this.scanQR}/>
         <Nav/>
       </div>
     )

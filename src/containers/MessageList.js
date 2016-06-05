@@ -23,7 +23,6 @@ export default class MessageList extends Component {
 
   render() {
     let {messagelist,actions} = this.props;
-    console.log('messagelist:',messagelist);
     if(messagelist === undefined){
       messagelist=[];
     }

@@ -4,9 +4,9 @@ import {fromJS, Map, List} from 'immutable'
 import {saveCookie, getCookie, signOut} from '../utils/authService'
 
 const initialState = fromJS({
-  user:null,
-  vcode:'',
-  token: getCookie('token') || null
+  user:null,//用户信息
+  vcode:'',//验证码
+  token: getCookie('token') || null, //token信息
 });
 
 export default createReducer(initialState,{

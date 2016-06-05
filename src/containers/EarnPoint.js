@@ -23,13 +23,13 @@ export default class EarnPoint extends Component {
             <dd><a>签到</a></dd>
           </dl>
           <ul>
-            <li><a href='#'>写评书<span className='points'>{pointcomment}</span></a></li>
+            <li><a >写评书<span className='points'>{pointcomment}</span></a></li>
             {/*<li><a href='#'>还书<span className='points'>{pointstillbook}</span></a></li>*/}
           </ul>
           <div className='tsw-title'>更高积分</div>
           <ul className='tsw-pt-8 tsw-pb-8'>
-            <li><a href='#' className='tsw-nboder-top'>完善资料<span className='points'>{pointperfect}</span></a></li>
-            <li><a href='#'>捐书<span className='points'>{pointdonate}</span></a></li>
+            <li><a className='tsw-nboder-top'>完善资料<span className='points'>{pointperfect}</span></a></li>
+            <li><a>捐书<span className='points'>{pointdonate}</span></a></li>
           </ul>
         </div>
       </div>
